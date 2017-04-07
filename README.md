@@ -1,6 +1,14 @@
 
-NFQ Akademijos projektas
+NFQ Akademijos projektas - [virtualus treneris](http://virtualustreneris.projektai.nfqakademija.lt/)
 ============
 
+### Nariai:
+ - Aidas Eglinskas
+ - Vilius Norbutas
+ - Armandas Dambrauskas
 
-In progress..
+### Mentorius:
+ - Andrius Buivydas
+
+#
+© VA komanda
