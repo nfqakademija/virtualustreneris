@@ -9,7 +9,7 @@ class HomeController extends Controller
 {
 
     /**
-     * @Route("/", name="homepage")
+     * @Route("/test", name="homepage")
      */
     public function indexAction()
     {
