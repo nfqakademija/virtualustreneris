@@ -1,12 +1,12 @@
 <?php
+
 /**
  * Created by PhpStorm.
  * User: vilius
- * Date: 17.4.6
- * Time: 18.46
+ * Date: 17.4.12
+ * Time: 16.16
  */
-
-class UserType
+class NutritionType
 {
 
 }
