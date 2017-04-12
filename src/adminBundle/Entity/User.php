@@ -9,15 +9,14 @@
 
 namespace adminBundle\Entity;
 
-use FOS\UserBundle\Model\User as BaseUser;
 use Doctrine\ORM\Mapping as ORM;
-use FOS\UserBundle\Model\User;
+
 
 /**
  * @ORM\Entity
  * @ORM\Table(name="User")
  */
-class User extends BaseUser
+class User
 {
     /**
      * @ORM\Id
@@ -25,6 +24,12 @@ class User extends BaseUser
      * @ORM\GeneratedValue(strategy="AUTO")
      */
     protected $id;
+
+
+    /**
+     * @ORM\Column(type="string")
+     */
+    protected $name;
 
     public function __construct()
     {
