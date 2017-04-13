@@ -1,26 +1,98 @@
 {% extends "::base.html.twig" %}
 
-{% block title %}Homepage - {{ parent() }}{% endblock %}
+{% block title %}Pagrindinis - {{ parent() }}{% endblock %}
 
 {% block stylesheets %}
-    <link href="https://fonts.googleapis.com/css?family=Lato:100" rel="stylesheet" type="text/css">
-    {{ parent() }}
-    <style>
-        body {
-            margin: 0;
-            padding: 0;
-            font-weight: 100;
-            font-family: 'Lato';
-        }
-
-        .title {
-            margin: 20px auto;
-            text-align: center;
-            font-size: 96px;
-        }
-    </style>
+    <link rel="stylesheet" href="{{ asset('css/jquery.fullPage.min.css') }}"/>
+    <link rel="stylesheet" href="{{ asset('css/fullPage.min.css') }}"/>
 {% endblock %}
 
 {% block body %}
-    <div class="title">NFQ Akademija</div>
+    <ul id="menu" class="display">
+        <li data-menuanchor="page1" class="active"><a href="#page1" id="button1">Pagrindinis</a></li>
+        <li data-menuanchor="page2"><a href="#page2" id="button2">Motyvacija</a></li>
+        <li data-menuanchor="page3"><a href="#page3" id="button3">Programos</a></li>
+        <li data-menuanchor="page4"><a href="#page4" id="button4">Kontaktai</a></li>
+    </ul>
+    <div id="fullpage">
+        <div class="section" id="section1" data-anchor="page1">
+            <div style="padding-left: 10px; padding-right: 10px; height: 100%; background-color: burlywood;">
+                <div style="margin-top: 30%;">
+                    <div style="background-color: #042432; border-radius: 10px; margin: auto; max-width: 310px; width: 100%;">
+                        <img src="images/logo.png" alt="" /><br/>
+                        <br/>
+                        <div class="OpenSans" style="width: 100%; background-color: #063549; font-size: 14pt; padding-top: 5px; padding-bottom: 5px; border-bottom-left-radius: 10px; border-bottom-right-radius: 10px; color: #fff;">
+                            JŪSŲ ASMENINIS PAGALBININKAS<br/>
+                            KELYJE Į POKYČIUS
+                        </div>
+                    </div>
+                    <div class="OpenSans" style="color: #fff;">
+                        Kaip virtualus treneris tau padės?<br/>
+                        Eik į apačią ir pamatyk
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="section OpenSans" id="section2" data-anchor="page2">
+            <div class="slide">
+                <div style="width: 70%; color: #1ba6dd; font-size: 2.48vh; min-font-size: 24px; margin: auto;">
+                    "Pirmiausia – turėkite tikslą ir atkakliai jo siekite.
+                    Nesvarbu, ar verslo srity, ar sporte – reikia daug ir pasiaukojamai dirbti.
+                    Ir ne vienerius metus. Dideli tikslai nėra pasiekiami per vieną dieną…
+                    Kartais gali prireikti net dešimtmečių, todėl užsispyrimas ir didžiulis noras dirbti – būtinas.
+                    <br/>
+                    <div style="font-size: 2.96vh; min-font-size: 48px; color: #06455d;">
+                        TUOMET VISI TIKSLAI PASIEKIAMI!"
+                    </div>
+                    <div style="width: 60%; margin: auto; text-align: right; color: #1ba6dd;">
+                        - Virgilijus Alekna
+                    </div>
+                </div>
+            </div>
+            <div class="slide">
+                <div style="width: 70%; color: #1ba6dd; font-size: 2.48vh; min-font-size: 24px; margin: auto;">
+                    "Pirmiausia – turėkite tikslą ir atkakliai jo siekite.
+                    Nesvarbu, ar verslo srity, ar sporte – reikia daug ir pasiaukojamai dirbti.
+                    Ir ne vienerius metus. Dideli tikslai nėra pasiekiami per vieną dieną…
+                    Kartais gali prireikti net dešimtmečių, todėl užsispyrimas ir didžiulis noras dirbti – būtinas.
+                    <br/>
+                    <div style="font-size: 2.96vh; min-font-size: 48px; color: #06455d;">
+                        TUOMET VISI TIKSLAI PASIEKIAMI!"
+                    </div>
+                    <div style="width: 60%; margin: auto; text-align: right; color: #1ba6dd;">
+                        - Virgilijus Alekna
+                    </div>
+                </div>
+            </div>
+            <div class="slide">
+                <div style="width: 70%; color: #1ba6dd; font-size: 2.48vh; min-font-size: 24px; margin: auto;">
+                    "Pirmiausia – turėkite tikslą ir atkakliai jo siekite.
+                    Nesvarbu, ar verslo srity, ar sporte – reikia daug ir pasiaukojamai dirbti.
+                    Ir ne vienerius metus. Dideli tikslai nėra pasiekiami per vieną dieną…
+                    Kartais gali prireikti net dešimtmečių, todėl užsispyrimas ir didžiulis noras dirbti – būtinas.
+                    <br/>
+                    <div style="font-size: 2.96vh; min-font-size: 48px; color: #06455d;">
+                        TUOMET VISI TIKSLAI PASIEKIAMI!"
+                    </div>
+                    <div style="width: 60%; margin: auto; text-align: right; color: #1ba6dd;">
+                        - Virgilijus Alekna
+                    </div>
+                </div>
+            </div>
+
+        </div>
+        <div class="section" id="section3" data-anchor="page3">
+            Mygtukai!
+        </div>
+        <div class="section" id="section4" data-anchor="page4">
+            Page 4
+        </div>
+    </div>
+{% endblock %}
+
+{% block javascripts %}
+    <script src="{{ asset('js/jquery-3.2.0.min.js') }}"></script>
+    <script src="{{ asset('js/jquery.fullPage.min.js') }}"></script>
+    <script src="{{ asset('js/fullPage.min.js') }}"></script>
+    {{ parent() }}
 {% endblock %}
