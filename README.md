@@ -17,6 +17,9 @@ NFQ Akademijos projektas - [virtualus treneris](http://virtualustreneris.projekt
 # Paleidimo instrukcija
 
 #### Versijų reikalavimai
+* nginx: `1.10.0`
+* PHP: `>=7.0.x`
+* mariaDB: `>=10.0.29`
 * composer: `>=1.4.1`
 * docker: `>=17.x-ce`
 * docker-compose: `>=1.8.1`
@@ -35,9 +38,9 @@ Atkreipkite dėmęsį į `LOCAL_USER_ID` ir `LOCAL_GROUP_ID`, įvykdžius nurody
 Toliau leidžiame komandas esančias žemiau:
 
 ```bash
-composer install
 docker-compose up -d
 docker-compose exec fpm composer install --prefer-dist -n
+composer install
 docker-compose run npm npm install
 docker-compose run npm gulp
 
