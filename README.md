@@ -14,7 +14,7 @@ NFQ Akademijos projektas - [virtualus treneris](http://virtualustreneris.projekt
 
 Šis projektas suteiks galimybę susidaryti Jums tinkamą sporto ir mitybos programą, kuria vadovaudamiesi nesunkiai padidinsite raumenų apimtis, sumažinsite/padidinsite bendrą kūno svorį, turėsite puikią sveikatą ir būsite laimingi.
 
-#Paleidimo instrukcija
+# Paleidimo instrukcija
 
 #### Versijų reikalavimai
 * composer: `>=1.4.1`
@@ -28,7 +28,7 @@ Einate į šią direktoriją su terminalu. `cd <path>`.
 
 **SVARBU:**
 
-Susikuriate projekto viduje `.env` failą. Failą užpildote turiniu pateiktu iš `env.dist`.
+Susikuriate projekto viduje `.env` failą. Failą užpildote turiniu pateiktu iš `env.dist`
 
 Atkreipkite dėmęsį į `LOCAL_USER_ID` ir `LOCAL_GROUP_ID`, įvykdžius nurodytas komandas, ar sutampa `id` su jūsų nurodytais.
 
