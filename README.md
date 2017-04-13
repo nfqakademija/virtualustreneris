@@ -11,6 +11,7 @@ NFQ Akademijos projektas - [virtualus treneris](http://virtualustreneris.projekt
  - Andrius Buivydas
 
 #Intro
+
 Šis projektas suteiks galimybę susidaryti Jums tinkamą sporto ir mitybos programą, kuria vadovaudamiesi nesunkiai padidinsite raumenų apimtis, sumažinsite/padidinsite bendrą kūno svorį, turėsite puikią sveikatą ir būsite laimingi.
 
 #Paleidimo instrukcija
