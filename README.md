@@ -17,7 +17,6 @@ NFQ Akademijos projektas - [virtualus treneris](http://virtualustreneris.projekt
 # Paleidimo instrukcija
 
 #### Versijų reikalavimai
-* nginx: `1.10.0`
 * PHP: `>=7.0.x`
 * mariaDB: `>=10.0.29`
 * composer: `>=1.4.1`
