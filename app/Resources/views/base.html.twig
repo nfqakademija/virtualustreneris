@@ -12,6 +12,16 @@
     {% block canonical_meta %}{% endblock %}
 </head>
 <body>
+<div class="preload" id="preload">
+    <div class="logo">
+        virtualus <span style="color:darkturquoise;">treneris</span>
+    </div>
+    <div class="loader-frame">
+        <div class="loader1" id="loader1"></div>
+        <div class="loader2" id="loader2"></div>
+
+    </div>
+</div>
 {% block container %}
     {% block header %}
         {% include "::inc/header.html.twig" %}
@@ -23,6 +33,7 @@
 {% endblock %}
 {% block javascripts %}
     <script src="{{ asset('js/script.js') }}"></script>
+    <script src="https://code.jquery.com/jquery-3.2.1.min.js" crossorigin="anonymous"></script>
 {% endblock %}
 </body>
 </html>
