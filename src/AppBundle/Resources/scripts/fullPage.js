@@ -36,3 +36,8 @@ $('#fullpage').fullpage({
         }
     }
 });
+
+//adding the action to the button
+$(document).on('click', '#moveDown', function(){
+    $.fn.fullpage.moveSectionDown();
+});
