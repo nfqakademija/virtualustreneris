@@ -2,8 +2,9 @@
 <html>
 <head>
     <meta charset="UTF-8" />
-    <title>{% block title %}{{ "My project" }}{% endblock %}</title>
-    <meta name="viewport" content="width=device-width,initial-scale=1.0">
+    <title>{% block title %}{{ "Virtualus Treneris" }}{% endblock %}</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
     <link rel="icon" type="image/x-icon" href="{{ asset('images/favicon.ico')}}">
     {% block stylesheets %}
         <link rel="stylesheet" href="{{ asset('css/style.css') }}"/>
@@ -11,14 +12,12 @@
     {% block canonical_meta %}{% endblock %}
 </head>
 <body>
-<div class="container">
-    {% block container %}
-        {% block header %}
-            {% include "::inc/header.html.twig" %}
-        {% endblock %}
-        {% block body %}{% endblock %}
+{% block container %}
+    {% block header %}
+        {% include "::inc/header.html.twig" %}
     {% endblock %}
-</div>
+    {% block body %}{% endblock %}
+{% endblock %}
 {% block footer %}
 {% include "::inc/footer.html.twig" %}
 {% endblock %}
