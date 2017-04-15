@@ -4,6 +4,8 @@ namespace AppBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
+use AppBundle\Entity\User;
+use Symfony\Component\BrowserKit\Response;
 
 class HomeController extends Controller
 {
@@ -13,6 +15,15 @@ class HomeController extends Controller
      */
     public function indexAction()
     {
-        return $this->render('AppBundle:Home:index.html.twig', []);
+        return $this->render('AppBundle:Home:index.html.twig');
+    }
+
+    /**
+     * @Route("/insert", name="insert")
+     */
+    public function insertAction()
+    {
+
+
     }
 }
