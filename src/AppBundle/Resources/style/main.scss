@@ -87,6 +87,7 @@ body {
 
 	}
 }
+
 .modal {
     display: none;
     position: fixed;
@@ -100,6 +101,7 @@ body {
     background-color: rgb(0,0,0);
     background-color: rgba(0,0,0,0.4);
 }
+
 .modal-content {
     position: relative;
     background-color: #fefefe;
@@ -130,18 +132,21 @@ body {
     font-size: 28px;
     font-weight: bold;
 }
+
 .close:hover,
 .close:focus {
     color: white;
     text-decoration: none;
     cursor: pointer;
 }
+
 .modal-header {
     padding: 2px 16px;
     background-color: #333;
     color: white;
     
 }
+
 .modal-body {
     padding: 2px 16px;
     background-color: white;
