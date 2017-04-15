@@ -1,0 +1,199 @@
+#section1 {
+    background-image: url(../images/page1_bg.png);
+    background-size: cover;
+}
+
+#section2 {
+    background-image: url(../images/page2_bg.png);
+    background-size: cover;
+}
+
+#section3 {
+    background-image: url(../images/page3_bg.png);
+    background-size: cover;
+}
+
+#section4 {
+    background-image: url(../images/page4_bg.png);
+    background-size: cover;
+}
+
+div img {
+    height: auto;
+}
+
+@media screen and (max-width: 540px) {
+    .display {
+        display: none;
+    }
+}
+
+h1{
+    font-size: 6em;
+}
+p{
+    font-size: 2em;
+}
+.section{
+    text-align:center;
+}
+#menu li {
+    display:inline-block;
+    margin: 10px;
+    color: #000;
+    background:#fff;
+    background: rgba(255,255,255, 0.5);
+    -webkit-border-radius: 10px;
+    border-radius: 10px;
+}
+#menu li.active{
+    background:#666;
+    color: #fff;
+}
+
+@font-face {
+    font-family: OpenSans;
+    src: url(../fonts/OpenSans/OpenSans-Light.ttf);
+}
+
+.OpenSans {
+    font-family: OpenSans;
+}
+
+@font-face {
+    font-family: OpenSansRegular;
+    src: url(../fonts/OpenSans/OpenSans-Regular.ttf);
+}
+.OpenSans-Regular {
+    font-family: OpenSansRegular;
+}
+
+@font-face {
+    font-family: OpenSansBold;
+    src: url(../fonts/OpenSans/OpenSans-Bold.ttf);
+}
+.OpenSans-Bold {
+    font-family: OpenSansBold;
+}
+
+#menu li a{
+    text-decoration:none;
+    color: #000;
+}
+#menu li.active a:hover{
+    color: #000;
+}
+#menu li:hover{
+    background: rgba(255,255,255, 0.8);
+}
+#menu li a,
+#menu li.active a{
+    padding: 6px 18px;
+    display:block;
+}
+#menu li.active a{
+    color: #fff;
+}
+#menu{
+    position:fixed;
+    top:0;
+    left:0;
+    height: 40px;
+    z-index: 70;
+    width: 100%;
+    padding: 0;
+    margin:0;
+}
+
+button {
+    border-style: none;
+    width: 40%;
+    background-color: #042432;
+    color: white;
+    padding: 7px 0px;
+    margin: 8px 0;
+    border-radius: 4px;
+    cursor: pointer;
+    min-width: 100px;
+    border: 0px;
+}
+
+.box1 {
+    padding-left: 10px;
+    padding-right: 10px;
+    height: 80%;
+}
+
+.box2 {
+    background-color: #042432;
+    border-radius: 10px;
+    margin: auto;
+    max-width: 310px;
+    width: 100%;
+}
+
+.table1 {
+    margin: auto;
+    height: 100%;
+    text-align: center;
+}
+
+.textBox {
+    width: 100%;
+    background-color: #063549;
+    font-size: 14pt;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    border-bottom-left-radius: 10px;
+    border-bottom-right-radius: 10px;
+}
+
+.textBox1 {
+    width: 68%;
+    color: #1ba6dd;
+    font-size: 2.48vh;
+    min-font-size: 24px;
+    margin: auto;
+}
+
+.textBoxAuthor {
+    width: 60%;
+    margin: auto;
+    text-align: right;
+    color: #1ba6dd;
+}
+
+.white {
+    color: #fff;
+}
+
+.phoneScreen {
+    display: none;
+}
+
+@media screen and (max-width: 780px) {
+    .computerScreen {
+        display: none;
+    }
+    .phoneScreen {
+        display: inline-block;
+    }
+}
+
+.tableBody {
+    color: #2c3e50;
+    background-color: #6f7e91;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+}
+
+.searchButtonStyle {
+    padding-top: 5px;
+    padding-bottom: 5px;
+    font-size: 24pt;
+    text-align: center;
+    color: #2c3e50;
+    background-color: #6f7e91;
+    border-bottom-left-radius: 10px;
+    border-bottom-right-radius: 10px;
+}

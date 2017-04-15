@@ -2,8 +2,9 @@
 <html>
 <head>
     <meta charset="UTF-8" />
-    <title>{% block title %}{{ "My project" }}{% endblock %}</title>
-    <meta name="viewport" content="width=device-width,initial-scale=1.0">
+    <title>{% block title %}{{ "Virtualus Treneris" }}{% endblock %}</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
     <link rel="icon" type="image/x-icon" href="{{ asset('images/favicon.ico')}}">
     {% block stylesheets %}
         <link rel="stylesheet" href="{{ asset('css/style.css') }}"/>
@@ -11,19 +12,28 @@
     {% block canonical_meta %}{% endblock %}
 </head>
 <body>
-<div class="container">
-    {% block container %}
-        {% block header %}
-            {% include "::inc/header.html.twig" %}
-        {% endblock %}
-        {% block body %}{% endblock %}
-    {% endblock %}
+<div class="preload" id="preload">
+    <div class="logo">
+        virtualus <span style="color:darkturquoise;">treneris</span>
+    </div>
+    <div class="loader-frame">
+        <div class="loader1" id="loader1"></div>
+        <div class="loader2" id="loader2"></div>
+
+    </div>
 </div>
+{% block container %}
+    {% block header %}
+        {% include "::inc/header.html.twig" %}
+    {% endblock %}
+    {% block body %}{% endblock %}
+{% endblock %}
 {% block footer %}
 {% include "::inc/footer.html.twig" %}
 {% endblock %}
 {% block javascripts %}
     <script src="{{ asset('js/script.js') }}"></script>
+    <script src="https://code.jquery.com/jquery-3.2.1.min.js" crossorigin="anonymous"></script>
 {% endblock %}
 </body>
 </html>
