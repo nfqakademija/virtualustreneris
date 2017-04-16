@@ -151,4 +151,56 @@ body {
     padding: 2px 16px;
     background-color: white;
     color: black;
-} 
+}
+
+/* MITYBOS PAGE */
+
+.main {
+    width: 100%;
+    margin-left: auto;
+    margin-right: auto;
+    font-family: 'Open Sans', sans-serif;
+    background-color: rgb(44, 62, 80);
+}
+
+.content {
+    margin-top: 80px;
+    text-align: center;
+    color: #2c3e50;
+}
+
+.top-text {
+    width: 100%;
+    max-width: 500px;
+    margin: 0px auto;
+    text-align: center;
+    margin-bottom: 20px;
+    font-size: 18px;
+    padding: 10px;
+    color: #2c3e50;
+    border-radius: 8px;
+    background-color: #6f7e91;
+}
+
+
+.checkbox {
+    font-size: 14px;
+}
+
+.product-dislike {
+    text-align: center;
+    font-size: 18px;
+    color: black;
+}
+
+.margin-20 {
+    margin-top: 20px;
+}
+
+.lentele {
+    color: black;
+    background-color: #6f7e91;
+    border-radius: 8px;
+    padding-top: 5px;
+    margin-top: 30px;
+}
