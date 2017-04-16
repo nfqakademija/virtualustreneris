@@ -88,6 +88,7 @@ body {
 	}
 }
 
+/* The Modal (background) */
 .modal {
     display: none;
     position: fixed;
@@ -117,7 +118,7 @@ body {
 }
 
 @-webkit-keyframes animatetop {
-    from {top:-300px; opacity:0} 
+    from {top:-300px; opacity:0}
     to {top:0; opacity:1}
 }
 
@@ -144,11 +145,11 @@ body {
     padding: 2px 16px;
     background-color: #333;
     color: white;
-    
+
 }
 
 .modal-body {
     padding: 2px 16px;
     background-color: white;
     color: black;
-} 
+}
