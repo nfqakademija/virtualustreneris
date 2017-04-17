@@ -12,7 +12,7 @@ class MealPlanController extends Controller
     /**
      * @Route("/mitybos-programos", name="meal-plan")
      */
-    public function indexAction()
+    public function mealAction()
     {
         return $this->render('AppBundle:MealPlan:index.html.twig');
     }

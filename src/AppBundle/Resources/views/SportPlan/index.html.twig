@@ -30,7 +30,7 @@
                 <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                     <ul class="nav navbar-nav">
                         <li class="active"><a href="{{ path('homepage') }}">Titulinis <span class="sr-only">(current)</span></a></li>
-                        <li class="active"><a href="{{ path('sport-plan') }}">Sporto programos <span class="sr-only">(current)</span></a></li>
+                        <li class="active"><a href="{{ path('meal-plan') }}">Mitybos programos <span class="sr-only">(current)</span></a></li>
                     </ul>
                     <ul class="nav navbar-nav navbar-right">
                         <li class="dropdown">
@@ -52,21 +52,19 @@
         <div class="content">
 
             <div class="top-text">
-                <p>Ieškokite sau pritaikytos mitybos programos</p>
+                <p>Ieškokite sau pritaikytos sporto programos</p>
             </div>
 
             <form class="form-inline">
-                <div class="form-group">
-                    <label class="sr-only" >Amžius</label>
-                    <input type="email" class="form-control" id="exampleInputEmail3" placeholder="Amžius">
-                </div>
-                <div class="form-group">
-                    <label class="sr-only" for="exampleInputPassword3">Ūgis</label>
-                    <input type="password" class="form-control" id="exampleInputPassword3" placeholder="Ūgis">
-                </div>
-                <div class="form-group">
-                    <label class="sr-only" for="exampleInputPassword3">Svoris</label>
-                    <input type="password" class="form-control" id="exampleInputPassword3" placeholder="Svoris">
+                <div class="btn-group" role="group">
+                    <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Lytis
+                        <span class="caret"></span>
+                    </button>
+                    <ul class="dropdown-menu">
+                        <li><a href="#">Vyras</li>
+                        <li><a href="#">Moteris</a></li>
+                    </ul>
                 </div>
                 <div class="btn-group" role="group">
                     <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -75,108 +73,97 @@
                     </button>
                     <ul class="dropdown-menu">
                         <li><a href="#">Priaugti raumeninės masės</li>
-                        <li><a href="#">Numesti svorį</a></li>
-                        <li><a href="#">Padidinti svorį</a></li>
+                        <li><a href="#">Numesti bendrą kūno svorį</a></li>
                         <li><a href="#">Ryškinti raumenis</a></li>
                     </ul>
                 </div>
                 <div class="btn-group" role="group">
                     <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        Paros fizinis aktyvumas
+                        Pažangumas
                         <span class="caret"></span>
                     </button>
                     <ul class="dropdown-menu">
-                        <li><a href="#">Pasyvus 0 val</a></li>
-                        <li><a href="#">Vaikščiojimas 1-2 val</a></li>
-                        <li><a href="#">Bėgiojimas 0.5 - 1 val</a></li>
-                        <li><a href="#">Dviratis 0.5 - 1 val</a></li>
+                        <li><a href="#">Pradedantysis</li>
+                        <li><a href="#">Pažengęs</a></li>
                     </ul>
                 </div>
+
+
             </form>
 
-            <div class="top-text" style="margin-top: 20px">
-                <p>Pasirinkite kokių produktų nemėgstate</p>
-                <div class="product-dislike margin-20">
-                    <div class="checkbox">
-                        <label>
-                            <input type="checkbox"> Žuvies
-                        </label>
-                        <label>
-                            <input type="checkbox"> Pieno produktų
-                        </label>
-                        <label>
-                            <input type="checkbox"> Kruopų
-                        </label>
-                        <label>
-                            <input type="checkbox"> Daržovių
-                        </label>
-                        <label>
-                            <input type="checkbox"> Mėsos
-                        </label>
-                    </div>
-                </div>
-            </div>
             <button style="margin-top: 20px;" type="submit" class="btn btn-default">IEŠKOTI</button>
 
         </div>
 
         <div class="lentele">
   <span>
-	  <h2>Mitybos programa</h2>
-	  <p>Aprašymas</p>
+	  <h2>Sporto programa</h2>
+	  <p>Sistema rekomenduojame naudotis ne mažiau 2-3 mėn. Nepamirškite raumenys auga kai ilsisi ir gauna pakankamai energijos. Nedirbkite su svoriais daugiau nei 5 dienas per savaitę, nes tik pakenksite sau!</p>
   </span>
             <table class="table table-hover" style="color: black; background-color: white;">
                 <thead>
                 <tr>
-                    <th>Valgymai</th>
-                    <th>Produktai</th>
-                    <th>Baltymai</th>
-                    <th>Angliavandeniai</th>
-                    <th>Riebalai</th>
-                    <th>Kalorijos</th>
+                    <th>Dienos</th>
+                    <th>1 pratimas</th>
+                    <th>2 pratimas</th>
+                    <th>3 pratimas</th>
+                    <th>4 pratimas</th>
+                    <th>5 pratimas</th>
+                    <th>6 pratimas</th>
+                    <th>7 pratimas</th>
                 </tr>
                 </thead>
                 <tbody>
                 <tr>
-                    <td>1 valgymas</td>
-                    <td>Liesa vištienos krūtinėlė 160g, ryžių 50g.</td>
-                    <td>44g</td>
-                    <td>30g</td>
-                    <td>0g</td>
-                    <td>320kcal</td>
+                    <td>1 diena</td>
+                    <td>Technika</td>
+                    <td>Technika</td>
+                    <td>Technika</td>
+                    <td>Technika</td>
+                    <td>Technika</td>
+                    <td>Technika</td>
+                    <td>Technika</td>
                 </tr>
                 <tr>
-                    <td>2 valgymas</td>
-                    <td>Lašiša 150g, ryžių 50g.</td>
-                    <td>25g</td>
-                    <td>30g</td>
-                    <td>0g</td>
-                    <td>220kcal</td>
+                    <td>2 diena</td>
+                    <td>Technika</td>
+                    <td>Technika</td>
+                    <td>Technika</td>
+                    <td>Technika</td>
+                    <td>Technika</td>
+                    <td>Technika</td>
+                    <td>Technika</td>
                 </tr>
                 <tr>
-                    <td>3 valgymas</td>
-                    <td>Varškės kokteilis su bananu. Pieno 250ml,  varškės..</td>
-                    <td>44g</td>
-                    <td>30g</td>
-                    <td>0g</td>
-                    <td>180kcal</td>
+                    <td>3 diena</td>
+                    <td>Technika</td>
+                    <td>Technika</td>
+                    <td>Technika</td>
+                    <td>Technika</td>
+                    <td>Technika</td>
+                    <td>Technika</td>
+                    <td>Technika</td>
                 </tr>
                 <tr>
-                    <td>4 valgymas</td>
-                    <td>Liesa vištienos krūtinėlė 160g, daržovės 100g</td>
-                    <td>38g</td>
-                    <td>5g</td>
-                    <td>3g</td>
-                    <td>300kcal</td>
+                    <td>4 diena</td>
+                    <td>Technika</td>
+                    <td>Technika</td>
+                    <td>Technika</td>
+                    <td>Technika</td>
+                    <td>Technika</td>
+                    <td>Technika</td>
+                    <td>Technika</td>
                 </tr>
                 <tr>
-                    <td>5 valgymas</td>
-                    <td>
-                        Varškė 180g (pakelis) ir šaukštelis sirupo su sald...</td>
-                    <td>35g</td>
-                    <td>5g</td>
-                    <td>2g</td>
-                    <td>180kcal</td>
+                    <td>5 diena</td>
+                    <td>Technika</td>
+                    <td>Technika</td>
+                    <td>Technika</td>
+                    <td>Technika</td>
+                    <td>Technika</td>
+                    <td>Technika</td>
+                    <td>Technika</td>
+
                 </tr>
                 </tbody>
             </table>
