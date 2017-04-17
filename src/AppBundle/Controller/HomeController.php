@@ -17,13 +17,5 @@ class HomeController extends Controller
     {
         return $this->render('AppBundle:Home:index.html.twig');
     }
-
-    /**
-     * @Route("/insert", name="insert")
-     */
-    public function insertAction()
-    {
-
-
-    }
+    
 }
