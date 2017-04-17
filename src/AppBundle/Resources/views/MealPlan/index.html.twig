@@ -4,8 +4,11 @@
 
 {% block stylesheets %}
     {{ parent() }}
-    <link rel="stylesheet" href="{{ asset('css/jquery.fullPage.min.css') }}"/>
-    <link rel="stylesheet" href="{{ asset('css/fullPage.min.css') }}"/>
+    <style>
+        body {
+            overflow: auto;
+        }
+    </style>
 {% endblock %}
 
 {% block body %}
@@ -188,8 +191,5 @@
 {% endblock %}
 
 {% block javascripts %}
-    <script src="{{ asset('js/jquery-3.2.0.min.js') }}"></script>
-    <script src="{{ asset('js/jquery.fullPage.min.js') }}"></script>
-    <script src="{{ asset('js/fullPage.min.js') }}"></script>
     {{ parent() }}
 {% endblock %}
