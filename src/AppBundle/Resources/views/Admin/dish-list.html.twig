@@ -1,0 +1,25 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+
+{% for dish in dishes %}
+
+{{ dish.id }}
+{{ dish.description }}
+{{ dish.proteinNum }}
+{{ dish.carbohydrateNum }}
+{{ dish.fatNum }}
+{{ dish.sugarNum }}
+
+<a href="{{ path('dishes_edit', {'id': dish.id|default('1')}) }}">Redaguoti</a>
+<a href="{{ path('dishes_delete', {'id': dish.id|default('1')}) }}">Ištrinti</a><br><br>
+
+
+
+{% endfor %}
+
+{% endblock %}
+
+{% block stylesheets %}
+
+{% endblock %}
