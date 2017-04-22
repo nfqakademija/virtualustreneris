@@ -6,11 +6,11 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Component\BrowserKit\Response;
 
-class HomeController extends Controller
+class AdminController extends Controller
 {
 
     /**
-     * @Route("/", name="homepage")
+     * @Route("/admin", name="admin_page")
      */
     public function indexAction()
     {
@@ -18,7 +18,9 @@ class HomeController extends Controller
 
         //$conn->exec("insert into gender (gender) values ('other')");
 
-        return $this->render('AppBundle:Home:index.html.twig');
+        //Turėtų grąžinti Vardą ir Pavardę.
+
+        return $this->render('AppBundle:Admin:index.html.twig');
     }
-    
+
 }

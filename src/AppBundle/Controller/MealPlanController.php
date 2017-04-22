@@ -17,7 +17,7 @@ class MealPlanController extends Controller
 {
 
     /**
-     * @Route("/mitybos-programos", name="meal-plan")
+     * @Route("/meal-plan", name="meal-plan")
      */
     public function mealAction()
     {
@@ -26,7 +26,7 @@ class MealPlanController extends Controller
 
 
     /**
-     * @Route("/meal-plan/create", name="meal_plan_create")
+     * @Route("/admin/meal-plan/create", name="meal_plan_create")
      */
     public function MealPlanCreateAction(Request $request)
     {
@@ -44,13 +44,13 @@ class MealPlanController extends Controller
             return $this->redirectToRoute('meal_plan_list');
     	}
 
-    	return $this->render('default/meal-plan-create.html.twig', [
+    	return $this->render('AppBundle:Admin:meal-plan-create.html.twig', [
     		'form' => $form->createView()
     		]);
     }
 
     /**
-     * @Route("/meal-plan/list", name="meal_plan_list")
+     * @Route("/admin/meal-plan/list", name="meal_plan_list")
      */
     public function MealPlanListAction(Request $request)
     {
@@ -59,13 +59,13 @@ class MealPlanController extends Controller
         $repository = $em->getRepository('AppBundle:DishLists');
         $mealPlans = $repository->findAll();
 
-        return $this->render('default/meal-plan-list.html.twig', [
+        return $this->render('AppBundle:Admin:meal-plan-list.html.twig', [
             'mealPlans' => $mealPlans
             ]);
     }
 
     /**
-     * @Route("/meal-plan/edit/{id}", name="meal_plan_edit")
+     * @Route("/admin/meal-plan/edit/{id}", name="meal_plan_edit")
      */
     public function MealPlanEditAction($id, Request $request)
     {
@@ -99,14 +99,14 @@ class MealPlanController extends Controller
             return $this->redirectToRoute('meal_plan_list');
         }
 
-        return $this->render('default/meal-plan-edit.html.twig', [
+        return $this->render('AppBundle:Admin:meal-plan-edit.html.twig', [
                 'mealPlan' => $mealPlan,
                 'form' => $form->createView()
             ]);
         }
 
         /**
-     * @Route("/meal-plan/delete/{id}", name="meal_plan_delete")
+     * @Route("/admin/meal-plan/delete/{id}", name="meal_plan_delete")
      */
      public function MealPlanDeleteAction($id)
      {
