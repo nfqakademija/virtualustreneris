@@ -33,7 +33,7 @@ gulp.task('scripts', function() {
         .pipe(gulp.dest(dir.dist + 'js'));
 });
 
-gulp.task('jsminFullPage', function() {
+gulp.task('jsmin', function() {
     gulp.src(dir.assets + 'scripts/jquery.fullPage.js')
         .pipe(uglify())
         .pipe(concat('jquery.fullPage.min.js'))
@@ -48,6 +48,15 @@ gulp.task('jsminFullPage', function() {
         .pipe(uglify())
         .pipe(concat('jquery-3.2.0.min.js'))
         .pipe(gulp.dest(dir.dist + 'js'));
+
+    gulp.src(dir.assets + 'scripts/Admin/script.js')
+        .pipe(uglify())
+        .pipe(concat('script.min.js'))
+        .pipe(gulp.dest(dir.dist + 'js/Admin'));
+
+    gulp.src(dir.assets + 'scripts/Admin/jquery-2.2.3.min.js')
+        .pipe(concat('jquery-2.2.3.min.js'))
+        .pipe(gulp.dest(dir.dist + 'js/Admin'));
 });
 
 gulp.task('images', function() {
@@ -65,7 +74,7 @@ gulp.task('fonts', function() {
         .pipe(gulp.dest(dir.dist + 'fonts'));
 });
 
-gulp.task('cssminFullPage', function() {
+gulp.task('cssmin', function() {
     gulp.src(dir.assets + 'style/jquery.fullPage.css')
         .pipe(cssmin())
         .pipe(concat('jquery.fullPage.min.css'))
@@ -75,6 +84,16 @@ gulp.task('cssminFullPage', function() {
         .pipe(cssmin())
         .pipe(concat('fullPage.min.css'))
         .pipe(gulp.dest(dir.dist + 'css'));
+
+    gulp.src(dir.assets + 'style/Admin/AdminLTE.css')
+        .pipe(cssmin())
+        .pipe(concat('AdminLTE.min.css'))
+        .pipe(gulp.dest(dir.dist + 'css/Admin'));
+
+    gulp.src(dir.assets + 'style/Admin/skins/skin-blue.css')
+        .pipe(cssmin())
+        .pipe(concat('skin-blue.min.css'))
+        .pipe(gulp.dest(dir.dist + 'css/Admin/skins'));
 });
 
-gulp.task('default', ['sass', 'scripts', 'jsminFullPage', 'cssminFullPage', 'fonts', 'images']);
+gulp.task('default', ['sass', 'scripts', 'jsmin', 'cssmin', 'fonts', 'images']);
