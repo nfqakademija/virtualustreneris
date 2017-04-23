@@ -1,14 +1,61 @@
-{% if app.request.hasPreviousSession %}
-    {% for type, messages in app.session.flashbag.all() %}
-        {% for message in messages %}
-            <div class="flash-{{ type }}">
-                {{ message }}
-            </div>
-        {% endfor %}
-    {% endfor %}
-{% endif %}
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8" />
+    <title>{% block title %}{{ "Virtualus Treneris" }}{% endblock %}</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <link rel="icon" type="image/x-icon" href="{{ asset('images/favicon.ico')}}">
+    {% block stylesheets %}
+        <link rel="stylesheet" href="{{ asset('css/FOSUserBundle.min.css') }}"/>
+    {% endblock %}
+    {% block canonical_meta %}{% endblock %}
+</head>
+<body>
+{% block container %}
+    {% block header %}
+        {% include "::inc/header.html.twig" %}
+    {% endblock %}
+    {% block body %}
+        <div>
+            {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
+            <form action="#" method="post">
+                <div class="imgcontainer">
+                    <img src="{{ asset('images/avatar.png') }}" alt="Avatar" class="avatar">
+                </div>
 
-<div>
-    {% block fos_user_content %}
-    {% endblock fos_user_content %}
-</div>
+                <div class="container">
+                    <label><b>Prisijunkta: </b></label>
+                    <label>{{ '%username%'|trans({'%username%': app.user.email}, 'FOSUserBundle') }}</label>
+                    <br/>
+                    <a href="{{ path('fos_user_security_logout') }}" style="text-align: center;">
+                        {{ 'layout.logout'|trans({}, 'FOSUserBundle') }}
+                    </a>
+                </div>
+            {% else %}
+                <div>
+                    {% block fos_user_content %}
+                    {% endblock fos_user_content %}
+                </div>
+            {% endif %}
+
+            {% if app.request.hasPreviousSession %}
+                {% for type, messages in app.session.flashbag.all() %}
+                    {% for message in messages %}
+                        <div class="flash-{{ type }}">
+                            {{ message }}
+                        </div>
+                    {% endfor %}
+                {% endfor %}
+            {% endif %}
+        </div>
+    {% endblock %}
+{% endblock %}
+{% block footer %}
+    {% include "::inc/footer.html.twig" %}
+{% endblock %}
+
+{% block javascripts %}
+{% endblock %}
+</body>
+</html>

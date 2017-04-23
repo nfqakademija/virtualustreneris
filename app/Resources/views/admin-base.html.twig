@@ -46,7 +46,7 @@
                             <!-- The user image in the navbar-->
                             <img src="images/avatar.png" class="user-image" alt="User Image">
                             <!-- hidden-xs hides the username on small devices so only the image appears. -->
-                            <span class="hidden-xs">Vardas Pavardė</span>
+                            <span class="hidden-xs">{{ '%username%'|trans({'%username%': app.user.email}, 'FOSUserBundle') }}</span>
                         </a>
                         <ul class="dropdown-menu">
                             <!-- The user image in the menu -->
@@ -54,7 +54,7 @@
                                 <img src="images/avatar.png" class="img-circle" alt="User Image">
 
                                 <p>
-                                    Vardas Pavardė
+                                    {{ '%username%'|trans({'%username%': app.user.email}, 'FOSUserBundle') }}
                                 </p>
                             </li>
                             <!-- /.row -->
@@ -64,7 +64,9 @@
                                 <div class="pull-left">
                                 </div>
                                 <div class="pull-right">
-                                    <a href="#" class="btn btn-default btn-flat">Atsijungti</a>
+                                    <a href="{{ path('fos_user_security_logout') }}" class="btn btn-default btn-flat">
+                                        {{ 'layout.logout'|trans({}, 'FOSUserBundle') }}
+                                    </a>
                                 </div>
                             </li>
                         </ul>

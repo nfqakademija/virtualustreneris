@@ -12,7 +12,9 @@ group:
 security:
     login:
         username: 'Naudotojo vardas'
+        enterusername: 'Įrašykite naudotojo vardą'
         password: Slaptažodis
+        enterpassword: 'Įrašykite slaptažodį'
         remember_me: Atsiminti
         submit: Prisijungti
 profile:
