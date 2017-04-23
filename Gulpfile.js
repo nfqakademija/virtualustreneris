@@ -7,6 +7,7 @@ var uglify  = require('gulp-uglify');
 var cssmin  = require('gulp-cssmin');
 
 var dir = {
+    FOSUserBundle: './app/Resources/FOSUserBundle/',
     assets: './src/AppBundle/Resources/',
     dist: './web/',
     npm: './node_modules/',
@@ -16,6 +17,11 @@ gulp.task('sass', function() {
     gulp.src(dir.assets + 'style/main.scss')
         .pipe(sass({ outputStyle: 'compressed' }).on('error', sass.logError))
         .pipe(concat('style.css'))
+        .pipe(gulp.dest(dir.dist + 'css'));
+
+    gulp.src(dir.FOSUserBundle + 'style/main.scss')
+        .pipe(sass({ outputStyle: 'compressed' }).on('error', sass.logError))
+        .pipe(concat('FOSUserBundle.min.css'))
         .pipe(gulp.dest(dir.dist + 'css'));
 });
 
