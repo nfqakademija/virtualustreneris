@@ -66,21 +66,7 @@ class DishesController extends Controller
         $dishes = $repository->find($id);
 
 
-        $form = $this->createFormBuilder($dishes)
-            ->add('description')
-            ->add('proteinNum')
-            ->add('carbohydrateNum')
-            ->add('fatNum')
-            ->add('sugarNum')
-            ->add('foodCategories', EntityType::class, [
-                'placeholder' => 'Choose category',
-                'class' => FoodCategories::class,
-                'query_builder' => function (EntityRepository $er) {
-                    return $er->createQueryBuilder('cat')
-                    ->OrderBy('cat.title', 'ASC');
-                }
-            ])
-            ->getForm();
+        $form = $this->createForm(DishesType::class, $dishes);
 
         $form->handleRequest($request);
 
