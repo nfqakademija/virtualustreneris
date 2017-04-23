@@ -76,3 +76,10 @@ fos_user:
     from_email:
         address: "info@virtualustreneris.lt"
         sender_name: "Virtualus Treneris"
+
+services:
+    app.twig_extension:
+        class: AppBundle\Twig\AppExtension
+        public: false
+        tags:
+            - { name: twig.extension }
