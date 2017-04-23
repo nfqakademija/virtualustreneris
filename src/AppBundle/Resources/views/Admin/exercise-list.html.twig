@@ -1,0 +1,21 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+
+{% for exercise in exercises %}
+
+{{ exercise.id }}
+{{ exercise.title }}
+{{ exercise.description }}
+{{ exercise.repeats }}
+
+<a href="{{ path('exercises_edit', {'id': exercise.id|default('1')}) }}">Redaguoti</a>
+<a href="{{ path('exercises_delete', {'id': exercise.id|default('1')}) }}">Ištrinti</a><br>
+
+{% endfor %}
+
+{% endblock %}
+
+{% block stylesheets %}
+
+{% endblock %}
