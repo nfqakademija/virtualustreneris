@@ -11,7 +11,10 @@ use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Doctrine\ORM\EntityRepository;
 use AppBundle\Entity\DishLists;
 use AppBundle\Entity\Goals;
+use AppBundle\Entity\Gender;
 use AppBundle\Repository\DishListsRepository;
+use AppBundle\Repository\GoalsRepository;
+use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 
 class MealPlanController extends Controller
 {
@@ -80,18 +83,7 @@ class MealPlanController extends Controller
         $mealPlan = $repository->find($id);
 
 
-        $form = $this->createFormBuilder($mealPlan)
-            ->add('caloriesNum')
-            ->add('foodDishId')
-            ->add('goals', EntityType::class, [
-                'placeholder' => 'Choose your goal',
-                'class' => Goals::class,
-                'query_builder' => function (EntityRepository $er) {
-                    return $er->createQueryBuilder('goal')
-                    ->OrderBy('goal.title', 'ASC');
-                }
-             ])
-            ->getForm();
+        $form = $this->createForm(MealplanType::class, $mealPlan);
 
         $form->handleRequest($request);
 
@@ -125,4 +117,80 @@ class MealPlanController extends Controller
 
         return $this->redirectToRoute('meal_plan_list');
      }
+
+
+    /**
+     * @Route("/meal-plan/search", name="meal_plan_search")
+     */
+    public function MealPlanSearchAction()
+    {
+
+        $form = $this->createFormBuilder()
+            ->add('gender', EntityType::class, [
+                'placeholder' => 'Choose a gender',
+                'class' => Gender::class,
+                'query_builder' => function (EntityRepository $er) {
+                    return $er->createQueryBuilder('gender')
+                        ->OrderBy('gender.gender', 'ASC');
+                }
+            ])
+            ->add('height')
+            ->add('weight')
+            ->add('age')
+            ->add('goals', EntityType::class, [
+                'placeholder' => 'Choose your goal',
+                'class' => Goals::class,
+                'query_builder' => function (EntityRepository $er) {
+                    return $er->createQueryBuilder('goals')
+                        ->orderBy('goals.title', 'ASC');
+                }
+            ])
+            ->getForm();
+
+        return $this->render('AppBundle:MealPlan:meal-plan-find.html.twig', [
+            'form' => $form->createView()
+        ]);
+    }
+
+
+    /**
+     * @Route("/meal-plan/results", name="meal_plan_result")
+     */
+    public function MealPlanGetResultAction(Request $request)
+    {
+        $gender = $request->request->get('form')['gender'];
+        $height = $request->request->get('form')['height'];
+        $weight = $request->request->get('form')['weight'];
+        $age = $request->request->get('form')['age'];
+        $goals = $request->request->get('form')['goals'];
+
+        if ($gender=='1') {
+            $calories = 664.7 + (5 * $height) + (13.75 * $weight) - (6.74 * $age);
+            if($goals=='1') {
+                $result = $calories - 300;
+            }else{
+                $result = $calories + 300;
+            }
+        }else{
+            $calories = 655.1 + (1.85 * $height) + (9.6 * $weight) - (6.74 * $age);
+            if($goals=='1') {
+                $result = $calories - 200;
+            }else{
+                $result = $calories + 200;
+            }
+        }
+
+        $em = $this->getDoctrine()->getManager();
+        $repository = $em->getRepository('AppBundle:DishLists');
+        $find = $repository->findPlanByCalories($result);
+
+        if (!$find) {
+            throw new NotFoundHttpException("Atsiprasome, nieko neradome.");
+        }
+
+        return $this->render('AppBundle:MealPlan:meal-plan-result.html.twig', [
+            'plans' => $find,
+            'result' => $result
+        ]);
+    }
 }

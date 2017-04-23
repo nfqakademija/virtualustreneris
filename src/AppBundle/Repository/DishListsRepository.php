@@ -13,15 +13,24 @@ use AppBundle\Entity\Category;
 class DishListsRepository extends \Doctrine\ORM\EntityRepository
 {
 
-	 public function findPlanById($id)
+    public function findPlanById($id)
     {
         $qb = $this->createQueryBuilder('plan')
-        ->where('plan.goals = :id')
-        ->setParameter('id', $id)
-        ->getQuery()
-        ->getResult();
+            ->Where('plan.id = :id')
+            ->setParameter('id', $id)
+            ->getQuery()
+            ->getResult();
 
         return $qb;
+    }
+
+    public function findPlanByCalories($result)
+    {
+        return $this->createQueryBuilder('plans')
+            ->andWhere('plans.caloriesNum >= :result')
+            ->setParameter('result', $result)
+            ->getQuery()
+            ->getResult();
     }
 
 }

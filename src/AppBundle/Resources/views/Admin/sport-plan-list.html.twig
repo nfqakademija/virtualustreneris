@@ -1,0 +1,23 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+
+{% for sportPlan in sportPlans %}
+
+{{ sportPlan.id }}
+{{ sportPlan.exerciseList }}
+{{ sportPlan.gender }}
+{{ sportPlan.experience }}
+{{ sportPlan.description }}
+
+	<a href="{{ path('sport_plan_edit', {'id': sportPlan.id|default('1')}) }}">Redaguoti</a>
+	<a href="{{ path('sport_plan_delete', {'id': sportPlan.id|default('1')}) }}">Ištrinti</a><br>
+
+
+{% endfor %}
+
+{% endblock %}
+
+{% block stylesheets %}
+
+{% endblock %}
