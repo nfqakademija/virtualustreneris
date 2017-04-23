@@ -11,7 +11,7 @@ use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Doctrine\ORM\EntityRepository;
 use AppBundle\Entity\DishLists;
 use AppBundle\Entity\Goals;
-
+use AppBundle\Repository\DishListsRepository;
 
 class MealPlanController extends Controller
 {
@@ -54,14 +54,19 @@ class MealPlanController extends Controller
      */
     public function MealPlanListAction(Request $request)
     {
-
         $em = $this->getDoctrine()->getManager();
         $repository = $em->getRepository('AppBundle:DishLists');
         $mealPlans = $repository->findAll();
+        //$foodDishIds = json_decode($mealPlans["food_dish_id"]);
+
+        $dishRepo = $em->getRepository('AppBundle:FoodDishes');
+        $dishes = $dishRepo->findAll();
+
 
         return $this->render('AppBundle:Admin:meal-plan-list.html.twig', [
-            'mealPlans' => $mealPlans
-            ]);
+            'mealPlans' => $mealPlans,
+            'dishes' => $dishes
+        ]);
     }
 
     /**
