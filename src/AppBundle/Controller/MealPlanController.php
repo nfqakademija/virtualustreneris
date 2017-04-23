@@ -147,7 +147,7 @@ class MealPlanController extends Controller
             ])
             ->getForm();
 
-        return $this->render('default/meal-plan-find.html.twig', [
+        return $this->render('AppBundle:MealPlan:meal-plan-find.html.twig', [
             'form' => $form->createView()
         ]);
     }
@@ -188,7 +188,7 @@ class MealPlanController extends Controller
             throw new NotFoundHttpException("Atsiprasome, nieko neradome.");
         }
 
-        return $this->render('default/meal-plan-result.html.twig', [
+        return $this->render('AppBundle:MealPlan:meal-plan-result.html.twig', [
             'plans' => $find,
             'result' => $result
         ]);

@@ -18,6 +18,15 @@ class SportPlanController extends Controller
 {
 
     /**
+     * @Route("/sport-plan", name="sport-plan")
+     */
+    public function sportAction()
+    {
+        return $this->render('AppBundle:SportPlan:index.html.twig');
+    }
+
+
+    /**
      * @Route("/admin/sport-plan/create", name="sport_plan_create")
      */
     public function SportPlanCreateAction(Request $request)

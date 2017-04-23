@@ -10,7 +10,7 @@ use AppBundle\Form\ExercisesType;
 class ExercisesController extends Controller
 {
 	/**
-     * @Route("/exercises/create", name="exercises_create")
+     * @Route("/admin/exercises/create", name="exercises_create")
      */
     public function ExerciseCreateAction(Request $request)
     {
@@ -28,13 +28,13 @@ class ExercisesController extends Controller
             return $this->redirectToRoute('exercises_list');
     	}
 
-    	return $this->render('exercises/exercise-create.html.twig', [
+    	return $this->render('AppBundle:Admin:exercise-create.html.twig', [
     		'form' => $form->createView()
     		]);
     }
 
     /**
-     * @Route("/exercises/list", name="exercises_list")
+     * @Route("/admin/exercises/list", name="exercises_list")
      */
     public function ExerciseListAction()
     {
@@ -43,13 +43,13 @@ class ExercisesController extends Controller
         $repository = $em->getRepository('AppBundle:Exercises');
         $exercises = $repository->findAll();
 
-        return $this->render('exercises/exercise-list.html.twig', [
+        return $this->render('AppBundle:Admin:exercise-list.html.twig', [
             'exercises' => $exercises
             ]);
     }
 
     /**
-     * @Route("/exercises/edit/{id}", name="exercises_edit")
+     * @Route("/admin/exercises/edit/{id}", name="exercises_edit")
      */
     public function ExerciseEditAction($id, Request $request)
     {
@@ -71,14 +71,14 @@ class ExercisesController extends Controller
             return $this->redirectToRoute('exercises_list');
         }
 
-        return $this->render('exercises/exercise-edit.html.twig', [
+        return $this->render('AppBundle:Admin:exercise-edit.html.twig', [
                 'exercises' => $exercises,
                 'form' => $form->createView()
             ]);
      }
 
       /**
-     * @Route("/exercises/delete/{id}", name="exercises_delete")
+     * @Route("/admin/exercises/delete/{id}", name="exercises_delete")
      */
      public function ExerciseDeleteAction($id)
      {
