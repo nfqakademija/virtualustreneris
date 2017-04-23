@@ -10,7 +10,7 @@ class SportPlanController extends Controller
 {
 
     /**
-     * @Route("/sporto-programos", name="sport-plan")
+     * @Route("/sport-plan", name="sport-plan")
      */
     public function sportAction()
     {

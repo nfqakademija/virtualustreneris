@@ -1,4 +1,3 @@
-
 $(document).ready(function(){
     var preload = document.getElementById("preload");
     var loading = 0;

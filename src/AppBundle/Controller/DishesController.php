@@ -15,7 +15,7 @@ use AppBundle\Entity\FoodCategories;
 class DishesController extends Controller
 {
     /**
-     * @Route("/dishes/create", name="dishes_create")
+     * @Route("/admin/dishes/create", name="dishes_create")
      */
     public function DishCreateAction(Request $request)
     {
@@ -33,14 +33,14 @@ class DishesController extends Controller
             return $this->redirectToRoute('dishes_list');
     	}
 
-    	return $this->render('default/dish-create.html.twig', [
+    	return $this->render('AppBundle:Admin:dish-create.html.twig', [
     		'form' => $form->createView()
     		]);
     }
 
 
     /**
-     * @Route("/dishes/list", name="dishes_list")
+     * @Route("/admin/dishes/list", name="dishes_list")
      */
     public function DishListAction()
     {
@@ -49,14 +49,14 @@ class DishesController extends Controller
         $repository = $em->getRepository('AppBundle:FoodDishes');
         $dishes = $repository->findAll();
 
-        return $this->render('default/dish-list.html.twig', [
+        return $this->render('AppBundle:Admin:dish-list.html.twig', [
             'dishes' => $dishes
             ]);
     }
 
 
     /**
-     * @Route("/dishes/edit/{id}", name="dishes_edit")
+     * @Route("/admin/dishes/edit/{id}", name="dishes_edit")
      */
     public function DishEditAction($id, Request $request)
     {
@@ -93,14 +93,14 @@ class DishesController extends Controller
             return $this->redirectToRoute('dishes_list');
         }
 
-        return $this->render('default/dish-edit.html.twig', [
+        return $this->render('AppBundle:Admin:dish-edit.html.twig', [
                 'dishes' => $dishes,
                 'form' => $form->createView()
             ]);
         }
 
      /**
-     * @Route("/dishes/delete/{id}", name="dishes_delete")
+     * @Route("/admin/dishes/delete/{id}", name="dishes_delete")
      */
      public function DishDeleteAction($id)
      {

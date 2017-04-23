@@ -31,6 +31,7 @@ framework:
     fragments:       ~
     http_method_override: true
     assets: ~
+    translator:      { fallback: "%locale%" }
 
 # Twig Configuration
 twig:
@@ -75,3 +76,10 @@ fos_user:
     from_email:
         address: "info@virtualustreneris.lt"
         sender_name: "Virtualus Treneris"
+
+services:
+    app.twig_extension:
+        class: AppBundle\Twig\AppExtension
+        public: false
+        tags:
+            - { name: twig.extension }
