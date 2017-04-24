@@ -1,4 +1,10 @@
-{% extends 'base.html.twig' %}
+{% extends "::admin-base.html.twig" %}
+
+{% block title %}Administravimo skydinė{% endblock %}
+
+{% block stylesheets %}
+    {{ parent() }}
+{% endblock %}
 
 {% block body %}
 
@@ -9,6 +15,6 @@
 
 {% endblock %}
 
-{% block stylesheets %}
-
+{% block javascripts %}
+    {{ parent() }}
 {% endblock %}

@@ -14,13 +14,27 @@ class AdminController extends Controller
      */
     public function indexAction()
     {
-        //$conn = $this->getDoctrine()->getConnection();
+        $conn = $this->getDoctrine()->getConnection();
 
-        //$conn->exec("insert into gender (gender) values ('other')");
+        $userCount = $conn->exec("SELECT COUNT(*) as total FROM fos_user") + 1;
 
-        //Turėtų grąžinti Vardą ir Pavardę.
+        return $this->render('AppBundle:Admin:index.html.twig',[
+            "userCount" => $userCount
+        ]);
+    }
 
-        return $this->render('AppBundle:Admin:index.html.twig');
+    /**
+     * @Route("/admin/admin-list", name="admin_users_list")
+     */
+    public function adminUsersListAction()
+    {
+        $conn = $this->getDoctrine()->getConnection();
+
+        $users = $conn->exec("SELECT * FROM fos_user");
+
+        return $this->render('AppBundle:Admin:admin-list.html.twig',[
+            "users" => $users
+        ]);
     }
 
 }
