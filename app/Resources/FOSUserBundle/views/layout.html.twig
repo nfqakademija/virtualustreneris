@@ -7,57 +7,60 @@
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <link rel="icon" type="image/x-icon" href="{{ asset('images/favicon.ico')}}">
     {% block stylesheets %}
-        <link rel="stylesheet" href="{{ asset('css/FOSUserBundle.min.css') }}"/>
+        <link rel="stylesheet" href="{{ asset('css/style.css') }}"/>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.5.0/css/font-awesome.min.css">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/ionicons/2.0.1/css/ionicons.min.css">
+        <link rel="stylesheet" href="{{ asset('css/Admin/AdminLTE.min.css') }}">
+        <link rel="stylesheet" href="{{ asset('css/Admin/skins/skin-blue.min.css') }}">
     {% endblock %}
     {% block canonical_meta %}{% endblock %}
 </head>
-<body>
-{% block container %}
+<body class="hold-transition login-page">
+<div class="wrapper">
+    {% block container %}
     {% block header %}
         {% include "::inc/header.html.twig" %}
     {% endblock %}
     {% block body %}
-        <div>
-            {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
-            <form action="#" method="post">
-                <div class="imgcontainer">
-                    <img src="{{ asset('images/avatar.png') }}" alt="Avatar" class="avatar">
-                </div>
+    {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
+        <div class="login-box">
+            <div class="login-logo">
+                <a href="{{ path('homepage') }}/login"><b>Admin</b>LTE</a>
+            </div>
+            <!-- /.login-logo -->
+            <div class="login-box-body">
+                <p class="login-box-msg">Informacija</p>
 
-                <div class="container">
+                <form action="#" method="post">
                     <label><b>Prisijunkta: </b></label>
                     <label>{{ '%username%'|trans({'%username%': app.user.email}, 'FOSUserBundle') }}</label>
                     <br/>
                     <a href="{{ path('fos_user_security_logout') }}" style="text-align: center;">
                         Atsijungti
                     </a>
-                </div>
-            {% else %}
-                <div>
-                    {% block fos_user_content %}
-                    {% endblock fos_user_content %}
-                </div>
-            {% endif %}
-
-            {% if app.request.hasPreviousSession %}
-                {% for type, messages in app.session.flashbag.all() %}
-                    {% for message in messages %}
-                        <div class="flash-{{ type }}">
-                            nutrinti gal?
-                            nes kitaip anglisko teksto rodo...
-                            {{ message }}
-                        </div>
-                    {% endfor %}
-                {% endfor %}
-            {% endif %}
+                    <br/>
+                </form>
+            </div>
+            <!-- /.login-box-body -->
         </div>
-    {% endblock %}
-{% endblock %}
-{% block footer %}
-    {% include "::inc/footer.html.twig" %}
-{% endblock %}
+        {% else %}
+            <div>
+                {% block fos_user_content %}
+                {% endblock fos_user_content %}
+            </div>
+        {% endif %}
+        {% endblock %}
+        {% endblock %}
+        {% block footer %}
+            {% include "::inc/footer.html.twig" %}
+        {% endblock %}
 
-{% block javascripts %}
-{% endblock %}
+        {% block javascripts %}
+            <script src="{{ asset('js/Admin/jquery-2.2.3.min.js') }}"></script>
+            <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+            <script src="{{ asset('js/Admin/script.min.js') }}"></script>
+            <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+            <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+        {% endblock %}
 </body>
 </html>

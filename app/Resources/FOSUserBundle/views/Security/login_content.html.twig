@@ -1,32 +1,47 @@
 {% trans_default_domain 'FOSUserBundle' %}
 
 {% if error %}
-    <div>{{ error.messageKey|trans(error.messageData, 'security') }}</div>
+    <div style="text-align: center;">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
 {% endif %}
 
-<form action="{{ path("fos_user_security_check") }}" method="post">
-    <div class="imgcontainer">
-        <img src="{{ asset('images/avatar.png') }}" alt="Avatar" class="avatar">
+<div class="login-box">
+    <div class="login-logo">
+        <a href="{{ path('homepage') }}/login"><b>Admin</b>LTE</a>
     </div>
-    {% if csrf_token %}
-        <input type="hidden" name="_csrf_token" value="{{ csrf_token }}" />
-    {% endif %}
+    <!-- /.login-logo -->
+    <div class="login-box-body">
+        <p class="login-box-msg">Prisijunkite</p>
 
-    <div class="container">
-        <label><b>Slapyvardis:</b></label>
-        <input type="text" placeholder="Įrašykite Slapyvardį" id="username" name="_username" value="{{ last_username }}" required="required" />
+        <form action="{{ path("fos_user_security_check") }}" method="post">
+            {% if csrf_token %}
+                <input type="hidden" name="_csrf_token" value="{{ csrf_token }}" />
+            {% endif %}
+            <div class="form-group has-feedback">
+                <input type="text" class="form-control" placeholder="Įrašykite Slapyvardį" id="username" name="_username" value="{{ last_username }}" required="required" />
+                <span class="glyphicon glyphicon-envelope form-control-feedback"></span>
+            </div>
+            <div class="form-group has-feedback">
+                <input type="password" class="form-control" placeholder="Įrašykite Slaptažodį" id="password" name="_password" required="required" />
+                <span class="glyphicon glyphicon-lock form-control-feedback"></span>
+            </div>
+            <div class="row">
+                <div class="col-xs-8">
+                    <div class="checkbox icheck">
+                        <label>
 
-        <label><b>Slaptažodis</b></label>
-        <input type="password" placeholder="Įrašykite Slaptažodį" id="password" name="_password" required="required" />
+                        </label>
+                    </div>
+                </div>
+                <!-- /.col -->
+                <div class="col-xs-4">
+                    <button type="submit" id="_submit" name="_submit" class="btn btn-primary btn-block btn-flat">Prisijungti</button>
+                </div>
+                <!-- /.col -->
+            </div>
+        </form>
 
+        <a href="{{ path('homepage') }}">&#187; Atšaukti</a>
 
-        <input type="checkbox" id="remember_me" name="_remember_me" checked="checked" />
-        <label for="remember_me">Prisiminti mane</label>
-
-        <button type="submit" id="_submit" name="_submit">Prisijungti</button>
-
-        <div class="container" style="background-color:#d7d7d7;">
-            <a href="{{ path('homepage') }}"><button type="button" class="cancelbtn">Atšaukti</button></a>
-        </div>
     </div>
-</form>
+    <!-- /.login-box-body -->
+</div>

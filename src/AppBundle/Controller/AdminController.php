@@ -14,7 +14,27 @@ class AdminController extends Controller
      */
     public function indexAction()
     {
-        return $this->render('AppBundle:Admin:index.html.twig');
+        $conn = $this->getDoctrine()->getConnection();
+
+        $userCount = $conn->exec("SELECT COUNT(*) as total FROM fos_user") + 1;
+
+        return $this->render('AppBundle:Admin:index.html.twig',[
+            "userCount" => $userCount
+        ]);
+    }
+
+    /**
+     * @Route("/admin/admin-list", name="admin_users_list")
+     */
+    public function adminUsersListAction()
+    {
+        $conn = $this->getDoctrine()->getConnection();
+
+        $users = $conn->exec("SELECT * FROM fos_user");
+
+        return $this->render('AppBundle:Admin:admin-list.html.twig',[
+            "users" => $users
+        ]);
     }
 
 }
