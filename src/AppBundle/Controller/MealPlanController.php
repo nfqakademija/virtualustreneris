@@ -15,6 +15,7 @@ use AppBundle\Entity\Gender;
 use AppBundle\Repository\DishListsRepository;
 use AppBundle\Repository\GoalsRepository;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
+use Symfony\Component\HttpFoundation\Session\Session;
 
 class MealPlanController extends Controller
 {
@@ -25,6 +26,49 @@ class MealPlanController extends Controller
     public function mealAction()
     {
         return $this->render('AppBundle:MealPlan:index.html.twig');
+    }
+
+    /**
+     * @Route("/profile", name="profile")
+     */
+    public function profileAction()
+    {
+        $session = new Session();
+        $gender = $session->get('gender');
+        $height = $session->get('height');
+        $weight = $session->get('weight');
+        $age = $session->get('age');
+        $goals = $session->get('goals');
+
+        if ($gender=='1') {
+            $calories = 664.7 + (5 * $height) + (13.75 * $weight) - (6.74 * $age);
+            if($goals=='1') {
+                $result = $calories - 300;
+            }else{
+                $result = $calories + 300;
+            }
+        }else{
+            $calories = 655.1 + (1.85 * $height) + (9.6 * $weight) - (6.74 * $age);
+            if($goals=='1') {
+                $result = $calories - 200;
+            }else{
+                $result = $calories + 200;
+            }
+        }
+
+        $em = $this->getDoctrine()->getManager();
+        $repository = $em->getRepository('AppBundle:DishLists');
+        $find = $repository->findPlanByCalories($result);
+
+        $dishRepo = $em->getRepository('AppBundle:FoodDishes');
+        $dishes = $dishRepo->findAll();
+
+
+        return $this->render('AppBundle:Profile:index.html.twig', [
+            'plans' => $find,
+            'result' => $result,
+            'dishes' => $dishes
+        ]);
     }
 
 
@@ -147,6 +191,7 @@ class MealPlanController extends Controller
             ])
             ->getForm();
 
+
         return $this->render('AppBundle:MealPlan:meal-plan-find.html.twig', [
             'form' => $form->createView()
         ]);
@@ -164,33 +209,16 @@ class MealPlanController extends Controller
         $age = $request->request->get('form')['age'];
         $goals = $request->request->get('form')['goals'];
 
-        if ($gender=='1') {
-            $calories = 664.7 + (5 * $height) + (13.75 * $weight) - (6.74 * $age);
-            if($goals=='1') {
-                $result = $calories - 300;
-            }else{
-                $result = $calories + 300;
-            }
-        }else{
-            $calories = 655.1 + (1.85 * $height) + (9.6 * $weight) - (6.74 * $age);
-            if($goals=='1') {
-                $result = $calories - 200;
-            }else{
-                $result = $calories + 200;
-            }
-        }
+        $session = new Session();
 
-        $em = $this->getDoctrine()->getManager();
-        $repository = $em->getRepository('AppBundle:DishLists');
-        $find = $repository->findPlanByCalories($result);
+        $session->set('gender', $gender);
+        $session->set('height', $height);
+        $session->set('weight', $weight);
+        $session->set('age', $age);
+        $session->set('goals', $goals);
 
-        if (!$find) {
-            throw new NotFoundHttpException("Atsiprasome, nieko neradome.");
-        }
-
-        return $this->render('AppBundle:MealPlan:meal-plan-result.html.twig', [
-            'plans' => $find,
-            'result' => $result
-        ]);
+        return $this->redirectToRoute('profile');
     }
+
+
 }

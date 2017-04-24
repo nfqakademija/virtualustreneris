@@ -1,0 +1,103 @@
+{% extends "::base.html.twig" %}
+
+{% block title %}Pagrindinis - {{ parent() }}{% endblock %}
+
+{% block stylesheets %}
+    {{ parent() }}
+    <style>
+        body {
+            overflow: auto;
+        }
+    </style>
+{% endblock %}
+
+{% block body %}
+
+    <nav class="navbar navbar-default">
+        <div class="container-fluid">
+            <!-- Brand and toggle get grouped for better mobile display -->
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="{{ path('homepage') }}">VIRTUALUSTRENERIS</a>
+            </div>
+
+            <!-- Collect the nav links, forms, and other content for toggling -->
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                <ul class="nav navbar-nav">
+                    <li class="active"><a href="{{ path('homepage') }}">Titulinis <span class="sr-only">(current)</span></a></li>
+                    <li class="active"><a href="{{ path('sport-plan') }}">Sporto programos <span class="sr-only">(current)</span></a></li>
+                </ul>
+                <ul class="nav navbar-nav navbar-right">
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Profilis <span class="caret"></span></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="#">Mitybos programa</a></li>
+                            <li><a href="#">Sporto programa</a></li>
+                            <li role="separator" class="divider"></li>
+                            <li><a href="#">Atsijungti</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </div><!-- /.navbar-collapse -->
+        </div><!-- /.container-fluid -->
+    </nav>
+
+
+    <div class="main">
+
+
+    <div class="lentele">
+      <span>
+          <h2>Mitybos programa</h2>
+          <p>Aprašymas</p>
+
+          Jūsų išvestas kalorijų skaičius: {{ result }}<br>
+
+          {% for plan in plans %}
+              Programos kalorijos: {{ plan.caloriesNum }}<br>
+              Skirta: {{ plan.goals }}<br>
+              Valgymų id: {{ plan.foodDishId }}<br>
+      </span>
+        <table class="table table-hover" style="color: black; background-color: white;">
+            <thead>
+            <tr>
+                <th>Valgymai</th>
+                <th>Produktai</th>
+                <th>Baltymai</th>
+                <th>Angliavandeniai</th>
+                <th>Riebalai</th>
+                <th>Cukrus</th>
+            </tr>
+            </thead>
+            <tbody>
+            {% for foodDishId in plan.foodDishId|json_decode() %}
+                {% for dish in dishes %}
+                    {% if foodDishId == dish.id %}
+                        <tr>
+                            <td>Valgymas</td>
+                            <td>{{ dish.description }}</td>
+                            <td>{{ dish.proteinNum }}</td>
+                            <td>{{ dish.carbohydrateNum }}</td>
+                            <td>{{ dish.fatNum }}</td>
+                            <td>{{ dish.sugarNum }}</td>
+                        </tr>
+                    {% endif %}
+                {% endfor %}
+            {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</div>
+
+    {% endfor %}
+
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+{% endblock %}
