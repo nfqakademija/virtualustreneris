@@ -14,12 +14,6 @@ class AdminController extends Controller
      */
     public function indexAction()
     {
-        //$conn = $this->getDoctrine()->getConnection();
-
-        //$conn->exec("insert into gender (gender) values ('other')");
-
-        //Turėtų grąžinti Vardą ir Pavardę.
-
         return $this->render('AppBundle:Admin:index.html.twig');
     }
 

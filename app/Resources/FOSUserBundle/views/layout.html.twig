@@ -29,7 +29,7 @@
                     <label>{{ '%username%'|trans({'%username%': app.user.email}, 'FOSUserBundle') }}</label>
                     <br/>
                     <a href="{{ path('fos_user_security_logout') }}" style="text-align: center;">
-                        {{ 'layout.logout'|trans({}, 'FOSUserBundle') }}
+                        Atsijungti
                     </a>
                 </div>
             {% else %}
@@ -43,6 +43,8 @@
                 {% for type, messages in app.session.flashbag.all() %}
                     {% for message in messages %}
                         <div class="flash-{{ type }}">
+                            nutrinti gal?
+                            nes kitaip anglisko teksto rodo...
                             {{ message }}
                         </div>
                     {% endfor %}

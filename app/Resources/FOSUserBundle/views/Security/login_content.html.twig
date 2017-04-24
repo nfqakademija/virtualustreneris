@@ -13,20 +13,20 @@
     {% endif %}
 
     <div class="container">
-        <label><b>{{ 'security.login.username'|trans }}</b></label>
-        <input type="text" placeholder="{{ 'security.login.enterusername'|trans }}" id="username" name="_username" value="{{ last_username }}" required="required" />
+        <label><b>Slapyvardis:</b></label>
+        <input type="text" placeholder="Įrašykite Slapyvardį" id="username" name="_username" value="{{ last_username }}" required="required" />
 
-        <label><b>{{ 'security.login.password'|trans }}</b></label>
-        <input type="password" placeholder="{{ 'security.login.enterpassword'|trans }}" id="password" name="_password" required="required" />
+        <label><b>Slaptažodis</b></label>
+        <input type="password" placeholder="Įrašykite Slaptažodį" id="password" name="_password" required="required" />
 
 
         <input type="checkbox" id="remember_me" name="_remember_me" checked="checked" />
-        <label for="remember_me">{{ 'security.login.remember_me'|trans }}</label>
+        <label for="remember_me">Prisiminti mane</label>
 
-        <button type="submit" id="_submit" name="_submit">{{ 'security.login.submit'|trans }}</button>
+        <button type="submit" id="_submit" name="_submit">Prisijungti</button>
 
         <div class="container" style="background-color:#d7d7d7;">
-            <a href="{{ path('homepage') }}"><button type="button" class="cancelbtn">Cancel</button></a>
+            <a href="{{ path('homepage') }}"><button type="button" class="cancelbtn">Atšaukti</button></a>
         </div>
     </div>
 </form>
