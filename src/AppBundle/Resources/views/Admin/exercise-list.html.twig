@@ -4,28 +4,29 @@
 
 {% block stylesheets %}
     {{ parent() }}
+    <style>
+        body {
+            overflow: auto;
+        }
+    </style>
 {% endblock %}
 
 {% block body %}
 
-{% for dish in dishes %}
+    {% for exercise in exercises %}
 
-{{ dish.id }}
-{{ dish.description }}
-{{ dish.proteinNum }}
-{{ dish.carbohydrateNum }}
-{{ dish.fatNum }}
-{{ dish.sugarNum }}
+        {{ exercise.id }}
+        {{ exercise.title }}
+        {{ exercise.description }}
+        {{ exercise.repeats }}
 
-<a href="{{ path('dishes_edit', {'id': dish.id|default('1')}) }}">Redaguoti</a>
-<a href="{{ path('dishes_delete', {'id': dish.id|default('1')}) }}">Ištrinti</a><br><br>
+        <a href="{{ path('exercises_edit', {'id': exercise.id|default('1')}) }}">Redaguoti</a>
+        <a href="{{ path('exercises_delete', {'id': exercise.id|default('1')}) }}">Ištrinti</a><br>
 
-
-
-{% endfor %}
+    {% endfor %}
 <div class="box">
     <div class="box-header">
-        <h3 class="box-title">Esamų Patiekalų Sąrašas</h3>
+        <h3 class="box-title">Esamų Pratimų Sąrašas</h3>
     </div>
     <!-- /.box-header -->
     <div class="box-body">
