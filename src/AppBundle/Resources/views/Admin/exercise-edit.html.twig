@@ -1,14 +1,25 @@
-{% extends 'base.html.twig' %}
+{% extends "::admin-base.html.twig" %}
+
+{% block title %}Administravimo skydinė{% endblock %}
+
+{% block stylesheets %}
+    {{ parent() }}
+    <style>
+        body {
+            overflow: auto;
+        }
+    </style>
+{% endblock %}
 
 {% block body %}
 
-{{ form_start(form) }}
-{{ form_widget(form) }}
-<button type="submit" class="form-control">Save</button>
-{{ form_end(form) }}
+    {{ form_start(form) }}
+    {{ form_widget(form) }}
+    <button type="submit" class="form-control">Save</button>
+    {{ form_end(form) }}
 
 {% endblock %}
 
-{% block stylesheets %}
-
+{% block javascripts %}
+    {{ parent() }}
 {% endblock %}

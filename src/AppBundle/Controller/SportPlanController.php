@@ -45,7 +45,7 @@ class SportPlanController extends Controller
             return $this->redirectToRoute('sport_plan_list');
     	}
 
-    	return $this->render('sportPlan/sport-plan-create.html.twig', [
+    	return $this->render('AppBundle:Admin:sport-plan-create.html.twig', [
     		'form' => $form->createView()
     		]);
     }
@@ -60,7 +60,7 @@ class SportPlanController extends Controller
             $repository = $em->getRepository('AppBundle:Programs');
             $sportPlans = $repository->findAll();
 
-            return $this->render('sportPlan/sport-plan-list.html.twig', [
+            return $this->render('AppBundle:Admin:sport-plan-list.html.twig', [
                 'sportPlans' => $sportPlans
                 ]);
         }
@@ -89,7 +89,7 @@ class SportPlanController extends Controller
             return $this->redirectToRoute('sport_plan_list');
         }
 
-        return $this->render('sportPlan/sport-plan-edit.html.twig', [
+        return $this->render('AppBundle:Admin:sport-plan-edit.html.twig', [
                 'sportPlan' => $sportPlan,
                 'form' => $form->createView()
             ]);
