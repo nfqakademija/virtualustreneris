@@ -18,16 +18,17 @@
                     {{ mealPlan.caloriesNum }}
                     {{ mealPlan.goals }}
 
-                    <br/>
+                    <a href="{{ path('meal_plan_edit', {'id': mealPlan.id|default('1')}) }}">Redaguoti</a>
+                    <a href="{{ path('meal_plan_delete', {'id': mealPlan.id|default('1')}) }}">Ištrinti</a><br>
+
                     {% for foodDishId in mealPlan.foodDishId|json_decode() %}
                         {% for dish in dishes %}
                             {% if foodDishId == dish.id %}
-                                {{ dish.description }}<br>
+                                {{ dish.description }}
+                                {{ dish.proteinNum }}<br>
                             {% endif %}
                         {% endfor %}
 
-                        <a href="{{ path('meal_plan_edit', {'id': mealPlan.id|default('1')}) }}">Redaguoti</a>
-                        <a href="{{ path('meal_plan_delete', {'id': mealPlan.id|default('1')}) }}">Ištrinti</a><br>
                     {% endfor %}
                 {% endfor %}
             </div>
