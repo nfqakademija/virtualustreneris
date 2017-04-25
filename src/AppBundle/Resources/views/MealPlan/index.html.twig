@@ -12,7 +12,7 @@
 {% endblock %}
 
 {% block body %}
-    <div class="main">
+    <div class="main" style="background-color: #2c3e50;">
 
         <div class="content">
 
@@ -20,68 +20,29 @@
                 <p>Ieškokite sau pritaikytos mitybos programos</p>
             </div>
 
-            <form class="form-inline">
-                <div class="form-group">
-                    <select class="form-control">
-                        <option>Lytis</option>
-                        <option>Vyras</option>
-                        <option>Moteris</option>
-                    </select>
-                </div>
-                <div class="form-group">
-                    <label class="sr-only" >Amžius</label>
-                    <input type="email" class="form-control" id="exampleInputEmail3" placeholder="Amžius">
-                </div>
-                <div class="form-group">
-                    <label class="sr-only" for="exampleInputPassword3">Ūgis</label>
-                    <input type="password" class="form-control" id="exampleInputPassword3" placeholder="Ūgis">
-                </div>
-                <div class="form-group">
-                    <label class="sr-only" for="exampleInputPassword3">Svoris</label>
-                    <input type="password" class="form-control" id="exampleInputPassword3" placeholder="Svoris">
-                </div>
-                <div class="btn-group" role="group">
-                    <select class="form-control">
-                        <option>Tikslas</option>
-                        <option>Priaugti raumeninės masės</option>
-                        <option>Numesti svorio/Ryškinti raumenis</option>
-                    </select>
-                </div>
-                <div class="btn-group" role="group">
-                    <select class="form-control">
-                        <option>Fizinis aktyvumas paroje</option>
-                        <option>Lengvas</option>
-                        <option>Vidutinis</option>
-                        <option>Didelis</option>
-                    </select>
-                </div>
-            </form>
-
-            <div class="top-text" style="margin-top: 20px">
-                <p>Pasirinkite kokių produktų nemėgstate</p>
-                <div class="product-dislike margin-20">
-                    <div class="checkbox">
-                        <label>
-                            <input type="checkbox"> Žuvies
-                        </label>
-                        <label>
-                            <input type="checkbox"> Pieno produktų
-                        </label>
-                        <label>
-                            <input type="checkbox"> Kruopų
-                        </label>
-                        <label>
-                            <input type="checkbox"> Daržovių
-                        </label>
-                        <label>
-                            <input type="checkbox"> Mėsos
-                        </label>
+                <div class="form-inline">
+                    {{ form_start(form, {'action': path('meal_plan_result')}) }}
+                    <div class="form-group">
+                        {{ form_row(form.gender) }}
                     </div>
+                    <div class="form-group">
+                        {{ form_row(form.height) }}
+                    </div>
+                    <div class="form-group">
+                        {{ form_row(form.weight) }}
+                    </div>
+                    <div class="form-group">
+                        {{ form_row(form.age) }}
+                    </div>
+                    <div class="btn-group" role="group">
+                        {{ form_row(form.goals) }}
+                    </div>
+                    {{ form_end(form) }}
                 </div>
-            </div>
-            <button style="margin-top: 20px;" type="submit" class="btn btn-default">IEŠKOTI</button>
+
 
         </div>
+
 
 
         <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->

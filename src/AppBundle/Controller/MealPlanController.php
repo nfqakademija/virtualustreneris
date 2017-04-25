@@ -4,9 +4,9 @@ namespace AppBundle\Controller;
 
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\HttpFoundation\Request;
 use AppBundle\Form\MealplanType;
-use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Doctrine\ORM\EntityRepository;
 use AppBundle\Entity\DishLists;
@@ -171,28 +171,49 @@ class MealPlanController extends Controller
 
         $form = $this->createFormBuilder()
             ->add('gender', EntityType::class, [
-                'placeholder' => 'Choose a gender',
+                'placeholder' => 'Pasirinkite lytį',
                 'class' => Gender::class,
                 'query_builder' => function (EntityRepository $er) {
                     return $er->createQueryBuilder('gender')
                         ->OrderBy('gender.gender', 'ASC');
-                }
+                },
+                'attr'   =>  array(
+                    'class'   => 'form-control')
             ])
-            ->add('height')
-            ->add('weight')
-            ->add('age')
+            ->add('height', null, [
+                'attr'   =>  array(
+                    'class'   => 'form-control',
+                    'placeholder' => 'Įveskite savo ūgį')
+
+            ])
+            ->add('weight', null, [
+                'attr'   =>  array(
+                    'class'   => 'form-control',
+                    'placeholder' => 'Įveskite savo svorį')
+            ])
+            ->add('age', null, [
+                'attr'   =>  array(
+                    'class'   => 'form-control',
+                    'placeholder' => 'Jūsų amžius skaičiais')
+            ])
             ->add('goals', EntityType::class, [
-                'placeholder' => 'Choose your goal',
+                'placeholder' => 'Pasirinkite tikslą',
                 'class' => Goals::class,
                 'query_builder' => function (EntityRepository $er) {
                     return $er->createQueryBuilder('goals')
                         ->orderBy('goals.title', 'ASC');
-                }
+                },
+                'attr'   =>  array(
+                    'class'   => 'form-control')
+            ])
+            ->add('submit', SubmitType::class, [
+                'attr'   =>  array(
+                    'class'   => 'btn btn-success')
             ])
             ->getForm();
 
 
-        return $this->render('AppBundle:MealPlan:meal-plan-find.html.twig', [
+        return $this->render('AppBundle:MealPlan:index.html.twig', [
             'form' => $form->createView()
         ]);
     }
