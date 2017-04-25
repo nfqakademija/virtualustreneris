@@ -44,14 +44,14 @@
                         <!-- Menu Toggle Button -->
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                             <!-- The user image in the navbar-->
-                            <img src="images/avatar.png" class="user-image" alt="User Image">
+                            <img src="{{ path('homepage') }}/images/avatar.png" class="user-image" alt="User Image">
                             <!-- hidden-xs hides the username on small devices so only the image appears. -->
 
                         </a>
                         <ul class="dropdown-menu">
                             <!-- The user image in the menu -->
                             <li class="user-header">
-                                <img src="images/avatar.png" class="img-circle" alt="User Image">
+                                <img src="{{ path('homepage') }}/images/avatar.png" class="img-circle" alt="User Image">
 
                                 <p>
 
@@ -93,11 +93,10 @@
             </span>
                     </a>
                     <ul class="treeview-menu">
-                        <li><a href="#">food_categories</a></li>
-                        <li><a href="#">food_products</a></li>
-                        <li><a href="#">sport_programs</a></li>
-                        <li><a href="#">food_dishes</a></li>
-                        <li><a href="#">dish_lists</a></li>
+                        <li><a href="{{ path('dishes_create') }}">Naujo patiekalo įtraukimas</a></li>
+                        <li><a href="{{ path('dishes_list') }}">Esamų patiekalų sąrašas</a></li>
+                        <li><a href="{{ path('meal_plan_create') }}">Mitybos programos įtraukimas</a></li>
+                        <li><a href="{{ path('meal_plan_list') }}">Mitybos patiekalų sąrašas</a></li>
                     </ul>
                 </li>
                 <li class="treeview">
@@ -121,7 +120,7 @@
             </span>
                     </a>
                     <ul class="treeview-menu">
-                        <li><a href="/admin/list">Administratorių sąrašas</a></li>
+                        <li><a href="{{ path('admin_users_list') }}">Administratorių sąrašas</a></li>
                         <li><a href="/register">Naujas administratorius</a></li>
                     </ul>
                 </li>
