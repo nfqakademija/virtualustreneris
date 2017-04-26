@@ -46,7 +46,7 @@
                             <!-- The user image in the navbar-->
                             <img src="{{ path('homepage') }}/images/avatar.png" class="user-image" alt="User Image">
                             <!-- hidden-xs hides the username on small devices so only the image appears. -->
-                            <span class="hidden-xs">{{ '%username%'|trans({'%username%': app.user.email}, 'FOSUserBundle') }}</span>
+
                         </a>
                         <ul class="dropdown-menu">
                             <!-- The user image in the menu -->
@@ -54,7 +54,7 @@
                                 <img src="{{ path('homepage') }}/images/avatar.png" class="img-circle" alt="User Image">
 
                                 <p>
-                                    {{ '%username%'|trans({'%username%': app.user.email}, 'FOSUserBundle') }}
+
                                 </p>
                             </li>
                             <!-- /.row -->
@@ -96,7 +96,7 @@
                         <li><a href="{{ path('dishes_create') }}">Naujo patiekalo įtraukimas</a></li>
                         <li><a href="{{ path('dishes_list') }}">Esamų patiekalų sąrašas</a></li>
                         <li><a href="{{ path('meal_plan_create') }}">Mitybos programos įtraukimas</a></li>
-                        <li><a href="{{ path('meal_plan_list') }}">Mitybos patiekalų sąrašas</a></li>
+                        <li><a href="{{ path('meal_plan_list') }}">Mitybos programų sąrašas</a></li>
                     </ul>
                 </li>
                 <li class="treeview">

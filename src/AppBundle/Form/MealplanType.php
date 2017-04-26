@@ -20,15 +20,23 @@ class MealplanType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-        ->add('caloriesNum')
-        ->add('foodDishId')
+        ->add('caloriesNum', null, [
+            'attr'   =>  array(
+                'class'   => 'form-control')
+        ])
+        ->add('foodDishId',null, [
+        'attr'   =>  array(
+            'class'   => 'form-control')
+        ])
         ->add('goals', EntityType::class, [
-            'placeholder' => 'Choose your goal',
+            'placeholder' => 'Parinkite tikslą',
             'class' => Goals::class,
             'query_builder' => function (EntityRepository $er) {
                 return $er->createQueryBuilder('goal')
                 ->OrderBy('goal.title', 'ASC');
-            }
+            },
+            'attr'   =>  array(
+                'class'   => 'form-control')
         ]);
     }
     

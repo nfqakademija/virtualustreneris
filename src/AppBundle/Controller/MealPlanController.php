@@ -43,26 +43,32 @@ class MealPlanController extends Controller
         if ($gender=='1') {
             $calories = 664.7 + (5 * $height) + (13.75 * $weight) - (6.74 * $age);
             if($goals=='1') {
-                $result = $calories - 300;
-            }else{
                 $result = $calories + 300;
+            }else{
+                $result = $calories - 300;
             }
         }else{
             $calories = 655.1 + (1.85 * $height) + (9.6 * $weight) - (6.74 * $age);
             if($goals=='1') {
-                $result = $calories - 200;
-            }else{
                 $result = $calories + 200;
+            }else{
+                $result = $calories - 200;
             }
         }
 
+        $rangeStart = $result - 150;
+        $rangeEnd = $result + 150;
+
         $em = $this->getDoctrine()->getManager();
         $repository = $em->getRepository('AppBundle:DishLists');
-        $find = $repository->findPlanByCalories($result);
+        $find = $repository->findPlanByCalories($rangeStart, $rangeEnd, $goals);
 
         $dishRepo = $em->getRepository('AppBundle:FoodDishes');
         $dishes = $dishRepo->findAll();
 
+        if(!$find) {
+            $this->addFlash('message', 'Atsiprašome, kol kas pagal jūsų kriterijus dar nėra įkeltos programos.');
+        }
 
         return $this->render('AppBundle:Profile:index.html.twig', [
             'plans' => $find,
@@ -206,7 +212,7 @@ class MealPlanController extends Controller
                 'attr'   =>  array(
                     'class'   => 'form-control')
             ])
-            ->add('submit', SubmitType::class, [
+            ->add('Ieškoti', SubmitType::class, [
                 'attr'   =>  array(
                     'class'   => 'btn btn-success')
             ])

@@ -8,25 +8,14 @@
 
 {% block body %}
 
-{% for dish in dishes %}
-
-{{ dish.id }}
-{{ dish.description }}
-{{ dish.proteinNum }}
-{{ dish.carbohydrateNum }}
-{{ dish.fatNum }}
-{{ dish.sugarNum }}
-
-<a href="{{ path('dishes_edit', {'id': dish.id|default('1')}) }}">Redaguoti</a>
-<a href="{{ path('dishes_delete', {'id': dish.id|default('1')}) }}">Ištrinti</a><br><br>
 
 
-
-{% endfor %}
 <div class="box">
     <div class="box-header">
-        <h3 class="box-title">Esamų Patiekalų Sąrašas</h3>
+        <h3 class="box-title">Esamų patiekalų sąrašas</h3>
     </div>
+
+    {% for dish in dishes %}
     <!-- /.box-header -->
     <div class="box-body">
         <div id="example2_wrapper" class="dataTables_wrapper form-inline dt-bootstrap">
@@ -38,20 +27,26 @@
                 <div class="col-sm-12">
                     <table id="example2" class="table table-bordered table-hover dataTable" role="grid" aria-describedby="example2_info">
                         <thead>
-                        <tr role="row"><th class="sorting_asc" tabindex="0" aria-controls="example2" rowspan="1" colspan="1" aria-sort="ascending" aria-label="Rendering engine: activate to sort column descending">ID</th>
-                            <th class="sorting" tabindex="0" aria-controls="example2" rowspan="1" colspan="1" aria-label="Browser: activate to sort column ascending">El-paštas</th>
-                            <th class="sorting" tabindex="0" aria-controls="example2" rowspan="1" colspan="1" aria-label="Platform(s): activate to sort column ascending">Slapyvardis</th>
-                            <th class="sorting" tabindex="0" aria-controls="example2" rowspan="1" colspan="1" aria-label="Engine version: activate to sort column ascending">Paskutinis prisijungimas</th>
-                            <th class="sorting" tabindex="0" aria-controls="example2" rowspan="1" colspan="1" aria-label="CSS grade: activate to sort column ascending">Aktyvus</th>
+                        <tr role="row">
+                            <th class="sorting_asc" tabindex="0" aria-controls="example2" rowspan="1" colspan="1" aria-sort="ascending" aria-label="Rendering engine: activate to sort column descending">ID</th>
+                            <th class="sorting" tabindex="0" aria-controls="example2" rowspan="1" colspan="1" aria-label="Browser: activate to sort column ascending">Aprašymas</th>
+                            <th class="sorting" tabindex="0" aria-controls="example2" rowspan="1" colspan="1" aria-label="Platform(s): activate to sort column ascending">Baltymai</th>
+                            <th class="sorting" tabindex="0" aria-controls="example2" rowspan="1" colspan="1" aria-label="Engine version: activate to sort column ascending">Angliavandeniai</th>
+                            <th class="sorting" tabindex="0" aria-controls="example2" rowspan="1" colspan="1" aria-label="CSS grade: activate to sort column ascending">Riebalai</th>
+                            <th class="sorting" tabindex="0" aria-controls="example2" rowspan="1" colspan="1" aria-label="CSS grade: activate to sort column ascending">Cukrus</th>
+                            <th class="sorting" tabindex="0" aria-controls="example2" rowspan="1" colspan="1" aria-label="CSS grade: activate to sort column ascending">Redagavimas</th>
                         </tr>
                         </thead>
                         <tbody>
                         <tr role="row" class="odd">
-                            <td class="sorting_1">Gecko</td>
-                            <td>Firefox 1.0</td>
-                            <td>Win 98+ / OSX.2+</td>
-                            <td>1.7</td>
-                            <td>A</td>
+                            <td class="sorting_1">{{ dish.id }}</td>
+                            <td>{{ dish.description }}</td>
+                            <td>{{ dish.proteinNum }}</td>
+                            <td>{{ dish.carbohydrateNum }}</td>
+                            <td>{{ dish.fatNum }}</td>
+                            <td>{{ dish.sugarNum }}</td>
+                            <td><a href="{{ path('dishes_edit', {'id': dish.id|default('1')}) }}">Redaguoti</a>
+                                <a href="{{ path('dishes_delete', {'id': dish.id|default('1')}) }}">Ištrinti</a></td>
                         </tr>
                         </tbody>
                     </table>
@@ -60,6 +55,7 @@
         </div>
         <!-- /.box-body -->
     </div>
+    {% endfor %}
 {% endblock %}
 
 {% block javascripts %}

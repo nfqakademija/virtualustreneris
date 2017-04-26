@@ -24,11 +24,15 @@ class DishListsRepository extends \Doctrine\ORM\EntityRepository
         return $qb;
     }
 
-    public function findPlanByCalories($result)
+    public function findPlanByCalories($rangeStart, $rangeEnd, $goals)
     {
         return $this->createQueryBuilder('plans')
-            ->andWhere('plans.caloriesNum >= :result')
-            ->setParameter('result', $result)
+            ->andWhere('plans.caloriesNum >= :rangeStart')
+            ->setParameter('rangeStart', $rangeStart)
+            ->andWhere('plans.caloriesNum <= :rangeEnd')
+            ->setParameter('rangeEnd', $rangeEnd)
+            ->andWhere('plans.goals = :goals')
+            ->setParameter('goals', $goals)
             ->getQuery()
             ->getResult();
     }
