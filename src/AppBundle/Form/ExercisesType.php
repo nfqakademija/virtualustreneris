@@ -13,7 +13,18 @@ class ExercisesType extends AbstractType
      */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        $builder->add('title')->add('description')->add('repeats');
+        $builder->add('title', null, [
+            'attr'   =>  array(
+                'class'   => 'form-control')
+        ])
+            ->add('description', null, [
+                'attr'   =>  array(
+                    'class'   => 'form-control')
+            ])
+            ->add('repeats', null, [
+                'attr'   =>  array(
+                    'class'   => 'form-control')
+            ]);
     }
     
     /**

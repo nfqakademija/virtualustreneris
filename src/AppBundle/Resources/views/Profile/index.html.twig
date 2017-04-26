@@ -53,15 +53,26 @@
 
     <div class="lentele">
       <span>
-          <h2>Mitybos programa</h2>
-          <p>Aprašymas</p>
 
-          Jūsų išvestas kalorijų skaičius: {{ result }}<br>
+    {% for flash_message in app.session.flashBag.get('message') %}
+        <div class="flash-notice">
+        {{ flash_message }}
+    </div>
+    {% endfor %}
+    <ul class="list-group">
+        <li class="list-group-item">Jūsų išvestas rekomanduojamas kalorijų skaičius paroje: {{ result }}<br></li>
+    </ul>
 
-          {% for plan in plans %}
-              Programos kalorijos: {{ plan.caloriesNum }}<br>
-              Skirta: {{ plan.goals }}<br>
-              Valgymų id: {{ plan.foodDishId }}<br>
+            <ul class="list-group">
+
+                  {% for plan in plans %}
+
+                      <h2>Mitybos programa</h2>
+                      <li class="list-group-item">Programos kalorijos: {{ plan.caloriesNum }}</li>
+                      <li class="list-group-item">Skirta: {{ plan.goals }}</li>
+                      <li class="list-group-item">Valgymų id: {{ plan.foodDishId }}</li>
+
+              </ul>
       </span>
         <table class="table table-hover" style="color: black; background-color: white;">
             <thead>

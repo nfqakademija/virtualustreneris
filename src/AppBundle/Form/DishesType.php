@@ -20,18 +20,35 @@ class DishesType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-        ->add('description')
-        ->add('proteinNum')
-        ->add('carbohydrateNum')
-        ->add('fatNum')
-        ->add('sugarNum')
+        ->add('description', null, [
+            'attr'   =>  array(
+                'class'   => 'form-control')
+        ])
+        ->add('proteinNum', null, [
+            'attr'   =>  array(
+                'class'   => 'form-control')
+        ])
+        ->add('carbohydrateNum', null, [
+            'attr'   =>  array(
+                'class'   => 'form-control')
+        ])
+        ->add('fatNum', null, [
+            'attr'   =>  array(
+                'class'   => 'form-control')
+        ])
+        ->add('sugarNum', null, [
+            'attr'   =>  array(
+                'class'   => 'form-control')
+        ])
         ->add('foodCategories', EntityType::class, [
-            'placeholder' => 'Choose category',
+            'placeholder' => 'Parinkite kategoriją',
             'class' => FoodCategories::class,
             'query_builder' => function (EntityRepository $er) {
                 return $er->createQueryBuilder('cat')
                 ->OrderBy('cat.title', 'ASC');
-            }
+            },
+            'attr'   =>  array(
+                'class'   => 'form-control')
         ]);
     }
     
