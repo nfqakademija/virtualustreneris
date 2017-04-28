@@ -13,21 +13,14 @@
 
 {% block body %}
 
-    {% for exercise in exercises %}
-
-        {{ exercise.id }}
-        {{ exercise.title }}
-        {{ exercise.description }}
-        {{ exercise.repeats }}
-
-        <a href="{{ path('exercises_edit', {'id': exercise.id|default('1')}) }}">Redaguoti</a>
-        <a href="{{ path('exercises_delete', {'id': exercise.id|default('1')}) }}">Ištrinti</a><br>
-
-    {% endfor %}
 <div class="box">
     <div class="box-header">
         <h3 class="box-title">Esamų Pratimų Sąrašas</h3>
     </div>
+
+
+
+
     <!-- /.box-header -->
     <div class="box-body">
         <div id="example2_wrapper" class="dataTables_wrapper form-inline dt-bootstrap">
@@ -40,20 +33,23 @@
                     <table id="example2" class="table table-bordered table-hover dataTable" role="grid" aria-describedby="example2_info">
                         <thead>
                         <tr role="row"><th class="sorting_asc" tabindex="0" aria-controls="example2" rowspan="1" colspan="1" aria-sort="ascending" aria-label="Rendering engine: activate to sort column descending">ID</th>
-                            <th class="sorting" tabindex="0" aria-controls="example2" rowspan="1" colspan="1" aria-label="Browser: activate to sort column ascending">El-paštas</th>
-                            <th class="sorting" tabindex="0" aria-controls="example2" rowspan="1" colspan="1" aria-label="Platform(s): activate to sort column ascending">Slapyvardis</th>
-                            <th class="sorting" tabindex="0" aria-controls="example2" rowspan="1" colspan="1" aria-label="Engine version: activate to sort column ascending">Paskutinis prisijungimas</th>
-                            <th class="sorting" tabindex="0" aria-controls="example2" rowspan="1" colspan="1" aria-label="CSS grade: activate to sort column ascending">Aktyvus</th>
+                            <th class="sorting" tabindex="0" aria-controls="example2" rowspan="1" colspan="1" aria-label="Browser: activate to sort column ascending">Pavadinimas</th>
+                            <th class="sorting" tabindex="0" aria-controls="example2" rowspan="1" colspan="1" aria-label="Platform(s): activate to sort column ascending">Aprašymas</th>
+                            <th class="sorting" tabindex="0" aria-controls="example2" rowspan="1" colspan="1" aria-label="Engine version: activate to sort column ascending">Pakartojimai</th>
+                            <th class="sorting" tabindex="0" aria-controls="example2" rowspan="1" colspan="1" aria-label="Engine version: activate to sort column ascending">Redagavimas</th>
                         </tr>
                         </thead>
                         <tbody>
+                        {% for exercise in exercises %}
                         <tr role="row" class="odd">
-                            <td class="sorting_1">Gecko</td>
-                            <td>Firefox 1.0</td>
-                            <td>Win 98+ / OSX.2+</td>
-                            <td>1.7</td>
-                            <td>A</td>
+                            <td class="sorting_1">{{ exercise.id }}</td>
+                            <td>{{ exercise.title }}</td>
+                            <td>{{ exercise.description }}</td>
+                            <td>{{ exercise.repeats }}</td>
+                            <td><a href="{{ path('exercises_edit', {'id': exercise.id|default('1')}) }}">Redaguoti</a>
+                                <a href="{{ path('exercises_delete', {'id': exercise.id|default('1')}) }}">Ištrinti</a><br></td>
                         </tr>
+                        {% endfor %}
                         </tbody>
                     </table>
                 </div>
@@ -61,6 +57,7 @@
         </div>
         <!-- /.box-body -->
     </div>
+
 {% endblock %}
 
 {% block javascripts %}

@@ -10,4 +10,18 @@ namespace AppBundle\Repository;
  */
 class ProgramsRepository extends \Doctrine\ORM\EntityRepository
 {
+
+    public function findSportPlan($gender, $experience, $goals)
+    {
+        return $this->createQueryBuilder('plans')
+            ->andWhere('plans.gender= :gender')
+            ->setParameter('gender', $gender)
+            ->andWhere('plans.experience = :experience')
+            ->setParameter('experience', $experience)
+            ->andWhere('plans.goals = :goals')
+            ->setParameter('goals', $goals)
+            ->getQuery()
+            ->getResult();
+    }
+
 }

@@ -47,6 +47,13 @@ class Programs
      */
     private $description;
 
+    /**
+     * @var integer
+     *
+     * @ORM\ManyToOne(targetEntity="Goals")
+     * @ORM\JoinColumn(nullable=false)
+     */
+    private $goals;
 
 
 
@@ -71,7 +78,6 @@ class Programs
     {
         $this->exerciseList = $exerciseList;
 
-        return $this;
     }
 
     /**
@@ -83,6 +89,7 @@ class Programs
     {
         return $this->exerciseList;
     }
+
 
     public function setGender(Gender $gender)
     {
@@ -113,6 +120,18 @@ class Programs
     {
         return $this->description;
     }
+
+    public function setGoals(Goals $goals)
+    {
+        $this->goals = $goals;
+    }
+
+    public function getGoals()
+    {
+        return $this->goals;
+    }
+
+
 
 
 }

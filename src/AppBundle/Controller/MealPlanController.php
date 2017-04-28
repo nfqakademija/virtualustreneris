@@ -29,7 +29,7 @@ class MealPlanController extends Controller
     }
 
     /**
-     * @Route("/profile", name="profile")
+     * @Route("/profile/meal-plan", name="profile_meal_plan")
      */
     public function profileAction()
     {
@@ -67,7 +67,7 @@ class MealPlanController extends Controller
         $dishes = $dishRepo->findAll();
 
         if(!$find) {
-            $this->addFlash('message', 'Atsiprašome, kol kas pagal jūsų kriterijus dar nėra įkeltos programos.');
+            $this->addFlash('message', 'Atsiprašome, kol kas pagal jūsų kriterijus dar nėra įkeltos mitybos programos.');
         }
 
         return $this->render('AppBundle:Profile:index.html.twig', [
@@ -244,7 +244,7 @@ class MealPlanController extends Controller
         $session->set('age', $age);
         $session->set('goals', $goals);
 
-        return $this->redirectToRoute('profile');
+        return $this->redirectToRoute('profile_meal_plan');
     }
 
 
