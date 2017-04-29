@@ -208,24 +208,41 @@ body {
 
 }
 fbbutton {
-    font: 10px "Trebuchet MS", sans-serif;
+    font: 10px "Times New Roman", serif;
 }
 
 .fbbutton {
-    padding:8px 16px;
+    padding:6px 10px;
     display:inline-block;
     text-decoration: none;
-    border-radius:3px;
-    background-color: #3c70b0;
+    border-radius:7px;
+    background-color: #3e6bad;
     color:#fff;
     position: absolute;
     top: 10px;
     right: 10px;
-    z-index: 998;
+    z-index: 100;
 }
 
 .fbbutton:hover {
     color:#fff;
     text-decoration: none;
-    background-color: #3f81c4;
+    background-color: #3B5998;
 }
+
+.fb-share-button {
+    position: absolute;
+    top: 4px;
+    right: -475px;
+    z-index: 101;
+    padding: 2px 7px;
+    background-color: #3e6bad;
+    border-radius:7px;
+
+}
+.fb-share-button:hover {
+    background-color: #3B5998;
+
+
+}
+
