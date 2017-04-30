@@ -55,6 +55,15 @@ class Programs
      */
     private $goals;
 
+    /**
+     * @var integer
+     *
+     * @ORM\ManyToOne(targetEntity="AgeCategory")
+     * @ORM\JoinColumn(nullable=false)
+     */
+    private $ageCategory;
+
+
 
 
     /**
@@ -130,6 +139,19 @@ class Programs
     {
         return $this->goals;
     }
+
+    public function setAgeCategory(AgeCategory $ageCategory)
+    {
+        $this->ageCategory = $ageCategory;
+    }
+
+    public function getAgeCategory()
+    {
+        return $this->ageCategory;
+    }
+
+
+
 
 
 

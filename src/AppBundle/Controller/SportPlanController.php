@@ -2,6 +2,7 @@
 
 namespace AppBundle\Controller;
 
+use AppBundle\Entity\AgeCategory;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
@@ -37,12 +38,12 @@ class SportPlanController extends Controller
         $session = new Session();
         $gender = $session->get('gender');
         $experience = $session->get('experience');
-        $age = $session->get('age');
+        $ageCategory = $session->get('ageCategory');
         $goals = $session->get('goals');
 
         $em = $this->getDoctrine()->getManager();
         $repository = $em->getRepository('AppBundle:Programs');
-        $find = $repository->findSportPlan($gender, $experience, $goals);
+        $find = $repository->findSportPlan($gender, $experience, $goals, $ageCategory);
 
         $exerciseRepo = $em->getRepository('AppBundle:Exercises');
         $exercises = $exerciseRepo->findAll();
@@ -175,10 +176,15 @@ class SportPlanController extends Controller
                 'attr'   =>  array(
                     'class'   => 'form-control')
             ])
-            ->add('age', null, [
+            ->add('ageCategory', EntityType::class, [
+                'placeholder' => 'Amžiaus kategorija',
+                'class' => AgeCategory::class,
+                'query_builder' => function (EntityRepository $er) {
+                    return $er->createQueryBuilder('age')
+                        ->OrderBy('age.id', 'ASC');
+                },
                 'attr'   =>  array(
-                    'class'   => 'form-control',
-                    'placeholder' => 'Jūsų amžius skaičiais')
+                    'class'   => 'form-control')
             ])
             ->add('goals', EntityType::class, [
                 'placeholder' => 'Pasirinkite tikslą',
@@ -209,14 +215,14 @@ class SportPlanController extends Controller
     {
         $gender = $request->request->get('form')['gender'];
         $experience = $request->request->get('form')['experience'];
-        $age = $request->request->get('form')['age'];
+        $ageCategory = $request->request->get('form')['ageCategory'];
         $goals = $request->request->get('form')['goals'];
 
         $session = new Session();
 
         $session->set('gender', $gender);
         $session->set('experience', $experience);
-        $session->set('age', $age);
+        $session->set('ageCategory', $ageCategory);
         $session->set('goals', $goals);
 
         return $this->redirectToRoute('profile_sport_plan');

@@ -31,6 +31,7 @@
                             <th class="sorting" tabindex="0" aria-controls="example2" rowspan="1" colspan="1" aria-label="Engine version: activate to sort column ascending">Angliavandeniai</th>
                             <th class="sorting" tabindex="0" aria-controls="example2" rowspan="1" colspan="1" aria-label="CSS grade: activate to sort column ascending">Riebalai</th>
                             <th class="sorting" tabindex="0" aria-controls="example2" rowspan="1" colspan="1" aria-label="CSS grade: activate to sort column ascending">Cukrus</th>
+                            <th class="sorting" tabindex="0" aria-controls="example2" rowspan="1" colspan="1" aria-label="CSS grade: activate to sort column ascending">Kalorijos</th>
                             <th class="sorting" tabindex="0" aria-controls="example2" rowspan="1" colspan="1" aria-label="CSS grade: activate to sort column ascending">Redagavimas</th>
                         </tr>
                         </thead>
@@ -43,6 +44,7 @@
                             <td>{{ dish.carbohydrateNum }}</td>
                             <td>{{ dish.fatNum }}</td>
                             <td>{{ dish.sugarNum }}</td>
+                            <td>{{ dish.kcalNum }}</td>
                             <td><a href="{{ path('dishes_edit', {'id': dish.id|default('1')}) }}">Redaguoti</a>
                                 <a href="{{ path('dishes_delete', {'id': dish.id|default('1')}) }}">Ištrinti</a></td>
                         </tr>

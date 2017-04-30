@@ -40,6 +40,10 @@ class DishesType extends AbstractType
             'attr'   =>  array(
                 'class'   => 'form-control')
         ])
+            ->add('kcalNum', null, [
+                'attr'   =>  array(
+                    'class'   => 'form-control')
+            ])
         ->add('foodCategories', EntityType::class, [
             'placeholder' => 'Parinkite kategoriją',
             'class' => FoodCategories::class,

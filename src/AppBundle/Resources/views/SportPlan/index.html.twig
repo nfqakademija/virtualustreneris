@@ -23,16 +23,26 @@
                 <div class="form-inline">
                     {{ form_start(form, {'action': path('sport_plan_result')}) }}
                     <div class="form-group">
-                        {{ form_row(form.gender) }}
+                        {{ form_label(form.gender, 'Lytis') }}
+                        {{ form_errors(form.gender) }}
+                        {{ form_widget(form.gender) }}
                     </div>
                     <div class="form-group">
-                        {{ form_row(form.experience) }}
+                        {{ form_label(form.experience, 'Patirtis') }}
+                        {{ form_errors(form.experience) }}
+                        {{ form_widget(form.experience) }}
                     </div>
                     <div class="form-group">
-                        {{ form_row(form.age) }}
+                        {{ form_label(form.ageCategory, 'Amžiaus kategorija') }}
+                        {{ form_errors(form.ageCategory) }}
+                        {{ form_widget(form.ageCategory) }}
                     </div>
+
                     <div class="btn-group" role="group">
-                        {{ form_row(form.goals) }}
+
+                        {{ form_label(form.goals, 'Tikslas') }}
+                        {{ form_errors(form.goals) }}
+                        {{ form_widget(form.goals) }}
                     </div><br><br>
                     {{ form_end(form) }}
                 </div>

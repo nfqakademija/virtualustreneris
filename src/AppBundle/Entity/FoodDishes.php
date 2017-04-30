@@ -59,6 +59,13 @@ class FoodDishes
     private $sugarNum;
 
     /**
+     * @var integer
+     *
+     * @ORM\Column(name="kcal_num", type="integer", nullable=false)
+     */
+    private $kcalNum;
+
+    /**
      * @var string
      *
      * @ORM\ManyToOne(targetEntity="FoodCategories")
@@ -129,6 +136,16 @@ class FoodDishes
     public function setfoodCategories(foodCategories $foodCategories)
     {
         $this->foodCategories = $foodCategories;
+    }
+
+    public function getkcalNum()
+    {
+        return $this->kcalNum;
+    }
+
+    public function setkcalNum($kcalNum)
+    {
+        $this->kcalNum = $kcalNum;
     }
 }
 

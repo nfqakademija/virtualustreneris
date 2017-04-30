@@ -2,6 +2,7 @@
 
 namespace AppBundle\Controller;
 
+use AppBundle\Entity\Activity;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
@@ -39,6 +40,8 @@ class MealPlanController extends Controller
         $weight = $session->get('weight');
         $age = $session->get('age');
         $goals = $session->get('goals');
+        $activity = $session->get('activity');
+
 
         if ($gender=='1') {
             $calories = 664.7 + (5 * $height) + (13.75 * $weight) - (6.74 * $age);
@@ -54,6 +57,18 @@ class MealPlanController extends Controller
             }else{
                 $result = $calories - 200;
             }
+        }
+
+        if($activity == '1') {
+            $result +=0;
+        }elseif($activity == '2') {
+            $result +=50;
+        }elseif($activity == '3') {
+            $result +=100;
+        }elseif($activity == '4') {
+            $result +=150;
+        }elseif($activity == '5') {
+            $result +=200;
         }
 
         $rangeStart = $result - 150;
@@ -212,6 +227,16 @@ class MealPlanController extends Controller
                 'attr'   =>  array(
                     'class'   => 'form-control')
             ])
+            ->add('activity', EntityType::class, [
+                'placeholder' => 'Jusu fizinis atkyvumas',
+                'class' => Activity::class,
+                'query_builder' => function (EntityRepository $er) {
+                    return $er->createQueryBuilder('activity')
+                        ->orderBy('activity.id', 'ASC');
+                },
+                'attr'   =>  array(
+                    'class'   => 'form-control')
+            ])
             ->add('Ieškoti', SubmitType::class, [
                 'attr'   =>  array(
                     'class'   => 'btn btn-success')
@@ -235,6 +260,7 @@ class MealPlanController extends Controller
         $weight = $request->request->get('form')['weight'];
         $age = $request->request->get('form')['age'];
         $goals = $request->request->get('form')['goals'];
+        $activity = $request->request->get('form')['activity'];
 
         $session = new Session();
 
@@ -243,6 +269,7 @@ class MealPlanController extends Controller
         $session->set('weight', $weight);
         $session->set('age', $age);
         $session->set('goals', $goals);
+        $session->set('activity', $activity);
 
         return $this->redirectToRoute('profile_meal_plan');
     }

@@ -30,7 +30,7 @@
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                 <ul class="nav navbar-nav">
                     <li class="active"><a href="{{ path('homepage') }}">Titulinis <span class="sr-only">(current)</span></a></li>
-                    <li class="active"><a href="{{ path('sport-plan') }}">Sporto programos <span class="sr-only">(current)</span></a></li>
+                    <li class="active"><a href="{{ path('sport_plan_search') }}">Sporto programos <span class="sr-only">(current)</span></a></li>
                 </ul>
                 <ul class="nav navbar-nav navbar-right">
                     <li class="dropdown">
@@ -90,7 +90,7 @@
                 {% for dish in dishes %}
                     {% if foodDishId == dish.id %}
                         <tr>
-                            <td>Valgymas</td>
+                            <td>{{ loop.index }} valgymas</td>
                             <td>{{ dish.description }}</td>
                             <td>{{ dish.proteinNum }}</td>
                             <td>{{ dish.carbohydrateNum }}</td>
@@ -98,7 +98,7 @@
                             <td>{{ dish.sugarNum }}</td>
                         </tr>
                     {% endif %}
-                {% endfor %}
+            {% endfor %}
             {% endfor %}
             </tbody>
         </table>

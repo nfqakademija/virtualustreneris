@@ -11,6 +11,7 @@ use Doctrine\ORM\EntityRepository;
 use AppBundle\Entity\Gender;
 use AppBundle\Entity\Experience;
 use AppBundle\Entity\Goals;
+use AppBundle\Entity\AgeCategory;
 
 
 class ProgramsType extends AbstractType
@@ -46,6 +47,16 @@ class ProgramsType extends AbstractType
                     'class'   => 'form-control')
             ])
             ->add('description', null, [
+                'attr'   =>  array(
+                    'class'   => 'form-control')
+            ])
+            ->add('ageCategory', EntityType::class, [
+                'placeholder' => 'Amžiaus kategorija',
+                'class' => AgeCategory::class,
+                'query_builder' => function (EntityRepository $er) {
+                    return $er->createQueryBuilder('age')
+                        ->OrderBy('age.id', 'ASC');
+                },
                 'attr'   =>  array(
                     'class'   => 'form-control')
             ])

@@ -74,6 +74,7 @@
         <table class="table table-hover" style="color: black; background-color: white;">
             <thead>
             <tr>
+                <th>Pratimai</th>
                 <th>Pavadinimas</th>
                 <th>Aprasymas</th>
                 <th>Pakartojimai</th>
@@ -84,6 +85,7 @@
                 {% for exercise in exercises %}
                     {% if exerciseList == exercise.id %}
                         <tr>
+                            <td>{{ loop.index }} pratimas</td>
                             <td>{{ exercise.title }}</td>
                             <td>{{ exercise.description }}</td>
                             <td>{{ exercise.repeats }}</td>

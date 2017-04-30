@@ -67,6 +67,6 @@ class Activity
     {
         return $this->getTitle();
     }
-}
+
 }
 

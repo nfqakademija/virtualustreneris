@@ -26,15 +26,16 @@
                     Programa skirta: {{ sportPlan.experience }}<br>
                     Programos aprašymas: {{ sportPlan.description }}<br>
                     Programos tikslas: {{ sportPlan.goals }}<br>
+                    Programos amžius: {{ sportPlan.ageCategory }}<br>
 
                     <a href="{{ path('sport_plan_edit', {'id': sportPlan.id|default('1')}) }}">Redaguoti</a>
                     <a href="{{ path('sport_plan_delete', {'id': sportPlan.id|default('1')}) }}">Ištrinti</a><br>
-                    Mitybos plano valgiai pagal jų id: <br>
+                    Sporto plano pratimai pagal jų id: <br>
                     <table class="table table-hover" style="color: black; background-color: white;">
                         <thead>
                         <tr>
                             <th>Pavadinimas</th>
-                            <th>Aprasymas</th>
+                            <th>Aprašymas</th>
                             <th>Pakartojimai</th>
                         </tr>
                         </thead>
