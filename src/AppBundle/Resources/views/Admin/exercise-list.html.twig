@@ -46,8 +46,8 @@
                             <td>{{ exercise.title }}</td>
                             <td>{{ exercise.description }}</td>
                             <td>{{ exercise.repeats }}</td>
-                            <td><a href="{{ path('exercises_edit', {'id': exercise.id|default('1')}) }}">Redaguoti</a>
-                                <a href="{{ path('exercises_delete', {'id': exercise.id|default('1')}) }}">Ištrinti</a><br></td>
+                            <td><a href="{{ path('exercises_edit', {'id': exercise.id|default('1')}) }}" class="btn btn-primary">Redaguoti</a>
+                                <a href="{{ path('exercises_delete', {'id': exercise.id|default('1')}) }}" class="btn btn-danger">Ištrinti</a><br></td>
                         </tr>
                         {% endfor %}
                         </tbody>

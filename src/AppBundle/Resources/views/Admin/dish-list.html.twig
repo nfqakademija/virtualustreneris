@@ -45,8 +45,8 @@
                             <td>{{ dish.fatNum }}</td>
                             <td>{{ dish.sugarNum }}</td>
                             <td>{{ dish.kcalNum }}</td>
-                            <td><a href="{{ path('dishes_edit', {'id': dish.id|default('1')}) }}">Redaguoti</a>
-                                <a href="{{ path('dishes_delete', {'id': dish.id|default('1')}) }}">Ištrinti</a></td>
+                            <td><a href="{{ path('dishes_edit', {'id': dish.id|default('1')}) }}" class="btn btn-primary">Redaguoti</a>
+                                <a href="{{ path('dishes_delete', {'id': dish.id|default('1')}) }}" class="btn btn-danger">Ištrinti</a></td>
                         </tr>
                         {% endfor %}
                         </tbody>
