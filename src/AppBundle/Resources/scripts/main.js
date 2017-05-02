@@ -50,7 +50,7 @@ $(document).ready(function(){
 
 window.fbAsyncInit = function() {
     FB.init({
-        appId   : 1831947957125489,
+        appId   : '1831947957125489',
         oauth   : true,
         status  : true, // check login status
         cookie  : true, // enable cookies to allow the server to access the session
@@ -79,7 +79,7 @@ function fb_login(){
 
         }
     }, {
-        scope: 'publish_stream,email'
+        scope: 'publish_actions,email'
     });
 }
 (function() {
