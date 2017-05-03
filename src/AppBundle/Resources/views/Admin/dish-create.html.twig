@@ -11,18 +11,28 @@
     </style>
 {% endblock %}
 
-{% block body %}
+{% block contentHeaderTitle %}
+    Naujo Patiekalo Įtraukimas
+    <small>Tekstas2</small>
+{% endblock %}
 
-    <div class="box box-primary">
-        <div class="box-header with-border">
-            <h3 class="box-title">Naujo Patiekalo Įtraukimas</h3>
+{% block body %}
+    <div class="row">
+        <div class="col-md-6">
+            <div class="box box-primary">
+                <div class="box-header with-border">
+                    <h3 class="box-title">Naujo Patiekalo Įtraukimas</h3>
+                </div>
+                <!-- /.box-header -->
+                <!-- form start -->
+                {{ form_start(form) }}
+                {{ form_widget(form) }}
+                <div class="box-footer">
+                    <button type="submit" class="btn btn-primary">Išsaugoti</button>
+                </div>
+                {{ form_end(form) }}
+            </div>
         </div>
-        <!-- /.box-header -->
-        <!-- form start -->
-        {{ form_start(form) }}
-        {{ form_widget(form) }}
-        <button type="submit" class="form-control">Išsaugoti</button>
-        {{ form_end(form) }}
     </div>
 
 {% endblock %}

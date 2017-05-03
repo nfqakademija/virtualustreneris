@@ -47,6 +47,22 @@ class Programs
      */
     private $description;
 
+    /**
+     * @var integer
+     *
+     * @ORM\ManyToOne(targetEntity="Goals")
+     * @ORM\JoinColumn(nullable=false)
+     */
+    private $goals;
+
+    /**
+     * @var integer
+     *
+     * @ORM\ManyToOne(targetEntity="AgeCategory")
+     * @ORM\JoinColumn(nullable=false)
+     */
+    private $ageCategory;
+
 
 
 
@@ -71,7 +87,6 @@ class Programs
     {
         $this->exerciseList = $exerciseList;
 
-        return $this;
     }
 
     /**
@@ -83,6 +98,7 @@ class Programs
     {
         return $this->exerciseList;
     }
+
 
     public function setGender(Gender $gender)
     {
@@ -113,6 +129,31 @@ class Programs
     {
         return $this->description;
     }
+
+    public function setGoals(Goals $goals)
+    {
+        $this->goals = $goals;
+    }
+
+    public function getGoals()
+    {
+        return $this->goals;
+    }
+
+    public function setAgeCategory(AgeCategory $ageCategory)
+    {
+        $this->ageCategory = $ageCategory;
+    }
+
+    public function getAgeCategory()
+    {
+        return $this->ageCategory;
+    }
+
+
+
+
+
 
 
 }

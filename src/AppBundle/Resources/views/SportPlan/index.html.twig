@@ -7,6 +7,12 @@
     <style>
         body {
             overflow: auto;
+            background-color: #2c3e50;
+        }
+        .content {
+            margin-top: 80px;
+            text-align: center;
+            color: #fff;
         }
     </style>
 {% endblock %}
@@ -30,7 +36,7 @@
                 <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                     <ul class="nav navbar-nav">
                         <li class="active"><a href="{{ path('homepage') }}">Titulinis <span class="sr-only">(current)</span></a></li>
-                        <li class="active"><a href="{{ path('meal-plan') }}">Mitybos programos <span class="sr-only">(current)</span></a></li>
+                        <li class="active"><a href="{{ path('meal_plan_search') }}">Mitybos programos <span class="sr-only">(current)</span></a></li>
                     </ul>
                     <ul class="nav navbar-nav navbar-right">
                         <li class="dropdown">
@@ -47,137 +53,48 @@
             </div><!-- /.container-fluid -->
         </nav>
 
-
-
-        <div class="content">
+        <div class="content" style="padding: 50px;">
 
             <div class="top-text">
                 <p>Ieškokite sau pritaikytos sporto programos</p>
             </div>
 
-            <form class="form-inline">
-                <div class="btn-group" role="group">
-                    <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        Lytis
-                        <span class="caret"></span>
-                    </button>
-                    <ul class="dropdown-menu">
-                        <li><a href="#">Vyras</li>
-                        <li><a href="#">Moteris</a></li>
-                    </ul>
-                </div>
-                <div class="btn-group" role="group">
-                    <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        Tikslas
-                        <span class="caret"></span>
-                    </button>
-                    <ul class="dropdown-menu">
-                        <li><a href="#">Priaugti raumeninės masės</li>
-                        <li><a href="#">Numesti bendrą kūno svorį</a></li>
-                        <li><a href="#">Ryškinti raumenis</a></li>
-                    </ul>
-                </div>
-                <div class="btn-group" role="group">
-                    <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        Pažangumas
-                        <span class="caret"></span>
-                    </button>
-                    <ul class="dropdown-menu">
-                        <li><a href="#">Pradedantysis</li>
-                        <li><a href="#">Pažengęs</a></li>
-                    </ul>
+                <div class="form-inline">
+                    {{ form_start(form, {'action': path('sport_plan_result')}) }}
+                    <div class="form-group">
+                        {{ form_label(form.gender, 'Lytis') }}
+                        {{ form_errors(form.gender) }}
+                        {{ form_widget(form.gender) }}
+                    </div>
+                    <div class="form-group">
+                        {{ form_label(form.experience, 'Patirtis') }}
+                        {{ form_errors(form.experience) }}
+                        {{ form_widget(form.experience) }}
+                    </div>
+                    <div class="form-group">
+                        {{ form_label(form.ageCategory, 'Amžiaus kategorija') }}
+                        {{ form_errors(form.ageCategory) }}
+                        {{ form_widget(form.ageCategory) }}
+                    </div>
+
+                    <div class="btn-group" role="group">
+
+                        {{ form_label(form.goals, 'Tikslas') }}
+                        {{ form_errors(form.goals) }}
+                        {{ form_widget(form.goals) }}
+                    </div><br><br>
+                    {{ form_end(form) }}
                 </div>
 
-
-            </form>
-
-            <button style="margin-top: 20px;" type="submit" class="btn btn-default">IEŠKOTI</button>
 
         </div>
-
-        <div class="lentele">
-  <span>
-	  <h2>Sporto programa</h2>
-	  <p>Sistema rekomenduojame naudotis ne mažiau 2-3 mėn. Nepamirškite raumenys auga kai ilsisi ir gauna pakankamai energijos. Nedirbkite su svoriais daugiau nei 5 dienas per savaitę, nes tik pakenksite sau!</p>
-  </span>
-            <table class="table table-hover" style="color: black; background-color: white;">
-                <thead>
-                <tr>
-                    <th>Dienos</th>
-                    <th>1 pratimas</th>
-                    <th>2 pratimas</th>
-                    <th>3 pratimas</th>
-                    <th>4 pratimas</th>
-                    <th>5 pratimas</th>
-                    <th>6 pratimas</th>
-                    <th>7 pratimas</th>
-                </tr>
-                </thead>
-                <tbody>
-                <tr>
-                    <td>1 diena</td>
-                    <td>Technika</td>
-                    <td>Technika</td>
-                    <td>Technika</td>
-                    <td>Technika</td>
-                    <td>Technika</td>
-                    <td>Technika</td>
-                    <td>Technika</td>
-                </tr>
-                <tr>
-                    <td>2 diena</td>
-                    <td>Technika</td>
-                    <td>Technika</td>
-                    <td>Technika</td>
-                    <td>Technika</td>
-                    <td>Technika</td>
-                    <td>Technika</td>
-                    <td>Technika</td>
-                </tr>
-                <tr>
-                    <td>3 diena</td>
-                    <td>Technika</td>
-                    <td>Technika</td>
-                    <td>Technika</td>
-                    <td>Technika</td>
-                    <td>Technika</td>
-                    <td>Technika</td>
-                    <td>Technika</td>
-                </tr>
-                <tr>
-                    <td>4 diena</td>
-                    <td>Technika</td>
-                    <td>Technika</td>
-                    <td>Technika</td>
-                    <td>Technika</td>
-                    <td>Technika</td>
-                    <td>Technika</td>
-                    <td>Technika</td>
-                </tr>
-                <tr>
-                    <td>5 diena</td>
-                    <td>Technika</td>
-                    <td>Technika</td>
-                    <td>Technika</td>
-                    <td>Technika</td>
-                    <td>Technika</td>
-                    <td>Technika</td>
-                    <td>Technika</td>
-
-                </tr>
-                </tbody>
-            </table>
-        </div>
-
-        <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-        <!-- Include all compiled plugins (below), or include individual files as needed -->
-        <script src="js/bootstrap.min.js"></script>
-
-
     </div>
 {% endblock %}
 
 {% block javascripts %}
     {{ parent() }}
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <!-- Include all compiled plugins (below), or include individual files as needed -->
+    <script src="js/bootstrap.min.js"></script>
 {% endblock %}

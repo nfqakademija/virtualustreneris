@@ -121,11 +121,15 @@
     <!-- Content Wrapper. Contains page content -->
     <div class="content-wrapper">
         <!-- Content Header (Page header) -->
-        <section class="content-header" style="padding-bottom: 0px;">
+        <section class="content-header">
+            <h1>
+                {% block contentHeaderTitle %}
+                {% endblock %}
+            </h1>
         </section>
 
         <!-- Main content -->
-        <section class="content" style="padding-top: 0px;">
+        <section class="content" style="margin-top: 0px;">
             {% block container %}
                 {% block header %}
                     {% include "::inc/header.html.twig" %}

@@ -2,6 +2,7 @@
 
 namespace AppBundle\Controller;
 
+use AppBundle\Entity\AgeCategory;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
@@ -11,7 +12,10 @@ use Doctrine\ORM\EntityRepository;
 use AppBundle\Entity\Programs;
 use AppBundle\Entity\Gender;
 use AppBundle\Entity\Experience;
+use AppBundle\Entity\Goals;
 use AppBundle\Form\ProgramsType;
+use Symfony\Component\Form\Extension\Core\Type\SubmitType;
+use Symfony\Component\HttpFoundation\Session\Session;
 
 
 class SportPlanController extends Controller
@@ -23,6 +27,35 @@ class SportPlanController extends Controller
     public function sportAction()
     {
         return $this->render('AppBundle:SportPlan:index.html.twig');
+    }
+
+
+    /**
+     * @Route("/profile/sport-plan", name="profile_sport_plan")
+     */
+    public function profileAction()
+    {
+        $session = new Session();
+        $gender = $session->get('gender');
+        $experience = $session->get('experience');
+        $ageCategory = $session->get('ageCategory');
+        $goals = $session->get('goals');
+
+        $em = $this->getDoctrine()->getManager();
+        $repository = $em->getRepository('AppBundle:Programs');
+        $find = $repository->findSportPlan($gender, $experience, $goals, $ageCategory);
+
+        $exerciseRepo = $em->getRepository('AppBundle:Exercises');
+        $exercises = $exerciseRepo->findAll();
+
+        if(!$find) {
+            $this->addFlash('message', 'Atsiprašome, kol kas pagal jūsų kriterijus dar nėra įkeltos sporto programos.');
+        }
+
+        return $this->render('AppBundle:Profile:sport-plan.html.twig', [
+            'plans' => $find,
+            'exercises' => $exercises
+        ]);
     }
 
 
@@ -60,8 +93,12 @@ class SportPlanController extends Controller
             $repository = $em->getRepository('AppBundle:Programs');
             $sportPlans = $repository->findAll();
 
+            $exercisesRepo = $em->getRepository('AppBundle:Exercises');
+            $exercises = $exercisesRepo->findAll();
+
             return $this->render('AppBundle:Admin:sport-plan-list.html.twig', [
-                'sportPlans' => $sportPlans
+                'sportPlans' => $sportPlans,
+                'exercises' => $exercises
                 ]);
         }
 
@@ -111,4 +148,83 @@ class SportPlanController extends Controller
 
             return $this->redirectToRoute('sport_plan_list');
          }
+
+    /**
+     * @Route("/sport-plan/search", name="sport_plan_search")
+     */
+    public function SportPlanSearchAction()
+    {
+
+        $form = $this->createFormBuilder()
+            ->add('gender', EntityType::class, [
+                'placeholder' => 'Pasirinkite lytį',
+                'class' => Gender::class,
+                'query_builder' => function (EntityRepository $er) {
+                    return $er->createQueryBuilder('gender')
+                        ->OrderBy('gender.gender', 'ASC');
+                },
+                'attr'   =>  array(
+                    'class'   => 'form-control')
+            ])
+            ->add('experience', EntityType::class, [
+                'placeholder' => 'Jusu patirtis',
+                'class' => Experience::class,
+                'query_builder' => function (EntityRepository $er) {
+                    return $er->createQueryBuilder('experience')
+                        ->OrderBy('experience.experience', 'ASC');
+                },
+                'attr'   =>  array(
+                    'class'   => 'form-control')
+            ])
+            ->add('ageCategory', EntityType::class, [
+                'placeholder' => 'Amžiaus kategorija',
+                'class' => AgeCategory::class,
+                'query_builder' => function (EntityRepository $er) {
+                    return $er->createQueryBuilder('age')
+                        ->OrderBy('age.id', 'ASC');
+                },
+                'attr'   =>  array(
+                    'class'   => 'form-control')
+            ])
+            ->add('goals', EntityType::class, [
+                'placeholder' => 'Pasirinkite tikslą',
+                'class' => Goals::class,
+                'query_builder' => function (EntityRepository $er) {
+                    return $er->createQueryBuilder('goals')
+                        ->orderBy('goals.title', 'ASC');
+                },
+                'attr'   =>  array(
+                    'class'   => 'form-control')
+            ])
+            ->add('Ieškoti', SubmitType::class, [
+                'attr'   =>  array(
+                    'class'   => 'btn btn-success')
+            ])
+            ->getForm();
+
+
+        return $this->render('AppBundle:SportPlan:index.html.twig', [
+            'form' => $form->createView()
+        ]);
+    }
+
+    /**
+     * @Route("/sport-plan/results", name="sport_plan_result")
+     */
+    public function SportPlanGetResultAction(Request $request)
+    {
+        $gender = $request->request->get('form')['gender'];
+        $experience = $request->request->get('form')['experience'];
+        $ageCategory = $request->request->get('form')['ageCategory'];
+        $goals = $request->request->get('form')['goals'];
+
+        $session = new Session();
+
+        $session->set('gender', $gender);
+        $session->set('experience', $experience);
+        $session->set('ageCategory', $ageCategory);
+        $session->set('goals', $goals);
+
+        return $this->redirectToRoute('profile_sport_plan');
+    }
  }

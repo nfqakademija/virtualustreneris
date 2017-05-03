@@ -7,14 +7,54 @@
     <style>
         body {
             overflow: auto;
+            background-color: #2c3e50;
+        }
+        .content {
+            margin-top: 80px;
+            text-align: center;
+            color: #fff;
         }
     </style>
 {% endblock %}
 
 {% block body %}
-    <div class="main" style="background-color: white; padding: 50px;">
 
-        <div class="content">
+    <div class="main">
+        <nav class="navbar navbar-default">
+            <div class="container-fluid">
+                <!-- Brand and toggle get grouped for better mobile display -->
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <a class="navbar-brand" href="{{ path('homepage') }}">VIRTUALUSTRENERIS</a>
+                </div>
+
+                <!-- Collect the nav links, forms, and other content for toggling -->
+                <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                    <ul class="nav navbar-nav">
+                        <li class="active"><a href="{{ path('homepage') }}">Titulinis <span class="sr-only">(current)</span></a></li>
+                        <li class="active"><a href="{{ path('sport_plan_search') }}">Sporto programos <span class="sr-only">(current)</span></a></li>
+                    </ul>
+                    <ul class="nav navbar-nav navbar-right">
+                        <li class="dropdown">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Profilis <span class="caret"></span></a>
+                            <ul class="dropdown-menu">
+                                <li><a href="#">Mitybos programa</a></li>
+                                <li><a href="#">Sporto programa</a></li>
+                                <li role="separator" class="divider"></li>
+                                <li><a href="#">Atsijungti</a></li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div><!-- /.navbar-collapse -->
+            </div><!-- /.container-fluid -->
+        </nav>
+
+        <div class="content" style="padding: 50px;">
 
             <div class="top-text">
                 <p>Ieškokite sau pritaikytos mitybos programos</p>
@@ -23,7 +63,9 @@
                 <div class="form-inline">
                     {{ form_start(form, {'action': path('meal_plan_result')}) }}
                     <div class="form-group">
-                        {{ form_row(form.gender) }}
+                        {{ form_label(form.gender, 'Lytis') }}
+                        {{ form_errors(form.gender) }}
+                        {{ form_widget(form.gender) }}
                     </div>
                     <div class="form-group">
                         {{ form_row(form.height) }}
@@ -34,26 +76,24 @@
                     <div class="form-group">
                         {{ form_row(form.age) }}
                     </div>
+                    <div class="form-group">
+                        {{ form_row(form.activity) }}
+                    </div>
                     <div class="btn-group" role="group">
                         {{ form_row(form.goals) }}
                     </div><br><br>
                     {{ form_end(form) }}
                 </div>
 
-
         </div>
-
-
-
-        <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-        <!-- Include all compiled plugins (below), or include individual files as needed -->
-        <script src="js/bootstrap.min.js"></script>
-
 
     </div>
 {% endblock %}
 
 {% block javascripts %}
     {{ parent() }}
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <!-- Include all compiled plugins (below), or include individual files as needed -->
+    <script src="js/bootstrap.min.js"></script>
 {% endblock %}
