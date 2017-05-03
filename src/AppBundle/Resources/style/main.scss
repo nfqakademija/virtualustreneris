@@ -206,12 +206,12 @@ body {
 }
 
 
-/*facebook button*/
+/*facebook buttons*/
 
-.fb-login-button {
+#fb-login-button {
     position: absolute;
-    top: 4px;
-    right: -500px;
+    top: 12px;
+    right: 15px;
     z-index: 101;
     padding: 2px 7px;
     background-color: #3e6bad;
