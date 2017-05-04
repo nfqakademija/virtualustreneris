@@ -6,21 +6,41 @@
     {{ parent() }}
 {% endblock %}
 
+{% block contentHeaderTitle %}
+    Mitybos programų sąrašas
+    <small></small>
+{% endblock %}
+
 {% block body %}
     <div class="row">
         <div class="col-xs-12">
             <div class="box">
                 <div class="box-header">
-                    <h3 class="box-title">Mitybos programų sąrašas</h3>
+
                 </div>
                 {% for mealPlan in mealPlans %}
-                    Programos id: {{ mealPlan.id }}<br>
-                    Programos kalorijos: {{ mealPlan.caloriesNum }}<br>
-                    Programos tikslas: {{ mealPlan.goals }}<br>
-                    Valgių id: {{ mealPlan.foodDishId }}<br>
-
-                    <a href="{{ path('meal_plan_edit', {'id': mealPlan.id|default('1')}) }}" class="btn btn-primary">Redaguoti</a>
-                    <a href="{{ path('meal_plan_delete', {'id': mealPlan.id|default('1')}) }}" class="btn btn-danger">Ištrinti</a><br>
+                <table class="table table-hover" style="color: black; background-color: white;">
+                    <thead>
+                    <tr>
+                        <th>Programos id</th>
+                        <th>Programos kalorijos</th>
+                        <th>Programos tikslas</th>
+                        <th>Valgių id</th>
+                        <th>Veiksmai</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                        <td>{{ mealPlan.id }}</td>
+                        <td>{{ mealPlan.caloriesNum }}</td>
+                        <td>{{ mealPlan.goals }}</td>
+                        <td>{{ mealPlan.foodDishId }}</td>
+                        <td>
+                            <a href="{{ path('meal_plan_edit', {'id': mealPlan.id|default('1')}) }}" class="btn btn-primary">Redaguoti</a>
+                            <a href="{{ path('meal_plan_delete', {'id': mealPlan.id|default('1')}) }}" class="btn btn-danger">Ištrinti</a>
+                        </td>
+                    </tbody>
+                </table>
+                    <br>
                     Mitybos plano valgiai pagal jų id: <br>
                     <table class="table table-hover" style="color: black; background-color: white;">
                         <thead>
@@ -50,6 +70,7 @@
                         {% endfor %}
                         </tbody>
                     </table>
+                    <hr/>
                 {% endfor %}
             </div>
         </div>

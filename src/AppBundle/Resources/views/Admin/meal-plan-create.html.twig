@@ -6,17 +6,26 @@
     {{ parent() }}
 {% endblock %}
 
+{% block contentHeaderTitle %}
+    Naujo Patiekalo Įtraukimas
+    <small></small>
+{% endblock %}
+
 {% block body %}
-    <div class="box box-primary">
-        <div class="box-header with-border">
-            <h3 class="box-title">Naujo Patiekalo Įtraukimas</h3>
+    <div class="row">
+        <div class="col-md-6">
+            <div class="box box-primary">
+                <div class="box-header with-border">
+                    <h3 class="box-title">Naujo Patiekalo Įtraukimas</h3>
+                </div>
+                {{ form_start(form) }}
+                {{ form_widget(form) }}
+                <div class="box-footer">
+                    <button type="submit" class="btn btn-primary">Išsaugoti</button>
+                </div>
+                {{ form_end(form) }}
+            </div>
         </div>
-        {{ form_start(form) }}
-        {{ form_widget(form) }}
-        <div class="box-footer">
-            <button type="submit" class="btn btn-primary">Išsaugoti</button>
-        </div>
-        {{ form_end(form) }}
     </div>
 
 
