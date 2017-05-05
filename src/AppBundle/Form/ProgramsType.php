@@ -26,6 +26,18 @@ class ProgramsType extends AbstractType
                 'attr'   =>  array(
                     'class'   => 'form-control')
             ])
+            ->add('exerciseListTwo', null, [
+                'attr'   =>  array(
+                    'class'   => 'form-control')
+            ])
+            ->add('exerciseListThree', null, [
+                'attr'   =>  array(
+                    'class'   => 'form-control')
+            ])
+            ->add('exerciseListFour', null, [
+                'attr'   =>  array(
+                    'class'   => 'form-control')
+            ])
             ->add('gender', EntityType::class, [
                 'placeholder' => 'Choose a gender',
                 'class' => Gender::class,
