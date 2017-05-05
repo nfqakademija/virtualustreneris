@@ -29,6 +29,27 @@ class Programs
     private $exerciseList;
 
     /**
+     * @var string
+     *
+     * @ORM\Column(name="exercise_list_two", type="string", length=255, nullable=true)
+     */
+    private $exerciseListTwo;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="exercise_list_three", type="string", length=255, nullable=true)
+     */
+    private $exerciseListThree;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="exercise_list_four", type="string", length=255, nullable=true)
+     */
+    private $exerciseListFour;
+
+    /**
      * @ORM\ManyToOne(targetEntity="Gender")
      * @ORM\JoinColumn(nullable=false)
      */
@@ -65,7 +86,6 @@ class Programs
 
 
 
-
     /**
      * Get id
      *
@@ -98,6 +118,80 @@ class Programs
     {
         return $this->exerciseList;
     }
+
+    /**
+     * Set exerciseListTwo
+     *
+     * @param string $exerciseListTwo
+     *
+     * @return Programs
+     */
+
+    public function setExerciseListTwo($exerciseListTwo)
+    {
+        $this->exerciseListTwo = $exerciseListTwo;
+    }
+
+    /**
+     * Get exerciseListTwo
+     *
+     * @return string
+     */
+
+    public function getExerciseListTwo()
+    {
+        return $this->exerciseListTwo;
+    }
+
+    /**
+     * Set exerciseListThree
+     *
+     * @param string $exerciseListThree
+     *
+     * @return Programs
+     */
+
+    public function setExerciseListThree($exerciseListThree)
+    {
+        $this->exerciseListThree = $exerciseListThree;
+    }
+
+    /**
+     * Get exerciseListThree
+     *
+     * @return string
+     */
+
+    public function getExerciseListThree()
+    {
+        return $this->exerciseListThree;
+    }
+
+    /**
+     * Set exerciseListFour
+     *
+     * @param string $exerciseListFour
+     *
+     * @return Programs
+     */
+
+    public function setExerciseListFour($exerciseListFour)
+    {
+        $this->exerciseListFour = $exerciseListFour;
+    }
+
+    /**
+     * Get exerciseListFour
+     *
+     * @return string
+     */
+
+    public function getExerciseListFour()
+    {
+        return $this->exerciseListFour;
+    }
+
+
 
 
     public function setGender(Gender $gender)

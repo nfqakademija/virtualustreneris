@@ -30,8 +30,9 @@
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                 <ul class="nav navbar-nav">
                     <li class="active"><a href="{{ path('homepage') }}">Titulinis <span class="sr-only">(current)</span></a></li>
-                    <li class="active"><a href="{{ path('sport-plan') }}">Sporto programos <span class="sr-only">(current)</span></a></li>
+                    <li class="active"><a href="{{ path('sport_plan_search') }}">Sporto programos <span class="sr-only">(current)</span></a></li>
                 </ul>
+                {% if is_granted('IS_AUTHENTICATED_FULLY') %}
                 <ul class="nav navbar-nav navbar-right">
                     <li class="dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Profilis <span class="caret"></span></a>
@@ -43,6 +44,7 @@
                         </ul>
                     </li>
                 </ul>
+                {% endif %}
             </div><!-- /.navbar-collapse -->
         </div><!-- /.container-fluid -->
     </nav>
@@ -63,25 +65,32 @@
             <ul class="list-group">
 
                   {% for plan in plans %}
-
-                      <h2>Sporto programa</h2>
-                      <li class="list-group-item">Programa pagal pazanguma: {{ plan.experience }}</li>
-                      <li class="list-group-item">Skirta: {{ plan.goals }}</li>
-                      <li class="list-group-item">Valgymų id: {{ plan.exerciseList }}</li>
+                      <div style="text-align:center;"><img src="http://virtualustreneris.projektai.nfqakademija.lt/images/logo.png"></div>
+                      <h2 style="text-align: center; color: white; text-decoration: underline;">Sporto programa</h2>
+                      <div style="text-align: center; padding: 20px;  color: white;">{{ plan.description }}</div>
+                      <li class="list-group-item">Programa pagal pažangumą: {{ plan.experience }}</li>
+                      <li class="list-group-item">Tikslas: {{ plan.goals }}</li>
+                      <li class="list-group-item">Skirta: {{ plan.ageCategory }}</li>
+                      <li class="list-group-item">Pratimų id: {{ plan.exerciseList }}</li>
 
               </ul>
       </span>
         <table class="table table-hover" style="color: black; background-color: white;">
             <thead>
             <tr>
-                <th>Pratimai</th>
-                <th>Pavadinimas</th>
-                <th>Aprasymas</th>
+                <th>Numeracija</th>
+                <th>Pratimo pavadinimas</th>
+                <th>Aprašymas</th>
                 <th>Pakartojimai</th>
             </tr>
             </thead>
+
             <tbody>
             {% for exerciseList in plan.exerciseList|json_decode() %}
+            <div class="panel panel-default">
+                <div class="panel-heading text-center">Pirma diena</div>
+            </div>
+            <tbody>
                 {% for exercise in exercises %}
                     {% if exerciseList == exercise.id %}
                         <tr>
@@ -95,6 +104,36 @@
             {% endfor %}
             </tbody>
         </table>
+                      <table class="table table-hover" style="color: black; background-color: white;">
+                          <thead>
+                          <tr>
+                              <th>Numeracija</th>
+                              <th>Pratimo pavadinimas</th>
+                              <th>Aprašymas</th>
+                              <th>Pakartojimai</th>
+                          </tr>
+                          </thead>
+
+                          <tbody>
+                          {% for exerciseListTwo in plan.exerciseListTwo|json_decode() %}
+                          <div class="panel panel-default">
+                              <div class="panel-heading text-center">Antra diena</div>
+                          </div>
+                          <tbody>
+                          {% for exercise in exercises %}
+                              {% if exerciseListTwo == exercise.id %}
+                                  <tr>
+                                      <td>{{ loop.index }} pratimas</td>
+                                      <td>{{ exercise.title }}</td>
+                                      <td>{{ exercise.description }}</td>
+                                      <td>{{ exercise.repeats }}</td>
+                                  </tr>
+                              {% endif %}
+                          {% endfor %}
+                          {% endfor %}
+                          </tbody>
+                      </table>
+
     </div>
 </div>
 
