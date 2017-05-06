@@ -14,7 +14,6 @@ class HomeController extends Controller
      */
     public function indexAction()
     {
-        var_dump($_SESSION);
         return $this->render('AppBundle:Home:index.html.twig');
     }
     
