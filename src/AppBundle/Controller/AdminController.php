@@ -14,15 +14,13 @@ class AdminController extends Controller
      */
     public function indexAction()
     {
-        $conn = $this->getDoctrine()->getConnection();
-        $userCount = $conn->exec("SELECT COUNT(*) as total FROM fos_user") + 1;
-
-        //$users = $conn->exec("SELECT * FROM fos_user");
-        $users = array();
+        $em = $this->getDoctrine()->getManager();
+        $stmt = $em->getConnection()->prepare("SELECT * FROM fos_user");
+        $stmt->execute();
+        $info = $stmt->fetchAll();
 
         return $this->render('AppBundle:Admin:index.html.twig',[
-            "userCount" => $userCount,
-            "users" => $users
+            "info" => $info
         ]);
     }
 
