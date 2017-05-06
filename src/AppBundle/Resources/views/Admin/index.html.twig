@@ -8,7 +8,7 @@
 
 {% set nr = 0 %}
 {% for user in info %}
-    {% if not 'ROLE_SUPER_ADMIN' in user.roles %}
+    {% if 'ROLE_SUPER_ADMIN' in user.roles == false %}
         {% set nr = nr + 1 %}
     {% endif %}
 {% endfor %}
