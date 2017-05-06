@@ -22,7 +22,7 @@ div img {
     height: auto;
 }
 
-@media screen and (max-width: 540px) {
+@media screen and (max-width: 815px) {
     .display {
         display: none;
     }
@@ -128,7 +128,7 @@ button {
     background-color: #042432;
     border-radius: 10px;
     margin: auto;
-    max-width: 310px;
+    max-width: 360px;
     width: 100%;
 }
 

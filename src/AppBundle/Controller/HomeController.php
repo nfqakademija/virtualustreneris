@@ -14,10 +14,7 @@ class HomeController extends Controller
      */
     public function indexAction()
     {
-        //$conn = $this->getDoctrine()->getConnection();
-
-        //$conn->exec("insert into gender (gender) values ('other')");
-
+        var_dump($_SESSION);
         return $this->render('AppBundle:Home:index.html.twig');
     }
     
