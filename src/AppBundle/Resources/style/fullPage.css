@@ -22,7 +22,7 @@ div img {
     height: auto;
 }
 
-@media screen and (max-width: 815px) {
+@media screen and (max-width: 940px) {
     .display {
         display: none;
     }
