@@ -17,6 +17,8 @@ use AppBundle\Repository\DishListsRepository;
 use AppBundle\Repository\GoalsRepository;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 use Symfony\Component\HttpFoundation\Session\Session;
+use Symfony\Component\Form\Extension\Core\Type\IntegerType;
+use Symfony\Component\Form\Extension\Core\Type\TextType;
 
 class MealPlanController extends Controller
 {
@@ -201,21 +203,29 @@ class MealPlanController extends Controller
                 'attr'   =>  array(
                     'class'   => 'form-control')
             ])
-            ->add('height', null, [
+            ->add('height', IntegerType::class, [
                 'attr'   =>  array(
                     'class'   => 'form-control',
-                    'placeholder' => 'Įveskite savo ūgį')
-
+                    'placeholder' => 'Įveskite savo ūgį (cm)',
+                    'min' => '30',
+                    'max' => '220'
+                )
             ])
-            ->add('weight', null, [
+            ->add('weight', IntegerType::class, [
                 'attr'   =>  array(
                     'class'   => 'form-control',
-                    'placeholder' => 'Įveskite savo svorį')
+                    'placeholder' => 'Įveskite savo svorį (kg)',
+                    'min' => '30',
+                    'max' => '150'
+                )
             ])
-            ->add('age', null, [
+            ->add('age', IntegerType::class, [
                 'attr'   =>  array(
                     'class'   => 'form-control',
-                    'placeholder' => 'Jūsų amžius skaičiais')
+                    'placeholder' => 'Jūsų amžius',
+                    'min' => '4',
+                    'max' => '80'
+                )
             ])
             ->add('goals', EntityType::class, [
                 'placeholder' => 'Pasirinkite tikslą',
@@ -235,11 +245,11 @@ class MealPlanController extends Controller
                         ->orderBy('activity.id', 'ASC');
                 },
                 'attr'   =>  array(
-                    'class'   => 'form-control')
+                    'class'   => 'form-control box-footer')
             ])
             ->add('Ieškoti', SubmitType::class, [
                 'attr'   =>  array(
-                    'class'   => 'btn btn-success')
+                    'class'   => 'btn btn-special')
             ])
             ->getForm();
 

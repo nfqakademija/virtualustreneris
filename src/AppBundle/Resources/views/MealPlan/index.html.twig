@@ -41,28 +41,20 @@
                     </ul>
                     {% if is_granted('IS_AUTHENTICATED_FULLY') %}
                         <ul class="nav navbar-nav navbar-right">
-                            <li class="dropdown">
-                                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Profilis <span class="caret"></span></a>
-                                <ul class="dropdown-menu">
-                                    <li><a href="#">Mitybos programa</a></li>
-                                    <li><a href="#">Sporto programa</a></li>
-                                    <li role="separator" class="divider"></li>
-                                    <li><a href="#">Atsijungti</a></li>
-                                </ul>
-                            </li>
+                            <li class="active"><a href="{{ path('homepage') }}">Atsijungti</a></li>
                         </ul>
                     {% endif %}
                 </div><!-- /.navbar-collapse -->
             </div><!-- /.container-fluid -->
         </nav>
 
-        <div class="content" style="padding: 50px;">
+        <div class="content container" style="padding: 50px;">
 
             <div class="top-text">
                 <p>Ieškokite sau pritaikytos mitybos programos</p>
             </div>
 
-                <div class="form-inline">
+                <div class="form-group" style="max-width: 400px; margin: auto;">
                     {{ form_start(form, {'action': path('meal_plan_result')}) }}
                     <div class="form-group">
                         {{ form_label(form.goals, 'Tikslas') }}
@@ -89,17 +81,31 @@
                         {{ form_errors(form.activity) }}
                         {{ form_widget(form.activity) }}
                     </div>
-                    <div class="btn-group" role="group">
+                    <div class="form-group" role="group">
                         {{ form_label(form.gender, 'Lytis') }}
                         {{ form_errors(form.gender) }}
                         {{ form_widget(form.gender) }}
-                    </div><br><br>
-                    {{ form_end(form) }}
+                    </div><br>
+                        {{ form_end(form) }}
                 </div>
-
         </div>
-
     </div>
+
+    <!--
+    SWITCH'as VYRAS|MOTERIS
+    <div class="col-xs-9">
+        <div class="btn-group" data-toggle="buttons">
+            <label class="btn btn-primary">
+                <input type="radio" name="gender" value="male" data-fv-field="gender"> Male
+            </label>
+            <label class="btn btn-primary">
+                <input type="radio" name="gender" value="female" data-fv-field="gender"> Female
+            </label>
+        </div>
+        <small class="help-block" data-fv-validator="notEmpty" data-fv-for="gender" data-fv-result="VALID" style="display: none;">Nepasirinkote Lyties!</small>
+        </div>
+    <br/>
+    -->
 {% endblock %}
 
 {% block javascripts %}

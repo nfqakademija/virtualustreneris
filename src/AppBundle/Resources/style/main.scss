@@ -206,11 +206,21 @@ body {
 }
 
 
+.btn-special {
+    top: 4px;
+    right: 1px;
+    padding: 2px 7px;
+    background-color: #3e6bad;
+    border-radius:7px;
+    width: 100%;
+    height: 35px;
+}
+
 /*facebook buttons*/
 
 #fb-login-button {
     position: absolute;
-    top: 12px;
+    top: 10px;
     right: 15px;
     z-index: 101;
     padding: 2px 7px;
@@ -230,7 +240,5 @@ body {
 
 .fb-share-button:hover {
     background-color: #3B5998;
-
-
 }
 

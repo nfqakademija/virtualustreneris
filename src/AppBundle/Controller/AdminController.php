@@ -10,7 +10,7 @@ class AdminController extends Controller
 {
 
     /**
-     * @Route("/admin", name="admin_page")
+     * @Route("/admin/", name="admin_page")
      */
     public function indexAction()
     {

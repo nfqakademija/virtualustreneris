@@ -198,7 +198,7 @@ class SportPlanController extends Controller
             ])
             ->add('Ieškoti', SubmitType::class, [
                 'attr'   =>  array(
-                    'class'   => 'btn btn-success')
+                    'class'   => 'btn btn-special')
             ])
             ->getForm();
 
