@@ -8,7 +8,9 @@
 
 {% set nr = 0 %}
 {% for user in info %}
-    {% set nr = nr + 1 %}
+    {% if not 'ROLE_SUPER_ADMIN' in user.roles %}
+        {% set nr = nr + 1 %}
+    {% endif %}
 {% endfor %}
 
 {% block body %}
@@ -19,7 +21,10 @@
                 <div class="inner">
                     <h3>{{ nr }}</h3>
 
-                    <p>Registruotų vartotojų</p>
+                    <p>
+                        Registruotų vartotojų<br/>
+                        Per Facebook
+                    </p>
                 </div>
                 <div class="icon">
                     <i class="ion ion-person-add"></i>
@@ -35,7 +40,8 @@
                     <h3>Statistika</h3>
 
                     <p>
-                        <a href="https://www.google.com/analytics/" target="_blank" style="color: #fff;">Google Analytics</a>
+                        <a href="https://www.google.com/analytics/" target="_blank" style="color: #fff;">Google Analytics</a><br/>
+                        &nbsp;
                     </p>
                 </div>
                 <div class="icon">
@@ -49,7 +55,10 @@
 
 <div class="box">
     <div class="box-header">
-        <h3 class="box-title">Papildoma informacija</h3>
+        <h3 class="box-title">
+            Papildoma informacija<br/>
+            <small>* Rodomi tik administracijos vartotojai</small>
+        </h3>
     </div>
     <!-- /.box-header -->
     <div class="box-body">
