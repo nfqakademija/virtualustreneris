@@ -39,11 +39,6 @@
                         <li class="active"><a href="{{ path('homepage') }}">Titulinis <span class="sr-only">(current)</span></a></li>
                         <li class="active"><a href="{{ path('sport_plan_search') }}">Sporto programos <span class="sr-only">(current)</span></a></li>
                     </ul>
-                    {% if is_granted('IS_AUTHENTICATED_FULLY') %}
-                        <ul class="nav navbar-nav navbar-right">
-                            <li class="active"><a href="{{ path('homepage') }}">Atsijungti</a></li>
-                        </ul>
-                    {% endif %}
                 </div><!-- /.navbar-collapse -->
             </div><!-- /.container-fluid -->
         </nav>
@@ -109,11 +104,6 @@
 {% endblock %}
 
 {% block javascripts %}
-    <script>
-        FB.login(function(response){
-            alert("Prisijungta!");
-        });
-    </script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
     <script src="js/bootstrap.min.js"></script>
     {{ parent() }}
