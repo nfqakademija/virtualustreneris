@@ -13,7 +13,7 @@
 
 {% block body %}
 
-    <nav class="navbar navbar-default">
+    <nav class="navbar navbar-default" style="margin-bottom: 0px;">
         <div class="container-fluid">
             <!-- Brand and toggle get grouped for better mobile display -->
             <div class="navbar-header">
@@ -36,8 +36,8 @@
                     <li class="dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Profilis <span class="caret"></span></a>
                         <ul class="dropdown-menu">
-                            <li><a href="#">Mitybos programa</a></li>
-                            <li><a href="#">Sporto programa</a></li>
+                            <li><a href="{{ path('profile_meal_plan') }}">Mitybos programa</a></li>
+                            <li><a href="{{ path('profile_sport_plan') }}">Sporto programa</a></li>
                             <li role="separator" class="divider"></li>
                             <li><a href="#">Atsijungti</a></li>
                         </ul>
@@ -48,34 +48,36 @@
     </nav>
 
 
-    <div class="main">
 
 
-    <div class="lentele">
-      <span>
 
     {% for flash_message in app.session.flashBag.get('message') %}
-        <div class="flash-notice">
+        <div class="flash-notice text-center" style="padding: 20px; color: black; background-color: white;">
         {{ flash_message }}
     </div>
     {% endfor %}
-    <ul class="list-group">
-        <li class="list-group-item">Jūsų išvestas rekomanduojamas kalorijų skaičius paroje: {{ result }}<br></li>
-    </ul>
 
-            <ul class="list-group">
 
+    <div class="main">
                   {% for plan in plans %}
+                      <ul class="list-group">
+                          <li class="list-group-item text-center">Jūsų išvestas rekomanduojamas kalorijų skaičius paroje: {{ result }}<br></li>
+                      </ul>
+
+                      <ul class="list-group">
 
                       <div style="text-align:center;"><img src="http://virtualustreneris.projektai.nfqakademija.lt/images/logo.png"></div>
                       <h2 style="text-align: center; color: white; text-decoration: underline;">Mitybos programa</h2>
-                      <div style="text-align: center; padding: 20px;  color: white;">Atminkite:</div>
-                      <li class="list-group-item">Programos kalorijos: {{ plan.caloriesNum }}</li>
-                      <li class="list-group-item">Skirta: {{ plan.goals }}</li>
-                      <li class="list-group-item">Valgymų id: {{ plan.foodDishId }}</li>
 
+                      <div style="margin: 0px auto; width: 40%;">
+                      <li class="list-group-item text-center" style="background-color: black; color: white;">Pagal jūsų parametrus išvestą kalorijų skaičių atrinkome jums programą, kuri priklauso {{ plan.caloriesNum }} kalorijų kategorijai</li>
+                      <li class="list-group-item text-center" style="background-color: black; color: white;">Pagal jūsų tikslą, programa skirta: {{ plan.goals }}.<br>
+                      Priklausomai nuo jo, metant svorį programoje dominuoja baltymų kiekis, auginant jį - angliavandenių.</li>
+                          <div style="text-align: center; padding: 20px;  color: white;">Atminkite: tarp valgių turi būti 2-3 valandų tarpas.<br>
+                          </div>
+                      </div>
               </ul>
-      </span>
+
         <table class="table table-hover" style="color: black; background-color: white;">
             <thead>
             <tr>
