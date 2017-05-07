@@ -89,7 +89,7 @@ class MealPlanController extends Controller
 
         return $this->render('AppBundle:Profile:index.html.twig', [
             'plans' => $find,
-            'result' => $result,
+            'result' => round($result),
             'dishes' => $dishes
         ]);
     }

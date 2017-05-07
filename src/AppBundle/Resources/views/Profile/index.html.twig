@@ -67,7 +67,9 @@
 
                   {% for plan in plans %}
 
-                      <h2>Mitybos programa</h2>
+                      <div style="text-align:center;"><img src="http://virtualustreneris.projektai.nfqakademija.lt/images/logo.png"></div>
+                      <h2 style="text-align: center; color: white; text-decoration: underline;">Mitybos programa</h2>
+                      <div style="text-align: center; padding: 20px;  color: white;">Atminkite:</div>
                       <li class="list-group-item">Programos kalorijos: {{ plan.caloriesNum }}</li>
                       <li class="list-group-item">Skirta: {{ plan.goals }}</li>
                       <li class="list-group-item">Valgymų id: {{ plan.foodDishId }}</li>
@@ -83,6 +85,7 @@
                 <th>Angliavandeniai</th>
                 <th>Riebalai</th>
                 <th>Cukrus</th>
+                <th>Kalorijos</th>
             </tr>
             </thead>
             <tbody>
@@ -96,6 +99,7 @@
                             <td>{{ dish.carbohydrateNum }}</td>
                             <td>{{ dish.fatNum }}</td>
                             <td>{{ dish.sugarNum }}</td>
+                            <td>{{ dish.kcalNum }}</td>
                         </tr>
                     {% endif %}
             {% endfor %}
