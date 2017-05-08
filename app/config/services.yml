@@ -4,6 +4,7 @@ parameters:
 #    parameter_name: value
 
 services:
-#    app.example:
-#        class: AppBundle\Service\ExampleService
-#        arguments: ["@doctrine.orm.entity_manager"]
+    app.current_user_service:
+        class: AppBundle\Service\CurrentUserService
+        arguments:
+            - '@security.token_storage'
