@@ -83,8 +83,13 @@ class MealPlanController extends Controller
         $dishRepo = $em->getRepository('AppBundle:FoodDishes');
         $dishes = $dishRepo->findAll();
 
-        if(!$find) {
-            $this->addFlash('message', 'Atsiprašome, kol kas pagal jūsų kriterijus dar nėra įkeltos mitybos programos.');
+        if ($session->has('gender')) {
+            if(!$find) {
+                $this->addFlash('message', 'Atsiprašome, kol kas pagal jūsų kriterijus dar nėra įkeltos mitybos programos.');
+                $session->remove('gender');
+            }
+        }else{
+            $this->addFlash('session', 'Jūs dar neesate išsirinkę mitybos programos.');
         }
 
         return $this->render('AppBundle:Profile:index.html.twig', [

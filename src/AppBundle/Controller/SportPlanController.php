@@ -36,10 +36,11 @@ class SportPlanController extends Controller
     public function profileAction()
     {
         $session = new Session();
-        $gender = $session->get('gender');
+        $gender = $session->get('sport-gender');
         $experience = $session->get('experience');
         $ageCategory = $session->get('ageCategory');
-        $goals = $session->get('goals');
+        $goals = $session->get('sport-goals');
+
 
         $em = $this->getDoctrine()->getManager();
         $repository = $em->getRepository('AppBundle:Programs');
@@ -48,9 +49,16 @@ class SportPlanController extends Controller
         $exerciseRepo = $em->getRepository('AppBundle:Exercises');
         $exercises = $exerciseRepo->findAll();
 
-        if(!$find) {
-            $this->addFlash('message', 'Atsiprašome, kol kas pagal jūsų kriterijus dar nėra įkeltos sporto programos.');
+        if ($session->has('sport-gender')) {
+            if(!$find) {
+                $this->addFlash('message', 'Atsiprašome, kol kas pagal jūsų kriterijus dar nėra įkeltos sporto programos.');
+                $session->remove('sport-gender');
+            }
+        }else{
+            $this->addFlash('session', 'Jūs dar neesate išsirinkę sporto programos.');
         }
+
+
 
         return $this->render('AppBundle:Profile:sport-plan.html.twig', [
             'plans' => $find,
@@ -58,6 +66,18 @@ class SportPlanController extends Controller
         ]);
     }
 
+    /**
+     * @Route("/profile/clear", name="profile_clear")
+     */
+
+    public function profileClear() {
+        $session = new Session();
+        $session->clear();
+
+        $this->addFlash('success', 'Programos sėkmingai pašalintos');
+
+        return $this->redirectToRoute('profile');
+    }
 
     /**
      * @Route("/admin/sport-plan/create", name="sport_plan_create")
@@ -221,10 +241,10 @@ class SportPlanController extends Controller
 
         $session = new Session();
 
-        $session->set('gender', $gender);
+        $session->set('sport-gender', $gender);
         $session->set('experience', $experience);
         $session->set('ageCategory', $ageCategory);
-        $session->set('goals', $goals);
+        $session->set('sport-goals', $goals);
 
         return $this->redirectToRoute('profile_sport_plan');
     }
