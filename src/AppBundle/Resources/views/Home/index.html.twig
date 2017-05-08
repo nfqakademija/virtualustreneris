@@ -29,6 +29,21 @@
                     <tr style="height: 5%;">
                         <td></td>
                     </tr>
+                    {% for flash_message in app.session.flashBag.get('sessionMessage') %}
+                        <tr style="height: 20%;">
+                            <td>
+                                <div class="OpenSans white" style="font-size: 17px;">
+                                    {{ flash_message }}<br/>
+                                    <br/>
+                                    <a href="{{ path('profile') }}" style="text-decoration: none;">
+                                        <button>PROFILIS</button>
+                                    </a>
+                                </div>
+                            </td>
+                        </tr>
+                    {% endfor %}
+
+
                     <tr style="height: 55%;">
                         <td>
                             <div class="box2">
@@ -102,7 +117,7 @@
                                     <td>
                                         <table border="0">
                                             <tr class="OpenSans-Bold" style="font-size: 18pt;">
-                                                <td>&nbsp; TRENIRUOČIŲ</td>
+                                                <td>&nbsp;TRENIRUOČIŲ</td>
                                             </tr>
                                             <tr class="OpenSans-Regular" style="font-size: 16pt;">
                                                 <td>PROGRAMOS</td>
@@ -252,7 +267,16 @@
             js = d.createElement(s); js.id = id;
             js.src = "//connect.facebook.net/lt_LT/sdk.js";
             fjs.parentNode.insertBefore(js, fjs);
-        }(document, 'script', 'script'));
+        }(document, 'script', 'facebook-jsdk'));
+
+        function testAPI() {
+            console.log('Welcome!  Fetching your information.... ');
+            FB.api('/me', function(response) {
+                console.log('Successful login for: ' + response.name);
+                document.getElementById('status').innerHTML =
+                    'Thanks for logging in, ' + response.name + '!';
+            });
+        }
     </script>
     <script src="{{ asset('js/jquery-3.2.0.min.js') }}"></script>
     <script src="{{ asset('js/jquery.fullPage.min.js') }}"></script>

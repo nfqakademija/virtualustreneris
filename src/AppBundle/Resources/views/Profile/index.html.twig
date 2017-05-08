@@ -23,23 +23,29 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="{{ path('homepage') }}">VIRTUALUSTRENERIS</a>
+                <a class="navbar-brand" href="{{ path('homepage') }}"><img height="80" src="http://virtualustreneris.projektai.nfqakademija.lt/images/logo.png" alt="" /></a>
             </div>
 
             <!-- Collect the nav links, forms, and other content for toggling -->
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                 <ul class="nav navbar-nav">
                     <li class="active"><a href="{{ path('homepage') }}">Titulinis <span class="sr-only">(current)</span></a></li>
-                    <li class="active"><a href="{{ path('sport_plan_search') }}">Sporto programos <span class="sr-only">(current)</span></a></li>
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Ieškoti<span class="caret"></span></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="{{ path('meal_plan_search') }}">Mitybos programos</a></li>
+                            <li><a href="{{ path('sport_plan_search') }}">Sporto programos</a></li>
+                        </ul>
+                    </li>
                 </ul>
                 <ul class="nav navbar-nav navbar-right">
                     <li class="dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Profilis <span class="caret"></span></a>
                         <ul class="dropdown-menu">
-                            <li><a href="{{ path('profile_meal_plan') }}">Mitybos programa</a></li>
-                            <li><a href="{{ path('profile_sport_plan') }}">Sporto programa</a></li>
+                            <li><a href="{{ path('profile_meal_plan') }}">Mano mitybos programa</a></li>
+                            <li><a href="{{ path('profile_sport_plan') }}">Mano sporto programa</a></li>
                             <li role="separator" class="divider"></li>
-                            <li><a href="#">Atsijungti</a></li>
+                            <li><a href="{{ path('profile_clear') }}">Pašalinti programas</a></li>
                         </ul>
                     </li>
                 </ul>
@@ -49,12 +55,15 @@
 
 
 
-
-
     {% for flash_message in app.session.flashBag.get('message') %}
         <div class="flash-notice text-center" style="padding: 20px; color: black; background-color: white;">
-        {{ flash_message }}
-    </div>
+            <h4>{{ flash_message }}<br> Ieškokite dar kartą spausdami <a href="{{ path('meal_plan_search') }}"><span class="label label-default">ČIA</span></a></h4>
+        </div>
+    {% endfor %}
+    {% for flash_message in app.session.flashBag.get('session') %}
+        <div class="flash-notice text-center" style="padding: 20px; color: black; background-color: white;">
+            <h4>{{ flash_message }}<br> Ją galite surasti spausdami <a href="{{ path('meal_plan_search') }}"><span class="label label-default">ČIA</span></a></h4>
+        </div>
     {% endfor %}
 
 

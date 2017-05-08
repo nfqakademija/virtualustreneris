@@ -1,6 +1,4 @@
 <?php
-// src/AppBundle/Entity/User.php
-
 namespace AppBundle\Entity;
 
 use FOS\UserBundle\Model\User as BaseUser;
@@ -19,9 +17,25 @@ class User extends BaseUser
      */
     protected $id;
 
+    /**
+     * @ORM\Column(name="meal_plan_id", type="integer", nullable=true)
+     */
+
+    protected $mealPlanId;
+
     public function __construct()
     {
         parent::__construct();
         // your own logic
+    }
+
+    public function getMealPlanId()
+    {
+        return $this->mealPlanId;
+    }
+
+    public function setMealPlanId($mealPlanId)
+    {
+        $this->mealPlanId = $mealPlanId;
     }
 }
