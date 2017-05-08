@@ -16,12 +16,7 @@ class User extends BaseUser
      * @ORM\GeneratedValue(strategy="AUTO")
      */
     protected $id;
-
-    /**
-     * @ORM\Column(name="meal_plan_id", type="integer", nullable=true)
-     */
-
-    protected $mealPlanId;
+    
 
     public function __construct()
     {
@@ -29,13 +24,4 @@ class User extends BaseUser
         // your own logic
     }
 
-    public function getMealPlanId()
-    {
-        return $this->mealPlanId;
-    }
-
-    public function setMealPlanId($mealPlanId)
-    {
-        $this->mealPlanId = $mealPlanId;
-    }
 }
