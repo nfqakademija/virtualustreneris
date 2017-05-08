@@ -241,4 +241,37 @@ body {
 .fb-share-button:hover {
     background-color: #3B5998;
 }
+/* Picture flip*/
+
+.flip3D{ width:500px; height:350px; margin-left: 350px; float:center; }
+.flip3D > .front{
+    position:absolute;
+    transform: perspective( 600px ) rotateY( 0deg );
+    backface-visibility: hidden;
+    transition: transform .5s linear 0s;
+}
+.flip3D > .back{
+    position:absolute;
+    transform: perspective( 600px ) rotateY( 180deg );
+    background: #80BFFF; width:550px; height:330px; border-radius: 7px;
+    backface-visibility: hidden;
+    transition: transform .5s linear 0s;
+    vertical-align: text-bottom;
+}
+.flip3D:hover > .front{
+    transform: perspective( 600px ) rotateY( -180deg );
+}
+.flip3D:hover > .back{
+    transform: perspective( 600px ) rotateY( 0deg );
+}
+
+/* Online coutner */
+
+#counter {
+    position: absolute;
+    top: 550px;
+    right: 15px;
+    z-index: 101;
+    padding: 2px 7px;
+}
 
