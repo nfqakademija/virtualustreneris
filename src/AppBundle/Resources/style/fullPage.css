@@ -22,9 +22,18 @@ div img {
     height: auto;
 }
 
+.textBox1SpcImage {
+    width: 100%;
+    margin: auto;
+}
+
 @media screen and (max-width: 940px) {
     .display {
         display: none;
+    }
+    .textBox1SpcImage {
+        width: 68%;
+        margin: auto;
     }
 }
 
