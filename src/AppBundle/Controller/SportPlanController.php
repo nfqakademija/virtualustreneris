@@ -191,7 +191,7 @@ class SportPlanController extends Controller
                 'class' => Experience::class,
                 'query_builder' => function (EntityRepository $er) {
                     return $er->createQueryBuilder('experience')
-                        ->OrderBy('experience.experience', 'ASC');
+                        ->OrderBy('experience.experience', 'DESC');
                 },
                 'attr'   =>  array(
                     'class'   => 'form-control')
