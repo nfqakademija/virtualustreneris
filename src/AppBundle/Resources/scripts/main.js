@@ -56,4 +56,3 @@ $(document).ready(function(){
         js.src = "//connect.facebook.net/en_US/sdk.js#xfbml=1&version=v2.9&appId=1831947957125489";
         fjs.parentNode.insertBefore(js, fjs);
     }(document, 'script', 'facebook-jssdk'));
-
