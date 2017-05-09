@@ -96,11 +96,11 @@
             </tr>
             </thead>
 
-
-            {% for exerciseList in plan.exerciseList|json_decode() %}
             <div class="panel panel-default">
                 <div class="panel-heading text-center">Pirma diena</div>
             </div>
+            {% for exerciseList in plan.exerciseList|json_decode() %}
+
             <tbody>
                 {% for exercise in exercises %}
                     {% if exerciseList == exercise.id %}
@@ -113,23 +113,71 @@
                     {% endif %}
                 {% endfor %}
             {% endfor %}
-                {% for exerciseListTwo in plan.exerciseListTwo|json_decode() %}
-                    <div class="panel panel-default">
-                        <div class="panel-heading text-center">Antra diena</div>
-                    </div>
-                    {% for exercise in exercises %}
-                        {% if exerciseListTwo == exercise.id %}
-                            <tr>
-                                <td>{{ loop.index }} pratimas</td>
-                                <td>{{ exercise.title }}</td>
-                                <td>{{ exercise.description }}</td>
-                                <td>{{ exercise.repeats }}</td>
-                            </tr>
-                        {% endif %}
-                    {% endfor %}
-                {% endfor %}
+
             </tbody>
+
         </table>
+                      <table class="table table-hover" style="color: black; background-color: white;">
+                          <thead>
+                          <tr>
+                              <th>Numeracija</th>
+                              <th>Pratimo pavadinimas</th>
+                              <th>Aprašymas</th>
+                              <th>Pakartojimai</th>
+                          </tr>
+                          </thead>
+
+                          <div class="panel panel-default">
+                              <div class="panel-heading text-center">Antra diena</div>
+                          </div>
+                          {% for exerciseListTwo in plan.exerciseListTwo|json_decode() %}
+
+                          <tbody>
+                          {% for exercise in exercises %}
+                              {% if exerciseListTwo == exercise.id %}
+                                  <tr>
+                                      <td>{{ loop.index }} pratimas</td>
+                                      <td>{{ exercise.title }}</td>
+                                      <td>{{ exercise.description }}</td>
+                                      <td>{{ exercise.repeats }}</td>
+                                  </tr>
+                              {% endif %}
+                          {% endfor %}
+                          {% endfor %}
+
+                          </tbody>
+                      </table>
+
+                      <table class="table table-hover" style="color: black; background-color: white;">
+                          <thead>
+                          <tr>
+                              <th>Numeracija</th>
+                              <th>Pratimo pavadinimas</th>
+                              <th>Aprašymas</th>
+                              <th>Pakartojimai</th>
+                          </tr>
+                          </thead>
+
+                          <div class="panel panel-default">
+                              <div class="panel-heading text-center">Trečia diena</div>
+                          </div>
+                          {% for exerciseListThree in plan.exerciseListThree|json_decode() %}
+
+                          <tbody>
+                          {% for exercise in exercises %}
+                              {% if exerciseListThree == exercise.id %}
+                                  <tr>
+                                      <td>{{ loop.index }} pratimas</td>
+                                      <td>{{ exercise.title }}</td>
+                                      <td>{{ exercise.description }}</td>
+                                      <td>{{ exercise.repeats }}</td>
+                                  </tr>
+                              {% endif %}
+                          {% endfor %}
+                          {% endfor %}
+
+                          </tbody>
+                      </table>
     </div>
 </div>
 
