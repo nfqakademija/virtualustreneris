@@ -100,11 +100,13 @@
                 </b>
                 <br/>
                 <hr/>
+                {% set ii = 0 %}
                 {% for foodDishId in plan.foodDishId|json_decode() %}
                     {% for dish in dishes %}
                         {% if foodDishId == dish.id %}
+                            {% set ii = ii + 1 %}
                             <p style="font-size: 14px;">
-                                <div class="col-sm-2" style="background-color: white; padding-bottom: 5px;">{{ loop.index }} valgymas</div>
+                                <div class="col-sm-2" style="background-color: white; padding-bottom: 5px;">{{ ii}} valgymas</div>
                                 <div class="col-sm-4" style="background-color: white; padding-bottom: 5px;">{{ dish.description }}</div>
                                 <div class="col-sm-1" style="background-color: white; padding-bottom: 5px;">{{ dish.proteinNum }}</div>
                                 <div class="col-sm-1" style="background-color: white; padding-bottom: 5px;">{{ dish.carbohydrateNum }}</div>
@@ -118,7 +120,6 @@
                     <hr/>
                 {% endfor %}
             </div>
-
         </div>
 
 
