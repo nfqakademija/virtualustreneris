@@ -14,16 +14,16 @@
         <li data-menuanchor="page2"><a href="#page2" id="button2">Motyvacija</a></li>
         <li data-menuanchor="page3"><a href="#page3" id="button3">Programos</a></li>
         <li data-menuanchor="page4"><a href="#page4" id="button4">Kontaktai</a></li>
-        <div class="fb-share-button" data-href="http://virtualustreneris.projektai.nfqakademija.lt/#page1" data-layout="button" data-size="large" data-mobile-iframe="true"><a class="fb-xfbml-parse-ignore" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http%3A%2F%2Fvirtualustreneris.projektai.nfqakademija.lt%2F%23page1&amp;src=sdkpreparse">Bendrinti</a></div>
+        <li style="background-color: transparent;"><div class="fb-share-button" data-href="http://virtualustreneris.projektai.nfqakademija.lt/#page1" data-layout="button" data-size="large" data-mobile-iframe="true"><a class="fb-xfbml-parse-ignore" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http%3A%2F%2Fvirtualustreneris.projektai.nfqakademija.lt%2F%23page1&amp;src=sdkpreparse">Bendrinti</a></div></li>
     </ul>
 
     <div id="fullpage">
             <div class="section" id="section1" data-anchor="page1">
+                <!--
                 <div id="fb-login-button">
                     <div class="fb-login-button" data-size="medium" data-button-type="login_with" data-show-faces="false" data-auto-logout-link="true" data-use-continue-as="false"></div>
-
-                    <!-- THERE HAVE TO BE A BUTTON TO ROUTE TO PROFILE -->
                </div>
+                -->
             <div class="box1">
                 <table border="0" class="table1">
                     <tr style="height: 5%;">
@@ -75,8 +75,8 @@
         </div>
         <div class="section OpenSans" id="section2" data-anchor="page2">
             <div class="slide">
-                <div class="textBox1" style="font-size: 15px; color: #1ba6dd;">
-                    * Užeikite ant nuotraukos, norėdami paskaityti šio žmogaus istoriją.
+                <div class="textBox1" style="font-size: 17px; color: #ac2925;">
+                    <b>* Užeikite ant nuotraukos, norėdami paskaityti šio žmogaus istoriją.</b>
                 </div>
                 <br/>
                 <div id="f1_container">
@@ -297,24 +297,6 @@
 {% endblock %}
 
 {% block javascripts %}
-    <script>
-        (function(d, s, id) {
-            var js, fjs = d.getElementsByTagName(s)[0];
-            if (d.getElementById(id)) return;
-            js = d.createElement(s); js.id = id;
-            js.src = "//connect.facebook.net/lt_LT/sdk.js";
-            fjs.parentNode.insertBefore(js, fjs);
-        }(document, 'script', 'facebook-jsdk'));
-
-        function testAPI() {
-            console.log('Welcome!  Fetching your information.... ');
-            FB.api('/me', function(response) {
-                console.log('Successful login for: ' + response.name);
-                document.getElementById('status').innerHTML =
-                    'Thanks for logging in, ' + response.name + '!';
-            });
-        }
-    </script>
     <script src="{{ asset('js/jquery-3.2.0.min.js') }}"></script>
     <script src="{{ asset('js/jquery.fullPage.min.js') }}"></script>
     <script src="{{ asset('js/fullPage.min.js') }}"></script>
