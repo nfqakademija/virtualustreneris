@@ -61,7 +61,7 @@
 
     {% for flash_message in app.session.flashBag.get('message') %}
         <div class="flash-notice text-center" style="padding: 20px; color: black; background-color: white;">
-            <h4>{{ flash_message }}<br> Ieškokite dar kartą spausdami <a href="{{ path('sport_plan_search') }}"><span class="label label-default">ČIA</span></a></h4>
+            <h4><p style="font-size: 25px;">{{ flash_message }}<br>Apie tai buvo informuoti atitinkami specialistai, greitu metu atsiras programa, pritaikyta Jums!</p><br/><br/>Ieškokite dar kartą spausdami <a href="{{ path('sport_plan_search') }}"><span class="label label-default">ČIA</span></a></h4>
         </div>
     {% endfor %}
     {% for flash_message in app.session.flashBag.get('session') %}
@@ -70,114 +70,143 @@
         </div>
     {% endfor %}
 
-            <ul class="list-group">
+    <ul class="list-group">
 
-                  {% for plan in plans %}
-                      <div style="text-align:center;"><img src="http://virtualustreneris.projektai.nfqakademija.lt/images/logo.png"></div>
-                      <h2 style="text-align: center; color: white; text-decoration: underline;">Sporto programa</h2>
-                      <div style="margin: 0px auto; width: 40%;">
-                          <li class="list-group-item text-center" style="background-color: black; color: white;">{{ plan.description }}</li>
+    {% for plan in plans %}
+        <div style="text-align:center;"><img src="http://virtualustreneris.projektai.nfqakademija.lt/images/logo.png"></div>
+        <h2 style="text-align: center; color: white; font-size: 40px;">Sporto programa</h2>
+        <div style="margin: 0px auto; width: 50%;">
+            <p style="text-align: center; padding: 20px; color: white;" style="background-color: black; color: white;">{{ plan.description }}</p>
+            <!--
                           <li class="list-group-item text-center" style="background-color: black; color: white;">Pagal jūsų tikslą, programa skirta: {{ plan.goals }}.<br>
                               Priklausomai nuo tikslo, metant svorį programoje dominuoja cardio pratimų kiekis, auginant jį - pratimų su svoriais kiekis.</li>
                           <div style="text-align: center; padding: 20px;  color: white;">Sporto programos yra atrenkamos pagal jūsų nurodytus kriterijus, todėl nerekomenduojame nuo jos nuklysti. Atminkite: raumenys auga kai ilsi, t.y. kai miegate, todėl poilsis labai svarbu.<br>
                           </div>
-                      </div>
+                          -->
+        </div>
 
 
-                      </ul>
-      </span>
-        <table class="table table-hover" style="color: black; background-color: white;">
-            <thead>
-            <tr>
-                <th>Numeracija</th>
-                <th>Pratimo pavadinimas</th>
-                <th>Aprašymas</th>
-                <th>Pakartojimai</th>
-            </tr>
-            </thead>
+        </ul>
 
-            <div class="panel panel-default">
-                <div class="panel-heading text-center">Pirma diena</div>
-            </div>
-            {% for exerciseList in plan.exerciseList|json_decode() %}
-
-            <tbody>
-                {% for exercise in exercises %}
-                    {% if exerciseList == exercise.id %}
-                        <tr>
-                            <td>{{ loop.index }} pratimas</td>
-                            <td>{{ exercise.title }}</td>
-                            <td>{{ exercise.description }}</td>
-                            <td>{{ exercise.repeats }}</td>
-                        </tr>
-                    {% endif %}
+        <div class="container-fluid">
+            <div class="row" style="color: black; background-color: white; padding-top: 10px;">
+                <div style="background-color: white; width: 100%;text-align: center;"><b style="padding-top: 10px; padding-bottom: 2px; font-size: 20px;">Pirma diena</b></div>
+                <hr/>
+                <b style="font-size: 16px;">
+                    <div class="col-sm-1" style="background-color: white; padding-top: 10px; padding-bottom: 5px;"></div>
+                    <div class="col-sm-3" style="background-color: white; padding-top: 10px; padding-bottom: 5px;">Pratimo pavadinimas</div>
+                    <div class="col-sm-5" style="background-color: white; padding-top: 10px; padding-bottom: 5px;">Aprašymas</div>
+                    <div class="col-sm-2" style="background-color: white; padding-top: 10px; padding-bottom: 5px;">Pakartojimai</div>
+                </b>
+                <br/>
+                <hr/>
+                {% for exerciseList in plan.exerciseList|json_decode() %}
+                    {% for exercise in exercises %}
+                        {% if exerciseList == exercise.id %}
+                            <p style="font-size: 14px;">
+                                <div class="col-sm-1" style="background-color: white; padding-bottom: 5px;"></div>
+                                <div class="col-sm-3" style="background-color: white; padding-bottom: 5px;">{{ exercise.title }}</div>
+                                <div class="col-sm-5" style="background-color: white; padding-bottom: 5px;">{{ exercise.description }}</div>
+                                <div class="col-sm-2" style="background-color: white; padding-bottom: 5px;">{{ exercise.repeats }}</div>
+                            </p>
+                        {% endif %}
+                    {% endfor %}
+                    <br/>
+                    <hr/>
                 {% endfor %}
-            {% endfor %}
+            </div>
+        </div>
+        <br/>
 
-            </tbody>
+        <div class="container-fluid">
+            <div class="row" style="color: black; background-color: white; padding-top: 10px;">
+                <div style="background-color: white; width: 100%;text-align: center;"><b style="padding-top: 10px; padding-bottom: 2px; font-size: 20px;">Antra diena</b></div>
+                <hr/>
+                <b style="font-size: 16px;">
+                    <div class="col-sm-1" style="background-color: white; padding-top: 10px; padding-bottom: 5px;"></div>
+                    <div class="col-sm-3" style="background-color: white; padding-top: 10px; padding-bottom: 5px;">Pratimo pavadinimas</div>
+                    <div class="col-sm-5" style="background-color: white; padding-top: 10px; padding-bottom: 5px;">Aprašymas</div>
+                    <div class="col-sm-2" style="background-color: white; padding-top: 10px; padding-bottom: 5px;">Pakartojimai</div>
+                </b>
+                <br/>
+                <hr/>
+                {% for exerciseListTwo in plan.exerciseListTwo|json_decode() %}
+                    {% for exercise in exercises %}
+                        {% if exerciseListTwo == exercise.id %}
+                            <p style="font-size: 14px;">
+                            <div class="col-sm-1" style="background-color: white; padding-bottom: 5px;"></div>
+                            <div class="col-sm-3" style="background-color: white; padding-bottom: 5px;">{{ exercise.title }}</div>
+                            <div class="col-sm-5" style="background-color: white; padding-bottom: 5px;">{{ exercise.description }}</div>
+                            <div class="col-sm-2" style="background-color: white; padding-bottom: 5px;">{{ exercise.repeats }}</div>
+                            </p>
+                        {% endif %}
+                    {% endfor %}
+                    <br/>
+                    <hr/>
+                {% endfor %}
+            </div>
+        </div>
+        <br/>
 
-        </table>
-                      <table class="table table-hover" style="color: black; background-color: white;">
-                          <thead>
-                          <tr>
-                              <th>Numeracija</th>
-                              <th>Pratimo pavadinimas</th>
-                              <th>Aprašymas</th>
-                              <th>Pakartojimai</th>
-                          </tr>
-                          </thead>
+        <div class="container-fluid">
+            <div class="row" style="color: black; background-color: white; padding-top: 10px;">
+                <div style="background-color: white; width: 100%;text-align: center;"><b style="padding-top: 10px; padding-bottom: 2px; font-size: 20px;">Trečia diena</b></div>
+                <hr/>
+                <b style="font-size: 16px;">
+                    <div class="col-sm-1" style="background-color: white; padding-top: 10px; padding-bottom: 5px;"></div>
+                    <div class="col-sm-3" style="background-color: white; padding-top: 10px; padding-bottom: 5px;">Pratimo pavadinimas</div>
+                    <div class="col-sm-5" style="background-color: white; padding-top: 10px; padding-bottom: 5px;">Aprašymas</div>
+                    <div class="col-sm-2" style="background-color: white; padding-top: 10px; padding-bottom: 5px;">Pakartojimai</div>
+                </b>
+                <br/>
+                <hr/>
+                {% for exerciseListThree in plan.exerciseListThree|json_decode() %}
+                    {% for exercise in exercises %}
+                        {% if exerciseListThree == exercise.id %}
+                            <p style="font-size: 14px;">
+                            <div class="col-sm-1" style="background-color: white; padding-bottom: 5px;"></div>
+                            <div class="col-sm-3" style="background-color: white; padding-bottom: 5px;">{{ exercise.title }}</div>
+                            <div class="col-sm-5" style="background-color: white; padding-bottom: 5px;">{{ exercise.description }}</div>
+                            <div class="col-sm-2" style="background-color: white; padding-bottom: 5px;">{{ exercise.repeats }}</div>
+                            </p>
+                        {% endif %}
+                    {% endfor %}
+                    <br/>
+                    <hr/>
+                {% endfor %}
+            </div>
+        </div>
 
-                          <div class="panel panel-default">
-                              <div class="panel-heading text-center">Antra diena</div>
-                          </div>
-                          {% for exerciseListTwo in plan.exerciseListTwo|json_decode() %}
-
-                          <tbody>
-                          {% for exercise in exercises %}
-                              {% if exerciseListTwo == exercise.id %}
-                                  <tr>
-                                      <td>{{ loop.index }} pratimas</td>
-                                      <td>{{ exercise.title }}</td>
-                                      <td>{{ exercise.description }}</td>
-                                      <td>{{ exercise.repeats }}</td>
-                                  </tr>
-                              {% endif %}
-                          {% endfor %}
-                          {% endfor %}
-
-                          </tbody>
-                      </table>
-
-                      <table class="table table-hover" style="color: black; background-color: white;">
-                          <thead>
-                          <tr>
-                              <th>Numeracija</th>
-                              <th>Pratimo pavadinimas</th>
-                              <th>Aprašymas</th>
-                              <th>Pakartojimai</th>
-                          </tr>
-                          </thead>
-
-                          <div class="panel panel-default">
-                              <div class="panel-heading text-center">Trečia diena</div>
-                          </div>
-                          {% for exerciseListThree in plan.exerciseListThree|json_decode() %}
-
-                          <tbody>
-                          {% for exercise in exercises %}
-                              {% if exerciseListThree == exercise.id %}
-                                  <tr>
-                                      <td>{{ loop.index }} pratimas</td>
-                                      <td>{{ exercise.title }}</td>
-                                      <td>{{ exercise.description }}</td>
-                                      <td>{{ exercise.repeats }}</td>
-                                  </tr>
-                              {% endif %}
-                          {% endfor %}
-                          {% endfor %}
-
-                          </tbody>
-                      </table>
+        <!--
+        <div class="container-fluid">
+            <div class="row" style="color: black; background-color: white; padding-top: 10px;">
+                <div style="background-color: white; width: 100%;text-align: center;"><b style="padding-top: 10px; padding-bottom: 2px; font-size: 20px;">Ketvirta diena</b></div>
+                <hr/>
+                <b style="font-size: 16px;">
+                    <div class="col-sm-1" style="background-color: white; padding-top: 10px; padding-bottom: 5px;"></div>
+                    <div class="col-sm-3" style="background-color: white; padding-top: 10px; padding-bottom: 5px;">Pratimo pavadinimas</div>
+                    <div class="col-sm-5" style="background-color: white; padding-top: 10px; padding-bottom: 5px;">Aprašymas</div>
+                    <div class="col-sm-2" style="background-color: white; padding-top: 10px; padding-bottom: 5px;">Pakartojimai</div>
+                </b>
+                <br/>
+                <hr/>
+                {% for exerciseListFour in plan.exerciseListFour|json_decode() %}
+                    {% for exercise in exercises %}
+                        {% if exerciseListFour == exercise.id %}
+                            <p style="font-size: 14px;">
+                            <div class="col-sm-1" style="background-color: white; padding-bottom: 5px;"></div>
+                            <div class="col-sm-3" style="background-color: white; padding-bottom: 5px;">{{ exercise.title }}</div>
+                            <div class="col-sm-5" style="background-color: white; padding-bottom: 5px;">{{ exercise.description }}</div>
+                            <div class="col-sm-2" style="background-color: white; padding-bottom: 5px;">{{ exercise.repeats }}</div>
+                            </p>
+                        {% endif %}
+                    {% endfor %}
+                    <br/>
+                    <hr/>
+                {% endfor %}
+            </div>
+        </div>
+        -->
     </div>
 </div>
 

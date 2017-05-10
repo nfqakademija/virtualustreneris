@@ -44,26 +44,16 @@
                             </ul>
                         </li>
                     </ul>
-                    <ul class="nav navbar-nav navbar-right">
-                        <li class="dropdown">
-                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Profilis <span class="caret"></span></a>
-                            <ul class="dropdown-menu">
-                                <li><a href="{{ path('profile_meal_plan') }}">Mano mitybos programa</a></li>
-                                <li><a href="{{ path('profile_sport_plan') }}">Mano sporto programa</a></li>
-                                <li role="separator" class="divider"></li>
-                                <li><a href="{{ path('profile_clear') }}">Pašalinti programas</a></li>
-                            </ul>
-                        </li>
-                    </ul>
                 </div><!-- /.navbar-collapse -->
             </div><!-- /.container-fluid -->
         </nav>
 
-        {% for flash_message in app.session.flashBag.get('success') %}
             <div class="alert alert-success text-center" role="alert">
-                {{ flash_message }}
+                <b>
+                    [!] Jums nepavyko įsilaušti į sistemą!<br/>
+                    Maloniai prašome - mėginkite dar kartą ir dar kartą ;-) {{ gender }}
+                </b>
             </div>
-        {% endfor %}
 
         <br/>
         <br/>
@@ -80,14 +70,14 @@
                                     <table border="0" style="width: 100%;">
                                         <tr>
                                             <td style="text-align: center;">
-                                                <img src="images/sport.png" alt="">
+                                                <img src="http://virtualustreneris.projektai.nfqakademija.lt/images/sport.png" alt="">
                                             </td>
                                         </tr>
                                     </table>
                                 </div>
                                 <div class="OpenSans-Regular" style="text-align: center; background-color: #3d4e60; color: #8694a7;">
                                     <div style="padding: 15px; opacity: 0.7;">
-                                        <img width="150"src="images/sp.jpg" alt="Išsirinkite sau pritaikytą treniruočių programą pagal jūsų pažangumą bei norimus rezultatus" class="img-circle">
+                                        <img width="150"src="http://virtualustreneris.projektai.nfqakademija.lt/images/sp.jpg" alt="Išsirinkite sau pritaikytą treniruočių programą pagal jūsų pažangumą bei norimus rezultatus" class="img-circle">
                                         <br/>
                                     </div>
                                 </div>
@@ -95,7 +85,7 @@
                                     <table border="0" style="width: 100%;">
                                         <tr>
                                             <td style="text-align: center;">
-                                                <a href="{{ path('profile_sport_plan') }}" style="text-decoration: none;">
+                                                <a href="{{ path('sport_plan_search') }}" style="text-decoration: none;">
                                                     <div class="OpenSans-Bold searchButtonStyle">
                                                         MANO<br/>TRENIRUOTĖS
                                                     </div>
@@ -120,14 +110,14 @@
                                     <table border="0" style="width: 100%;">
                                         <tr>
                                             <td style="text-align: center;">
-                                                <img src="images/food.png" alt="">
+                                                <img src="http://virtualustreneris.projektai.nfqakademija.lt/images/food.png" alt="">
                                             </td>
                                         </tr>
                                     </table>
                                 </div>
                                 <div class="OpenSans-Regular" style="text-align: center; background-color: #3d4e60; color: #8694a7;">
                                     <div style="padding: 15px; opacity: 0.7;">
-                                        <img width="150"src="images/fd2.jpg" alt="Išsirinkite sau pritaikytą mitybos programą pagal rekomenduojamą kalorijų kiekį ir norimus rezultatus" class="img-circle">
+                                        <img width="150"src="http://virtualustreneris.projektai.nfqakademija.lt/images/fd2.jpg" alt="Išsirinkite sau pritaikytą mitybos programą pagal rekomenduojamą kalorijų kiekį ir norimus rezultatus" class="img-circle">
                                         <br/>
                                     </div>
                                 </div>
@@ -135,7 +125,7 @@
                                     <table border="0" style="width: 100%;">
                                         <tr>
                                             <td style="text-align: center;">
-                                                <a href="{{ path('profile_meal_plan') }}" style="text-decoration: none;">
+                                                <a href="{{ path('meal_plan_search') }}" style="text-decoration: none;">
                                                     <div class="OpenSans-Bold searchButtonStyle">
                                                         MANO<br>MITYBA
                                                     </div>
@@ -155,23 +145,7 @@
     </div>
     <br/>
     <br/>
-    <br/>
 
-    <div style="margin: auto; text-align: center;">
-        <div class="textBox1">
-            <div style="font-size: 2.46vh; min-font-size: 48px; color: #1ba6dd;">
-                Reakomenduojame Jums, mūsų išbandytą ir patikrintą sporto klubą:
-            </div>
-        </div>
-        <br/>
-        <a href="http://www.eola.lt/" target="_blank">
-            <img src="images/partner/Eola_logo_.jpg" alt="" style="max-width: 450px;" />
-        </a>
-    </div>
-
-
-    <br/>
-    <br/>
 {% endblock %}
 
 {% block javascripts %}
