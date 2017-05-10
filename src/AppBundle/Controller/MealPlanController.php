@@ -124,8 +124,8 @@ class MealPlanController extends Controller
             $result +=200;
         }
 
-        $rangeStart = $result - 150;
-        $rangeEnd = $result + 150;
+        $rangeStart = $result - 100;
+        $rangeEnd = $result + 100;
 
         $em = $this->getDoctrine()->getManager();
         $repository = $em->getRepository('AppBundle:DishLists');
