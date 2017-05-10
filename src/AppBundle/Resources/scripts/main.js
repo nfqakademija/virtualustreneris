@@ -22,7 +22,6 @@ $(document).ready(function(){
 
     function btn() {
         modal.style.display = "block";
-
     }
 
     span.onclick = function() {
