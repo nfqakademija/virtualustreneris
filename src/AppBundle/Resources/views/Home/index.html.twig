@@ -16,7 +16,6 @@
         <li data-menuanchor="page4"><a href="#page4" id="button4">Kontaktai</a></li>
         <li style="background-color: transparent;"><div class="fb-share-button" data-href="http://virtualustreneris.projektai.nfqakademija.lt/#page1" data-layout="button" data-size="large" data-mobile-iframe="true"><a class="fb-xfbml-parse-ignore" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http%3A%2F%2Fvirtualustreneris.projektai.nfqakademija.lt%2F%23page1&amp;src=sdkpreparse">Bendrinti</a></div></li>
     </ul>
-
     <div id="fullpage">
             <div class="section" id="section1" data-anchor="page1">
                 <!--
@@ -74,43 +73,45 @@
             </div>
         </div>
         <div class="section OpenSans" id="section2" data-anchor="page2">
-            <div class="slide">
-                <div class="textBox1" style="font-size: 17px; color: #ac2925;">
-                    <b>* Užeikite ant nuotraukos, norėdami paskaityti šio žmogaus istoriją.</b>
-                </div>
-                <br/>
-                <div id="f1_container">
-                    <div id="f1_card" class="shadow">
-                        <div class="front face">
-                            <img src="images/gallery/sm1.png" style="width: 100%; max-width:650px;"/>
-                        </div>
-                        <div class="back face center">
-                            <div class="textBox1SpcImage">
-                                <p style="font-size: 2.16vh;">
-                                    Dalinuosi su Jumis savo nuotrauką, kurioje matyti mano pasiekti rezultatai prieš ir po. Svorio mažinimo programos pradžioje svėriau 107 kg (ūgis – 178 cm), po trijų mėnesių – 87 kg. Džiaugiuosi rezultatais. Toliau sportuoju ir dar gerinsiu raumenų masę pasirinkdamas kitas siulomas virtualaus trenerio sporto programas.
-                                    Virtualaus trenerio parengta asmeninė programa buvo išties veiksminga. Geras treniruočių bei maisto planas,ypatingai paruoštas pagal asmeninius poreikius. Treniruočių programoje pratimai parinkti taip, kad nekenktų mano stuburui, o kaip tik jį stiprinti.
-                                    Mitybos planas – veiksmingas. Gal ne kiekvienas galėtų valgyti įvairų, bet normuotą maistą. Tam reikia turėti stiprią valią. Skirti daug laiko, kai ko ir atsisakyti, daug ką paaukoti, kad „sudeginti” nereikalingus kilogramus :) Tačiau matant tokį gerą progresą, verta laikytis virtualaus trenerio nurodyto plano.
-                                    Virtualus treneris prieš parengiant treniruočių, mitybos planus, išsiaiškino man reikiamą kalorijų kiekį ir siekiamus tikslus. Nustatė reikiamą fizinį krūvį, išmokė taisyklingai sportuoti.
-                                </p>
+            {% if browserIsGood == true %}
+                <div class="slide">
+                    <div class="textBox1" style="font-size: 17px; color: #ac2925;">
+                        <b>* Užeikite ant nuotraukos, norėdami paskaityti šio žmogaus istoriją.</b>
+                    </div>
+                    <br/>
+                    <div id="f1_container">
+                        <div id="f1_card" class="shadow">
+                            <div class="front face">
+                                <img src="images/gallery/sm1.png" style="width: 100%; max-width:650px;"/>
+                            </div>
+                            <div class="back face center">
+                                <div class="textBox1SpcImage">
+                                    <p style="font-size: 2.16vh;">
+                                        Dalinuosi su Jumis savo nuotrauką, kurioje matyti mano pasiekti rezultatai prieš ir po. Svorio mažinimo programos pradžioje svėriau 107 kg (ūgis – 178 cm), po trijų mėnesių – 87 kg. Džiaugiuosi rezultatais. Toliau sportuoju ir dar gerinsiu raumenų masę pasirinkdamas kitas siulomas virtualaus trenerio sporto programas.
+                                        Virtualaus trenerio parengta asmeninė programa buvo išties veiksminga. Geras treniruočių bei maisto planas,ypatingai paruoštas pagal asmeninius poreikius. Treniruočių programoje pratimai parinkti taip, kad nekenktų mano stuburui, o kaip tik jį stiprinti.
+                                        Mitybos planas – veiksmingas. Gal ne kiekvienas galėtų valgyti įvairų, bet normuotą maistą. Tam reikia turėti stiprią valią. Skirti daug laiko, kai ko ir atsisakyti, daug ką paaukoti, kad „sudeginti” nereikalingus kilogramus :) Tačiau matant tokį gerą progresą, verta laikytis virtualaus trenerio nurodyto plano.
+                                        Virtualus treneris prieš parengiant treniruočių, mitybos planus, išsiaiškino man reikiamą kalorijų kiekį ir siekiamus tikslus. Nustatė reikiamą fizinį krūvį, išmokė taisyklingai sportuoti.
+                                    </p>
+                                </div>
                             </div>
                         </div>
                     </div>
+                    <!--
+                    <br/>
+                    <br/>
+                    <br/>
+                    <br/>
+                    <br/>
+                    <br/>
+                    <br/>
+                    <div class="OpenSans white" style="font-size: 17px;">
+                        <a href="#page3" style="text-decoration: none; ">
+                            <button style="background-color: #1ba6dd; max-width: 170px;">TĘSTI &#8595;</button>
+                        </a>
+                    </div>
+                    -->
                 </div>
-                <!--
-                <br/>
-                <br/>
-                <br/>
-                <br/>
-                <br/>
-                <br/>
-                <br/>
-                <div class="OpenSans white" style="font-size: 17px;">
-                    <a href="#page3" style="text-decoration: none; ">
-                        <button style="background-color: #1ba6dd; max-width: 170px;">TĘSTI &#8595;</button>
-                    </a>
-                </div>
-                -->
-            </div>
+            {% endif %}
             <div class="slide">
                 <div class="textBox1">
                     "Jūsų mintys yra galinga mašina. Kai pradėsite manyti, jog sugebėsite -
