@@ -41,41 +41,6 @@ class SportPlanController extends Controller
         $ageCategory = $session->get('ageCategory');
         $goals = $session->get('sport-goals');
 
-        //Čia reikėtų padaryti kiekvienos mysql lentelės nuskaitymą ir sutikrinimą ar toks ID yra mūsų sistemoje, jeigu nėra nukreipti į AppBundle:Error:index.html.twig
-
-        //Hacker trap
-        if ($gender != '2' and $gender != '1') {
-            return $this->render('AppBundle:Error:index.html.twig');
-        }
-
-        //If wrong select
-        $error = false;
-        if ($gender == '' or is_null($gender)) {
-            $error = true;
-            $gender_error = true;
-        }
-        if ($experience == '' or is_null($experience)) {
-            $error = true;
-            $experience_error = true;
-        }
-        if ($ageCategory == '' or is_null($ageCategory)) {
-            $error = true;
-            $ageCategory_error = true;
-        }
-        if ($goals == '' or is_null($goals)) {
-            $error = true;
-            $goals_error = true;
-        }
-
-        if ($error) {
-            return $this->render('AppBundle:MealPlan:index.html.twig',[
-                "gender"      => $gender_error,
-                "experience"  => $experience_error,
-                "ageCategory" => $ageCategory_error,
-                "goals"       => $goals_error
-            ]);
-        }
-
         $em = $this->getDoctrine()->getManager();
         $repository = $em->getRepository('AppBundle:Programs');
         $find = $repository->findSportPlan($gender, $experience, $goals, $ageCategory);
@@ -272,6 +237,41 @@ class SportPlanController extends Controller
         $experience = $request->request->get('form')['experience'];
         $ageCategory = $request->request->get('form')['ageCategory'];
         $goals = $request->request->get('form')['goals'];
+
+        //Čia reikėtų padaryti kiekvienos mysql lentelės nuskaitymą ir sutikrinimą ar toks ID yra mūsų sistemoje, jeigu nėra nukreipti į AppBundle:Error:index.html.twig
+
+        //Hacker trap
+        if ($gender != '2' and $gender != '1') {
+            return $this->render('AppBundle:Error:index.html.twig');
+        }
+
+        //If wrong select
+        $error = false;
+        if ($gender == '' or is_null($gender)) {
+            $error = true;
+            $gender_error = true;
+        }
+        if ($experience == '' or is_null($experience)) {
+            $error = true;
+            $experience_error = true;
+        }
+        if ($ageCategory == '' or is_null($ageCategory)) {
+            $error = true;
+            $ageCategory_error = true;
+        }
+        if ($goals == '' or is_null($goals)) {
+            $error = true;
+            $goals_error = true;
+        }
+
+        if ($error) {
+            return $this->render('AppBundle:MealPlan:index.html.twig',[
+                "gender"      => $gender_error,
+                "experience"  => $experience_error,
+                "ageCategory" => $ageCategory_error,
+                "goals"       => $goals_error
+            ]);
+        }
 
         $session = new Session();
 

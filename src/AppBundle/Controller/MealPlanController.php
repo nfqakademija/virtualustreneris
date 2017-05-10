@@ -44,58 +44,6 @@ class MealPlanController extends Controller
         $goals = $session->get('goals');
         $activity = $session->get('activity');
 
-        //Hacker trap
-        if ($gender != '2' and $gender != '1') {
-            return $this->render('AppBundle:Error:index.html.twig');
-        }
-        if ($height < '30' or $height > '220') {
-            return $this->render('AppBundle:Error:index.html.twig');
-        }
-        if ($weight < '30' or $weight > '150') {
-            return $this->render('AppBundle:Error:index.html.twig');
-        }
-        if ($age < '4' or $age > '80') {
-            return $this->render('AppBundle:Error:index.html.twig');
-        }
-
-        //If wrong select
-        $error = false;
-        if ($gender == '' or is_null($gender)) {
-            $error = true;
-            $gender_error = true;
-        }
-        if ($height == '' or is_null($height)) {
-            $error = true;
-            $height_error = true;
-        }
-        if ($weight == '' or is_null($weight)) {
-            $error = true;
-            $weight_error = true;
-        }
-        if ($age == '' or is_null($age)) {
-            $error = true;
-            $age_error = true;
-        }
-        if ($goals == '' or is_null($goals)) {
-            $error = true;
-            $goals_error = true;
-        }
-        if ($activity == '' or is_null($activity)) {
-            $error = true;
-            $activity_error = true;
-        }
-
-        if ($error) {
-            return $this->render('AppBundle:MealPlan:index.html.twig',[
-                "gender"   =>  $gender_error,
-                "height"   =>  $height_error,
-                "weight"   =>  $weight_error,
-                "age"      =>  $age_error,
-                "goals"    =>  $goals_error,
-                "activity" =>  $activity_error
-            ]);
-        }
-
         if ($gender=='1') {
             $calories = 664.7 + (5 * $height) + (13.75 * $weight) - (6.74 * $age);
             if($goals=='1') {
@@ -329,6 +277,61 @@ class MealPlanController extends Controller
         $age = $request->request->get('form')['age'];
         $goals = $request->request->get('form')['goals'];
         $activity = $request->request->get('form')['activity'];
+
+        //Hacker trap
+        if ($gender != '2' and $gender != '1') {
+            return $this->render('AppBundle:Error:index.html.twig');
+        }
+        if ($height < '30' or $height > '220') {
+            return $this->render('AppBundle:Error:index.html.twig');
+        }
+        if ($weight < '30' or $weight > '150') {
+            return $this->render('AppBundle:Error:index.html.twig');
+        }
+        if ($age < '4' or $age > '80') {
+            return $this->render('AppBundle:Error:index.html.twig');
+        }
+        if (!is_numeric($age) or !is_numeric($weight) or !is_numeric($height)) {
+            return $this->render('AppBundle:Error:index.html.twig');
+        }
+
+        //If wrong select
+        $error = false;
+        if ($gender == '' or is_null($gender)) {
+            $error = true;
+            $gender_error = true;
+        }
+        if ($height == '' or is_null($height)) {
+            $error = true;
+            $height_error = true;
+        }
+        if ($weight == '' or is_null($weight)) {
+            $error = true;
+            $weight_error = true;
+        }
+        if ($age == '' or is_null($age)) {
+            $error = true;
+            $age_error = true;
+        }
+        if ($goals == '' or is_null($goals)) {
+            $error = true;
+            $goals_error = true;
+        }
+        if ($activity == '' or is_null($activity)) {
+            $error = true;
+            $activity_error = true;
+        }
+
+        if ($error) {
+            return $this->render('AppBundle:MealPlan:index.html.twig',[
+                "gender"   =>  $gender_error,
+                "height"   =>  $height_error,
+                "weight"   =>  $weight_error,
+                "age"      =>  $age_error,
+                "goals"    =>  $goals_error,
+                "activity" =>  $activity_error
+            ]);
+        }
 
         $session = new Session();
 
