@@ -61,7 +61,7 @@
 
     {% for flash_message in app.session.flashBag.get('message') %}
         <div class="flash-notice text-center" style="padding: 20px; color: black; background-color: white;">
-            <h4>{{ flash_message }}<br> Ieškokite dar kartą spausdami <a href="{{ path('sport_plan_search') }}"><span class="label label-default">ČIA</span></a></h4>
+            <h4><p style="font-size: 25px;">{{ flash_message }}<br>Apie tai buvo informuoti atitinkami specialistai, greitu metu atsiras programa, pritaikyta Jums!</p><br/><br/>Ieškokite dar kartą spausdami <a href="{{ path('sport_plan_search') }}"><span class="label label-default">ČIA</span></a></h4>
         </div>
     {% endfor %}
     {% for flash_message in app.session.flashBag.get('session') %}
@@ -70,21 +70,23 @@
         </div>
     {% endfor %}
 
-            <ul class="list-group">
+    <ul class="list-group">
 
-                  {% for plan in plans %}
-                      <div style="text-align:center;"><img src="http://virtualustreneris.projektai.nfqakademija.lt/images/logo.png"></div>
-                      <h2 style="text-align: center; color: white; text-decoration: underline;">Sporto programa</h2>
-                      <div style="margin: 0px auto; width: 40%;">
-                          <li class="list-group-item text-center" style="background-color: black; color: white;">{{ plan.description }}</li>
+    {% for plan in plans %}
+        <div style="text-align:center;"><img src="http://virtualustreneris.projektai.nfqakademija.lt/images/logo.png"></div>
+        <h2 style="text-align: center; color: white; font-size: 40px;">Sporto programa</h2>
+        <div style="margin: 0px auto; width: 40%;">
+            <li style="text-align: center; padding: 20px;  color: white;" style="background-color: black; color: white;">{{ plan.description }}</li>
+            <!--
                           <li class="list-group-item text-center" style="background-color: black; color: white;">Pagal jūsų tikslą, programa skirta: {{ plan.goals }}.<br>
                               Priklausomai nuo tikslo, metant svorį programoje dominuoja cardio pratimų kiekis, auginant jį - pratimų su svoriais kiekis.</li>
                           <div style="text-align: center; padding: 20px;  color: white;">Sporto programos yra atrenkamos pagal jūsų nurodytus kriterijus, todėl nerekomenduojame nuo jos nuklysti. Atminkite: raumenys auga kai ilsi, t.y. kai miegate, todėl poilsis labai svarbu.<br>
                           </div>
-                      </div>
+                          -->
+        </div>
 
 
-                      </ul>
+        </ul>
       </span>
         <table class="table table-hover" style="color: black; background-color: white;">
             <thead>
