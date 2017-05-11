@@ -33,7 +33,10 @@ class HomeController extends Controller
         if ($browser['name'] == "Apple Safari") {
             $browserIsGood = false;
         }
-        if ($browser['name'] == "MSIE") {
+        if ($browser['name'] == "Internet Explorer") {
+            $browserIsGood = false;
+        }
+        if ($browser['name'] == "Mozilla Firefox") {
             $browserIsGood = false;
         }
         if ($browser['name'] == "Unknown") {

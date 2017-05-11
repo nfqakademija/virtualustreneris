@@ -60,22 +60,26 @@
             <h4><p style="font-size: 25px;">{{ flash_message }}<br>Apie tai buvo informuoti atitinkami specialistai, greitu metu atsiras programa, pritaikyta Jums!</p><br/><br/>Ieškokite dar kartą spausdami <a href="{{ path('meal_plan_search') }}"><span class="label label-default">ČIA</span></a></h4>
         </div>
     {% endfor %}
+
+    {% set error = false %}
+
     {% for flash_message in app.session.flashBag.get('session') %}
         <div class="flash-notice text-center" style="padding: 20px; color: black; background-color: white;">
             <h4>{{ flash_message }}<br> Ją galite surasti spausdami <a href="{{ path('meal_plan_search') }}"><span class="label label-default">ČIA</span></a></h4>
         </div>
+        {% set error = true %}
     {% endfor %}
 
+    {% if error == false %}
+        <div class="main">
+        {% for plan in plans %}
+            <ul class="list-group">
 
-    <div class="main">
-    {% for plan in plans %}
-        <ul class="list-group">
-
-            <div style="text-align:center;"><img src="http://virtualustreneris.projektai.nfqakademija.lt/images/logo.png"></div>
-            <h2 style="text-align: center; color: white; font-size: 40px;">Mitybos programa</h2>
-            <li class="text-center" style="color: #fff;">Jūsų išvestas rekomanduojamas kalorijų skaičius paroje: {{ result }}</li>
-            <br>
-            <!--
+                <div style="text-align:center;"><img src="http://virtualustreneris.projektai.nfqakademija.lt/images/logo.png"></div>
+                <h2 style="text-align: center; color: white; font-size: 40px;">Mitybos programa</h2>
+                <li class="text-center" style="color: #fff;">Jūsų išvestas rekomanduojamas kalorijų skaičius paroje: {{ result }}</li>
+                <br>
+                <!--
             <div style="margin: 0px auto; width: 40%;">
                 <li class="list-group-item text-center">Pagal jūsų parametrus išvestą kalorijų skaičių atrinkome jums programą, kuri priklauso {{ plan.caloriesNum }} kalorijų kategorijai</li>
                 <li class="list-group-item text-center">Pagal jūsų tikslą, programa skirta: {{ plan.goals }}.<br>
@@ -85,27 +89,27 @@
             </div>
             -->
 
-        </ul>
-        <!-- Būtų galima pridėti spalvas, pagal kurias telefono naudotojams būtų labai patogu, atskirti, kur koks produktas... -->
-        <div class="container-fluid">
-            <div class="row" style="color: black; background-color: white;">
-                <b style="font-size: 16px;">
-                    <div class="col-sm-2" style="background-color: white; padding-top: 10px; padding-bottom: 5px;">Valgymai</div>
-                    <div class="col-sm-4" style="background-color: white; padding-top: 10px; padding-bottom: 5px;">Produktai</div>
-                    <div class="col-sm-1" style="background-color: white; padding-top: 10px; padding-bottom: 5px;">Baltymai</div>
-                    <div class="col-sm-1" style="background-color: white; padding-top: 10px; padding-bottom: 5px;">Angliavandeniai</div>
-                    <div class="col-sm-1" style="background-color: white; padding-top: 10px; padding-bottom: 5px;">Riebalai</div>
-                    <div class="col-sm-1" style="background-color: white; padding-top: 10px; padding-bottom: 5px;">Cukrus</div>
-                    <div class="col-sm-2" style="background-color: white; padding-top: 10px; padding-bottom: 5px;">Kalorijos</div>
-                </b>
-                <br/>
-                <hr/>
-                {% set ii = 0 %}
-                {% for foodDishId in plan.foodDishId|json_decode() %}
-                    {% for dish in dishes %}
-                        {% if foodDishId == dish.id %}
-                            {% set ii = ii + 1 %}
-                            <p style="font-size: 14px;">
+            </ul>
+            <!-- Būtų galima pridėti spalvas, pagal kurias telefono naudotojams būtų labai patogu, atskirti, kur koks produktas... -->
+            <div class="container-fluid">
+                <div class="row" style="color: black; background-color: white;">
+                    <b style="font-size: 16px;">
+                        <div class="col-sm-2" style="background-color: white; padding-top: 10px; padding-bottom: 5px;">Valgymai</div>
+                        <div class="col-sm-4" style="background-color: white; padding-top: 10px; padding-bottom: 5px;">Produktai</div>
+                        <div class="col-sm-1" style="background-color: white; padding-top: 10px; padding-bottom: 5px;">Baltymai</div>
+                        <div class="col-sm-1" style="background-color: white; padding-top: 10px; padding-bottom: 5px;">Angliavandeniai</div>
+                        <div class="col-sm-1" style="background-color: white; padding-top: 10px; padding-bottom: 5px;">Riebalai</div>
+                        <div class="col-sm-1" style="background-color: white; padding-top: 10px; padding-bottom: 5px;">Cukrus</div>
+                        <div class="col-sm-2" style="background-color: white; padding-top: 10px; padding-bottom: 5px;">Kalorijos</div>
+                    </b>
+                    <br/>
+                    <hr/>
+                    {% set ii = 0 %}
+                    {% for foodDishId in plan.foodDishId|json_decode() %}
+                        {% for dish in dishes %}
+                            {% if foodDishId == dish.id %}
+                                {% set ii = ii + 1 %}
+                                <p style="font-size: 14px;">
                                 <div class="col-sm-2" style="background-color: white; padding-bottom: 5px;">{{ ii}} valgymas</div>
                                 <div class="col-sm-4" style="background-color: white; padding-bottom: 5px;">{{ dish.description }}</div>
                                 <div class="col-sm-1" style="background-color: white; padding-bottom: 5px;">{{ dish.proteinNum }}</div>
@@ -113,21 +117,17 @@
                                 <div class="col-sm-1" style="background-color: white; padding-bottom: 5px;">{{ dish.fatNum }}</div>
                                 <div class="col-sm-1" style="background-color: white; padding-bottom: 5px;">{{ dish.sugarNum }}</div>
                                 <div class="col-sm-2" style="background-color: white; padding-bottom: 5px;">{{ dish.kcalNum }}</div>
-                            </p>
-                        {% endif %}
+                                </p>
+                            {% endif %}
+                        {% endfor %}
+                        <br/>
+                        <hr/>
                     {% endfor %}
-                    <br/>
-                    <hr/>
-                {% endfor %}
+                </div>
             </div>
-        </div>
-
-
-
-</div>
-
+            </div>
     {% endfor %}
-
+    {% endif %}
 {% endblock %}
 
 {% block javascripts %}
