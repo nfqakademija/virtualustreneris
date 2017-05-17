@@ -1,0 +1,64 @@
+{% extends "::admin-base.html.twig" %}
+
+{% block title %}Administravimo skydinė{% endblock %}
+
+{% block stylesheets %}
+    {{ parent() }}
+{% endblock %}
+
+{% block body %}
+
+<div class="box">
+    <div class="box-header">
+        <h3 class="box-title">Esamų alternatyvų sąrašas</h3>
+    </div>
+
+    <!-- /.box-header -->
+    <div class="box-body">
+        <div id="example2_wrapper" class="dataTables_wrapper form-inline dt-bootstrap">
+            <div class="row">
+                <div class="col-sm-6"></div>
+                <div class="col-sm-6"></div>
+            </div>
+            <div class="row">
+                <div class="col-sm-12">
+                    <table id="example2" class="table table-bordered table-hover dataTable" role="grid" aria-describedby="example2_info">
+                        <thead>
+                        <tr role="row">
+                            <th class="sorting_asc" tabindex="0" aria-controls="example2" rowspan="1" colspan="1" aria-sort="ascending" aria-label="Rendering engine: activate to sort column descending">ID</th>
+                            <th class="sorting" tabindex="0" aria-controls="example2" rowspan="1" colspan="1" aria-label="Browser: activate to sort column ascending">Aprašymas</th>
+                            <th class="sorting" tabindex="0" aria-controls="example2" rowspan="1" colspan="1" aria-label="Platform(s): activate to sort column ascending">Baltymai</th>
+                            <th class="sorting" tabindex="0" aria-controls="example2" rowspan="1" colspan="1" aria-label="Engine version: activate to sort column ascending">Angliavandeniai</th>
+                            <th class="sorting" tabindex="0" aria-controls="example2" rowspan="1" colspan="1" aria-label="CSS grade: activate to sort column ascending">Riebalai</th>
+                            <th class="sorting" tabindex="0" aria-controls="example2" rowspan="1" colspan="1" aria-label="CSS grade: activate to sort column ascending">Cukrus</th>
+                            <th class="sorting" tabindex="0" aria-controls="example2" rowspan="1" colspan="1" aria-label="CSS grade: activate to sort column ascending">Kalorijos</th>
+                            <th class="sorting" tabindex="0" aria-controls="example2" rowspan="1" colspan="1" aria-label="CSS grade: activate to sort column ascending">Redagavimas</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        {% for alternative in alternatives %}
+                        <tr role="row" class="odd">
+                            <td class="sorting_1">{{ alternative.id }}</td>
+                            <td>{{ alternative.description }}</td>
+                            <td>{{ alternative.proteinNum }}</td>
+                            <td>{{ alternative.carbohydrateNum }}</td>
+                            <td>{{ alternative.fatNum }}</td>
+                            <td>{{ alternative.sugarNum }}</td>
+                            <td>{{ alternative.kcalNum }}</td>
+                            <td><a href="{{ path('alternatives_edit', {'id': alternative.id|default('1')}) }}" class="btn btn-primary">Redaguoti</a>
+                                <a href="{{ path('alternatives_delete', {'id': alternative.id|default('1')}) }}" class="btn btn-danger">Ištrinti</a></td>
+                        </tr>
+                        {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+        <!-- /.box-body -->
+    </div>
+
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+{% endblock %}

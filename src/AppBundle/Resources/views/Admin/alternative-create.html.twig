@@ -1,0 +1,37 @@
+{% extends "::admin-base.html.twig" %}
+
+{% block title %}Administravimo skydinė{% endblock %}
+
+{% block stylesheets %}
+    {{ parent() }}
+    <style>
+        body {
+            overflow: auto;
+        }
+    </style>
+{% endblock %}
+
+{% block contentHeaderTitle %}
+    Naujos alternatyvos itraukimas
+    <small></small>
+{% endblock %}
+
+{% block body %}
+
+    <div class="row">
+        <div class="col-md-6" style="float: none; margin: 0px auto;">
+            <div class="box box-primary" style="text-align: center;">
+                <div class="box-header with-border">
+                    <h3 class="box-title">Naujos alternatyvos įtraukimas</h3>
+                </div>
+                {{ form_start(form) }}
+                {{ form_widget(form) }}
+                <div class="box-footer">
+                    <button type="submit" class="btn btn-primary">Išsaugoti</button>
+                </div>
+                {{ form_end(form) }}
+            </div>
+        </div>
+    </div>
+
+{% endblock %}
