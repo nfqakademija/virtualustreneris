@@ -70,6 +70,8 @@
         {% set error = true %}
     {% endfor %}
 
+
+
     {% if error == false %}
         <div class="main">
         {% for plan in plans %}
@@ -90,6 +92,9 @@
             -->
 
             </ul>
+
+
+
             <!-- Būtų galima pridėti spalvas, pagal kurias telefono naudotojams būtų labai patogu, atskirti, kur koks produktas... -->
             <div class="container-fluid">
                 <div class="row" style="color: black; background-color: white;">
@@ -118,11 +123,53 @@
                                 <div class="col-sm-1" style="background-color: white; padding-bottom: 5px;">{{ dish.sugarNum }}</div>
                                 <div class="col-sm-2" style="background-color: white; padding-bottom: 5px;">{{ dish.kcalNum }}</div>
                                 </p>
+
+                                    {% if dish.foodCategories == 'Pieno produktai' %}
+                                        {% if varskesmsg is not empty %}
+                                            {% for alternative in alternatives %}
+                                                {% if alternative.dishId == dish.id %}
+                                                    <p style="font-size: 14px;">
+                                                    <hr/>
+                                                        <div class="col-sm-2" style="background-color: darkslateblue; padding-bottom: 5px; color: white;">ALTERNATYVA!</div>
+                                                        <div class="col-sm-4" style="background-color: darkslateblue; padding-bottom: 5px; color: white;">{{ alternative.description }}</div>
+                                                        <div class="col-sm-1" style="background-color: darkslateblue; padding-bottom: 5px; color: white;">{{ alternative.proteinNum }}</div>
+                                                        <div class="col-sm-1" style="background-color: darkslateblue; padding-bottom: 5px; color: white;">{{ alternative.carbohydrateNum }}</div>
+                                                        <div class="col-sm-1" style="background-color: darkslateblue; padding-bottom: 5px; color: white;">{{ alternative.fatNum }}</div>
+                                                        <div class="col-sm-1" style="background-color: darkslateblue; padding-bottom: 5px; color: white;">{{ alternative.sugarNum }}</div>
+                                                        <div class="col-sm-2" style="background-color: darkslateblue; padding-bottom: 5px; color: white;">{{ alternative.kcalNum }}</div>
+                                                    </p>
+
+                                                {% endif %}
+                                            {% endfor %}
+                                        {% endif %}
+                                    {% endif %}
+
+                                    {% if dish.foodCategories == 'Mesa' %}
+                                        {% if mesosmsg is not empty %}
+                                            {% for alternative in alternatives %}
+                                                {% if alternative.dishId == dish.id %}
+                                                    <p style="font-size: 14px;">
+                                                    <hr/>
+                                                    <div class="col-sm-2" style="background-color: darkslateblue; padding-bottom: 5px; color: white;">ALTERNATYVA!</div>
+                                                    <div class="col-sm-4" style="background-color: darkslateblue; padding-bottom: 5px; color: white;">{{ alternative.description }}</div>
+                                                    <div class="col-sm-1" style="background-color: darkslateblue; padding-bottom: 5px; color: white;">{{ alternative.proteinNum }}</div>
+                                                    <div class="col-sm-1" style="background-color: darkslateblue; padding-bottom: 5px; color: white;">{{ alternative.carbohydrateNum }}</div>
+                                                    <div class="col-sm-1" style="background-color: darkslateblue; padding-bottom: 5px; color: white;">{{ alternative.fatNum }}</div>
+                                                    <div class="col-sm-1" style="background-color: darkslateblue; padding-bottom: 5px; color: white;">{{ alternative.sugarNum }}</div>
+                                                    <div class="col-sm-2" style="background-color: darkslateblue; padding-bottom: 5px; color: white;">{{ alternative.kcalNum }}</div>
+                                                    </p>
+                                                {% endif %}
+                                            {% endfor %}
+                                        {% endif %}
+                                    {% endif %}
+
+
                             {% endif %}
                         {% endfor %}
                         <br/>
                         <hr/>
                     {% endfor %}
+
                 </div>
             </div>
             </div>
