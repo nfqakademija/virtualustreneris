@@ -22,27 +22,33 @@ class DishesType extends AbstractType
         $builder
         ->add('description', null, [
             'attr'   =>  array(
-                'class'   => 'form-control')
+                'class'   => 'form-control'),
+            'label' => 'Aprašymas'
         ])
         ->add('proteinNum', null, [
             'attr'   =>  array(
-                'class'   => 'form-control')
+                'class'   => 'form-control'),
+            'label' => 'Baltymai'
         ])
         ->add('carbohydrateNum', null, [
             'attr'   =>  array(
-                'class'   => 'form-control')
+                'class'   => 'form-control'),
+            'label' => 'Angliavandeniai'
         ])
         ->add('fatNum', null, [
             'attr'   =>  array(
-                'class'   => 'form-control')
+                'class'   => 'form-control'),
+            'label' => 'Riebalai'
         ])
         ->add('sugarNum', null, [
             'attr'   =>  array(
-                'class'   => 'form-control')
+                'class'   => 'form-control'),
+            'label' => 'Cukrus'
         ])
             ->add('kcalNum', null, [
                 'attr'   =>  array(
-                    'class'   => 'form-control')
+                    'class'   => 'form-control'),
+                'label' => 'Kalorijos'
             ])
         ->add('foodCategories', EntityType::class, [
             'placeholder' => 'Parinkite kategoriją',
@@ -52,7 +58,8 @@ class DishesType extends AbstractType
                 ->OrderBy('cat.title', 'ASC');
             },
             'attr'   =>  array(
-                'class'   => 'form-control')
+                'class'   => 'form-control'),
+            'label' => 'Kategorija'
         ]);
     }
     

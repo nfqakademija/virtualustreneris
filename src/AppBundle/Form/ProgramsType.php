@@ -24,63 +24,72 @@ class ProgramsType extends AbstractType
         $builder
             ->add('exerciseList', null, [
                 'attr'   =>  array(
-                    'class'   => 'form-control')
+                    'class'   => 'form-control'),
+                'label' => 'Pirmos dienos pratimų ID'
             ])
             ->add('exerciseListTwo', null, [
                 'attr'   =>  array(
-                    'class'   => 'form-control')
+                    'class'   => 'form-control'),
+                'label' => 'Antros dienos pratimų ID'
             ])
             ->add('exerciseListThree', null, [
                 'attr'   =>  array(
-                    'class'   => 'form-control')
+                    'class'   => 'form-control'),
+                'label' => 'Trečios dienos pratimų ID'
             ])
             ->add('exerciseListFour', null, [
                 'attr'   =>  array(
-                    'class'   => 'form-control')
+                    'class'   => 'form-control'),
+                'label' => 'Ketvirtos dienos pratimų ID'
             ])
             ->add('gender', EntityType::class, [
-                'placeholder' => 'Choose a gender',
+                'placeholder' => 'Parinkite lytį',
                 'class' => Gender::class,
                 'query_builder' => function (EntityRepository $er) {
                     return $er->createQueryBuilder('gender')
                         ->OrderBy('gender.gender', 'ASC');
                 },
                 'attr'   =>  array(
-                    'class'   => 'form-control')
+                    'class'   => 'form-control'),
+                'label' => 'Lytis'
             ])
             ->add('experience', EntityType::class, [
-                'placeholder' => 'Choose category',
+                'placeholder' => 'Parinkite pažangumą',
                 'class' => Experience::class,
                 'query_builder' => function (EntityRepository $er) {
                     return $er->createQueryBuilder('exp')
                         ->OrderBy('exp.experience', 'ASC');
                 },
                 'attr'   =>  array(
-                    'class'   => 'form-control')
+                    'class'   => 'form-control'),
+                'label' => 'Pažangumas'
             ])
             ->add('description', null, [
                 'attr'   =>  array(
-                    'class'   => 'form-control')
+                    'class'   => 'form-control'),
+                'label' => 'Aprašymas'
             ])
             ->add('ageCategory', EntityType::class, [
-                'placeholder' => 'Amžiaus kategorija',
+                'placeholder' => 'Parinkite amžiaus kategoriją',
                 'class' => AgeCategory::class,
                 'query_builder' => function (EntityRepository $er) {
                     return $er->createQueryBuilder('age')
                         ->OrderBy('age.id', 'ASC');
                 },
                 'attr'   =>  array(
-                    'class'   => 'form-control')
+                    'class'   => 'form-control'),
+                'label' => 'Amžiaus kategorija'
             ])
             ->add('goals', EntityType::class, [
-                'placeholder' => 'Pasirinkite tikslą',
+                'placeholder' => 'Parinkite tikslą',
                 'class' => Goals::class,
                 'query_builder' => function (EntityRepository $er) {
                     return $er->createQueryBuilder('goals')
                         ->orderBy('goals.title', 'ASC');
                 },
                 'attr' => array(
-                    'class' => 'form-control')
+                    'class' => 'form-control'),
+                'label' => 'Tikslas'
             ]);
     }
 

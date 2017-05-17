@@ -15,15 +15,18 @@ class ExercisesType extends AbstractType
     {
         $builder->add('title', null, [
             'attr'   =>  array(
-                'class'   => 'form-control')
+                'class'   => 'form-control'),
+            'label' => 'Pavadinimas'
         ])
             ->add('description', null, [
                 'attr'   =>  array(
-                    'class'   => 'form-control')
+                    'class'   => 'form-control'),
+                'label' => 'Aprašymas'
             ])
             ->add('repeats', null, [
                 'attr'   =>  array(
-                    'class'   => 'form-control')
+                    'class'   => 'form-control'),
+                'label' => 'Pakartojimai'
             ]);
     }
     

@@ -22,11 +22,13 @@ class MealplanType extends AbstractType
         $builder
         ->add('caloriesNum', null, [
             'attr'   =>  array(
-                'class'   => 'form-control')
+                'class'   => 'form-control'),
+            'label' => 'Kalorijų skaičius'
         ])
         ->add('foodDishId',null, [
         'attr'   =>  array(
-            'class'   => 'form-control')
+            'class'   => 'form-control'),
+            'label' => 'Pateikalų ID'
         ])
         ->add('goals', EntityType::class, [
             'placeholder' => 'Parinkite tikslą',
@@ -36,7 +38,8 @@ class MealplanType extends AbstractType
                 ->OrderBy('goal.title', 'ASC');
             },
             'attr'   =>  array(
-                'class'   => 'form-control')
+                'class'   => 'form-control'),
+            'label' => 'Tikslas'
         ]);
     }
     
