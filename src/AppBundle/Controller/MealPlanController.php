@@ -399,21 +399,16 @@ class MealPlanController extends Controller
         $activity = $request->request->get('form')['activity'];
 
         //Hacker trap
-        if ($gender != '2' and $gender != '1') {
+        if ($gender != '2' and $gender != '1' and is_null($gender)) {
             return $this->render('AppBundle:Error:index.html.twig');
         }
-        if ($height < '30' or $height > '220') {
-            return $this->render('AppBundle:Error:index.html.twig');
-        }
-        if ($weight < '30' or $weight > '150') {
-            return $this->render('AppBundle:Error:index.html.twig');
-        }
-        if ($age < '4' or $age > '80') {
-            return $this->render('AppBundle:Error:index.html.twig');
-        }
-        if (!is_numeric($age) or !is_numeric($weight) or !is_numeric($height)) {
-            return $this->render('AppBundle:Error:index.html.twig');
-        }
+
+        $gender_error = false;
+        $height_error = false;
+        $weight_error = false;
+        $age_error = false;
+        $goals_error = false;
+        $activity_error = false;
 
         //If wrong select
         $error = false;
@@ -442,8 +437,114 @@ class MealPlanController extends Controller
             $activity_error = true;
         }
 
+        if ($height < '30' or $height > '220') {
+            $error = true;
+            $height_error = true;
+        }
+        if ($weight < '30' or $weight > '150') {
+            $error = true;
+            $weight_error = true;
+        }
+        if ($age < '4' or $age > '80') {
+            $error = true;
+            $age_error = true;
+        }
+
+        $form = $this->createFormBuilder()
+            ->add('gender', EntityType::class, [
+                'placeholder' => 'Pasirinkite lytį',
+                'class' => Gender::class,
+                'query_builder' => function (EntityRepository $er) {
+                    return $er->createQueryBuilder('gender')
+                        ->OrderBy('gender.gender', 'ASC');
+                },
+                'attr'   =>  array(
+                    'class'   => 'form-control'
+                )
+            ])
+            ->add('height', IntegerType::class, [
+                'attr'   =>  array(
+                    'class'   => 'form-control',
+                    'placeholder' => 'Įveskite savo ūgį (cm)',
+                    'min' => '30',
+                    'max' => '220'
+                )
+            ])
+            ->add('weight', IntegerType::class, [
+                'attr'   =>  array(
+                    'class'   => 'form-control',
+                    'placeholder' => 'Įveskite savo svorį (kg)',
+                    'min' => '30',
+                    'max' => '150'
+                )
+            ])
+            ->add('age', IntegerType::class, [
+                'attr'   =>  array(
+                    'class'   => 'form-control',
+                    'placeholder' => 'Jūsų amžius',
+                    'min' => '4',
+                    'max' => '80'
+                )
+            ])
+            ->add('goals', EntityType::class, [
+                'placeholder' => 'Pasirinkite tikslą',
+                'class' => Goals::class,
+                'query_builder' => function (EntityRepository $er) {
+                    return $er->createQueryBuilder('goals')
+                        ->orderBy('goals.title', 'ASC');
+                },
+                'attr'   =>  array(
+                    'class'   => 'form-control')
+            ])
+            ->add('activity', EntityType::class, [
+                'placeholder' => 'Jusu fizinis atkyvumas',
+                'class' => Activity::class,
+                'query_builder' => function (EntityRepository $er) {
+                    return $er->createQueryBuilder('activity')
+                        ->orderBy('activity.id', 'ASC');
+                },
+                'attr'   =>  array(
+                    'class'   => 'form-control box-footer')
+            ])
+            ->add('varske', CheckboxType::class, [
+                'label'    => 'Nemėgstu varškės',
+                'attr'   =>  array(
+                    'class'   => 'form-control'
+                ),
+                'required' => false
+            ])
+            ->add('mesa', CheckboxType::class, [
+                'label'    => 'Nemėgstu mėsos',
+                'attr'   =>  array(
+                    'class'   => 'form-control'
+                ),
+                'required' => false
+            ])
+            ->add('grudai', CheckboxType::class, [
+                'label'    => 'Nemėgstu grudų',
+                'attr'   =>  array(
+                    'class'   => 'form-control'
+                ),
+                'required' => false
+            ])
+            ->add('zuvis', CheckboxType::class, [
+                'label'    => 'Nemėgstu žuvies',
+                'attr'   =>  array(
+                    'class'   => 'form-control'
+                ),
+                'required' => false
+            ])
+            ->add('Ieškoti', SubmitType::class, [
+                'attr'   =>  array(
+                    'class'   => 'btn btn-special',
+                    'style' => 'color: black;',
+                ),
+            ])
+            ->getForm();
+
         if ($error) {
             return $this->render('AppBundle:MealPlan:index.html.twig',[
+                'form' => $form->createView(),
                 "gender"   =>  $gender_error,
                 "height"   =>  $height_error,
                 "weight"   =>  $weight_error,

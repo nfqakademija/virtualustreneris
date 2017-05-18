@@ -241,9 +241,15 @@ class SportPlanController extends Controller
         //Čia reikėtų padaryti kiekvienos mysql lentelės nuskaitymą ir sutikrinimą ar toks ID yra mūsų sistemoje, jeigu nėra nukreipti į AppBundle:Error:index.html.twig
 
         //Hacker trap
-        if ($gender != '2' and $gender != '1') {
+        if ($gender != '2' and $gender != '1' and is_null($gender)) {
             return $this->render('AppBundle:Error:index.html.twig');
         }
+
+        //xx
+        $gender_error = false;
+        $experience_error = false;
+        $ageCategory_error = false;
+        $goals_error = false;
 
         //If wrong select
         $error = false;
@@ -264,8 +270,58 @@ class SportPlanController extends Controller
             $goals_error = true;
         }
 
+        $form123 = $this->createFormBuilder()
+            ->add('gender', EntityType::class, [
+                'placeholder' => 'Pasirinkite lytį',
+                'class' => Gender::class,
+                'query_builder' => function (EntityRepository $er) {
+                    return $er->createQueryBuilder('gender')
+                        ->OrderBy('gender.gender', 'ASC');
+                },
+                'attr'   =>  array(
+                    'class'   => 'form-control')
+            ])
+            ->add('experience', EntityType::class, [
+                'placeholder' => 'Jusu patirtis',
+                'class' => Experience::class,
+                'query_builder' => function (EntityRepository $er) {
+                    return $er->createQueryBuilder('experience')
+                        ->OrderBy('experience.experience', 'DESC');
+                },
+                'attr'   =>  array(
+                    'class'   => 'form-control')
+            ])
+            ->add('ageCategory', EntityType::class, [
+                'placeholder' => 'Amžiaus kategorija',
+                'class' => AgeCategory::class,
+                'query_builder' => function (EntityRepository $er) {
+                    return $er->createQueryBuilder('age')
+                        ->OrderBy('age.id', 'ASC');
+                },
+                'attr'   =>  array(
+                    'class'   => 'form-control')
+            ])
+            ->add('goals', EntityType::class, [
+                'placeholder' => 'Pasirinkite tikslą',
+                'class' => Goals::class,
+                'query_builder' => function (EntityRepository $er) {
+                    return $er->createQueryBuilder('goals')
+                        ->orderBy('goals.title', 'ASC');
+                },
+                'attr'   =>  array(
+                    'class'   => 'form-control')
+            ])
+            ->add('Ieškoti', SubmitType::class, [
+                'attr'   =>  array(
+                    'class'   => 'btn btn-special',
+                    'style' => 'color: black;')
+            ])
+            ->getForm();
+
         if ($error) {
-            return $this->render('AppBundle:MealPlan:index.html.twig',[
+            $form = $this->SportPlanSearchAction();
+            return $this->render('AppBundle:SportPlan:index.html.twig',[
+                'form'        => $form123->createView(),
                 "gender"      => $gender_error,
                 "experience"  => $experience_error,
                 "ageCategory" => $ageCategory_error,
