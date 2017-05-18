@@ -115,6 +115,15 @@
                             {{ form_widget(form.gender) }}
                         {% endif %}
                     </div><br>
+                    <div class="form-group" role="group">
+                        {{ form_label(form.varske) }}
+                        {{ form_errors(form.varske) }}
+                        {% if varske is defined %}
+                            <p class="errorDI">{{ form_widget(form.varske) }}</p>
+                        {% else %}
+                            {{ form_widget(form.varske) }}
+                        {% endif %}
+                    </div><br>
                         {{ form_end(form) }}
                 </div>
         </div>

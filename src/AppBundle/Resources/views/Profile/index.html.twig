@@ -75,12 +75,16 @@
     {% if error == false %}
         <div class="main">
         {% for plan in plans %}
-            <ul class="list-group">
+            <ul class="list-group" style="padding:0px;">
 
                 <div style="text-align:center;"><img src="http://virtualustreneris.projektai.nfqakademija.lt/images/logo.png"></div>
                 <h2 style="text-align: center; color: white; font-size: 40px;">Mitybos programa</h2>
                 <li class="text-center" style="color: #fff;">Jūsų išvestas rekomanduojamas kalorijų skaičius paroje: {{ result }}</li>
                 <br>
+
+                {% if multichoice is not empty %}
+                    <div class="text-center" style="color: white; background-color: #005983; padding: 20px;">{{ multichoice }}</div>
+                {% endif %}
                 <!--
             <div style="margin: 0px auto; width: 40%;">
                 <li class="list-group-item text-center">Pagal jūsų parametrus išvestą kalorijų skaičių atrinkome jums programą, kuri priklauso {{ plan.caloriesNum }} kalorijų kategorijai</li>
@@ -111,6 +115,7 @@
                     <hr/>
                     {% set ii = 0 %}
                     {% for foodDishId in plan.foodDishId|json_decode() %}
+
                         {% for dish in dishes %}
                             {% if foodDishId == dish.id %}
                                 {% set ii = ii + 1 %}
@@ -124,47 +129,87 @@
                                 <div class="col-sm-2" style="background-color: white; padding-bottom: 5px;">{{ dish.kcalNum }}</div>
                                 </p>
 
+
                                     {% if dish.foodCategories == 'Pieno produktai' %}
-                                        {% if varskesmsg is not empty %}
+                                        {% if curdmsg is not empty %}
                                             {% for alternative in alternatives %}
                                                 {% if alternative.dishId == dish.id %}
                                                     <p style="font-size: 14px;">
                                                     <hr/>
-                                                        <div class="col-sm-2" style="background-color: darkslateblue; padding-bottom: 5px; color: white;">ALTERNATYVA!</div>
-                                                        <div class="col-sm-4" style="background-color: darkslateblue; padding-bottom: 5px; color: white;">{{ alternative.description }}</div>
-                                                        <div class="col-sm-1" style="background-color: darkslateblue; padding-bottom: 5px; color: white;">{{ alternative.proteinNum }}</div>
-                                                        <div class="col-sm-1" style="background-color: darkslateblue; padding-bottom: 5px; color: white;">{{ alternative.carbohydrateNum }}</div>
-                                                        <div class="col-sm-1" style="background-color: darkslateblue; padding-bottom: 5px; color: white;">{{ alternative.fatNum }}</div>
-                                                        <div class="col-sm-1" style="background-color: darkslateblue; padding-bottom: 5px; color: white;">{{ alternative.sugarNum }}</div>
-                                                        <div class="col-sm-2" style="background-color: darkslateblue; padding-bottom: 5px; color: white;">{{ alternative.kcalNum }}</div>
+                                                        <div class="col-sm-2" style="background-color: #005983; padding-bottom: 5px; color: white;">ALTERNATYVA!</div>
+                                                        <div class="col-sm-4" style="background-color: #005983; padding-bottom: 5px; color: white;">{{ alternative.description }}</div>
+                                                        <div class="col-sm-1" style="background-color: #005983; padding-bottom: 5px; color: white;">{{ alternative.proteinNum }}</div>
+                                                        <div class="col-sm-1" style="background-color: #005983; padding-bottom: 5px; color: white;">{{ alternative.carbohydrateNum }}</div>
+                                                        <div class="col-sm-1" style="background-color: #005983; padding-bottom: 5px; color: white;">{{ alternative.fatNum }}</div>
+                                                        <div class="col-sm-1" style="background-color: #005983; padding-bottom: 5px; color: white;">{{ alternative.sugarNum }}</div>
+                                                        <div class="col-sm-2" style="background-color: #005983; padding-bottom: 5px; color: white;">{{ alternative.kcalNum }}</div>
                                                     </p>
 
                                                 {% endif %}
                                             {% endfor %}
                                         {% endif %}
+
                                     {% endif %}
 
                                     {% if dish.foodCategories == 'Mesa' %}
-                                        {% if mesosmsg is not empty %}
+                                        {% if meatmsg is not empty %}
                                             {% for alternative in alternatives %}
                                                 {% if alternative.dishId == dish.id %}
                                                     <p style="font-size: 14px;">
                                                     <hr/>
-                                                    <div class="col-sm-2" style="background-color: darkslateblue; padding-bottom: 5px; color: white;">ALTERNATYVA!</div>
-                                                    <div class="col-sm-4" style="background-color: darkslateblue; padding-bottom: 5px; color: white;">{{ alternative.description }}</div>
-                                                    <div class="col-sm-1" style="background-color: darkslateblue; padding-bottom: 5px; color: white;">{{ alternative.proteinNum }}</div>
-                                                    <div class="col-sm-1" style="background-color: darkslateblue; padding-bottom: 5px; color: white;">{{ alternative.carbohydrateNum }}</div>
-                                                    <div class="col-sm-1" style="background-color: darkslateblue; padding-bottom: 5px; color: white;">{{ alternative.fatNum }}</div>
-                                                    <div class="col-sm-1" style="background-color: darkslateblue; padding-bottom: 5px; color: white;">{{ alternative.sugarNum }}</div>
-                                                    <div class="col-sm-2" style="background-color: darkslateblue; padding-bottom: 5px; color: white;">{{ alternative.kcalNum }}</div>
+                                                    <div class="col-sm-2" style="background-color: #005983; padding-bottom: 5px; color: white;">ALTERNATYVA!</div>
+                                                    <div class="col-sm-4" style="background-color: #005983; padding-bottom: 5px; color: white;">{{ alternative.description }}</div>
+                                                    <div class="col-sm-1" style="background-color: #005983; padding-bottom: 5px; color: white;">{{ alternative.proteinNum }}</div>
+                                                    <div class="col-sm-1" style="background-color: #005983; padding-bottom: 5px; color: white;">{{ alternative.carbohydrateNum }}</div>
+                                                    <div class="col-sm-1" style="background-color: #005983; padding-bottom: 5px; color: white;">{{ alternative.fatNum }}</div>
+                                                    <div class="col-sm-1" style="background-color: #005983; padding-bottom: 5px; color: white;">{{ alternative.sugarNum }}</div>
+                                                    <div class="col-sm-2" style="background-color: #005983; padding-bottom: 5px; color: white;">{{ alternative.kcalNum }}</div>
                                                     </p>
                                                 {% endif %}
                                             {% endfor %}
                                         {% endif %}
                                     {% endif %}
 
+                                    {% if dish.foodCategories == 'Grudines kulturos' %}
+                                        {% if grudaimsg is not empty %}
+                                        {% for alternative in alternatives %}
+                                            {% if alternative.dishId == dish.id %}
+                                                <p style="font-size: 14px;">
+                                                <hr/>
+                                                <div class="col-sm-2" style="background-color: #005983; padding-bottom: 5px; color: white;">ALTERNATYVA!</div>
+                                                <div class="col-sm-4" style="background-color: #005983; padding-bottom: 5px; color: white;">{{ alternative.description }}</div>
+                                                <div class="col-sm-1" style="background-color: #005983; padding-bottom: 5px; color: white;">{{ alternative.proteinNum }}</div>
+                                                <div class="col-sm-1" style="background-color: #005983; padding-bottom: 5px; color: white;">{{ alternative.carbohydrateNum }}</div>
+                                                <div class="col-sm-1" style="background-color: #005983; padding-bottom: 5px; color: white;">{{ alternative.fatNum }}</div>
+                                                <div class="col-sm-1" style="background-color: #005983; padding-bottom: 5px; color: white;">{{ alternative.sugarNum }}</div>
+                                                <div class="col-sm-2" style="background-color: #005983; padding-bottom: 5px; color: white;">{{ alternative.kcalNum }}</div>
+                                                </p>
+                                            {% endif %}
+                                        {% endfor %}
+                                            {% endif %}
+                                    {% endif %}
 
-                            {% endif %}
+                                    {% if dish.foodCategories == 'Zuvis' %}
+                                        {% if fishmsg is not empty %}
+                                        {% for alternative in alternatives %}
+                                            {% if alternative.dishId == dish.id %}
+                                                <p style="font-size: 14px;">
+                                                <hr/>
+                                                <div class="col-sm-2" style="background-color: #005983; padding-bottom: 5px; color: white;">ALTERNATYVA!</div>
+                                                <div class="col-sm-4" style="background-color: #005983; padding-bottom: 5px; color: white;">{{ alternative.description }}</div>
+                                                <div class="col-sm-1" style="background-color: #005983; padding-bottom: 5px; color: white;">{{ alternative.proteinNum }}</div>
+                                                <div class="col-sm-1" style="background-color: #005983; padding-bottom: 5px; color: white;">{{ alternative.carbohydrateNum }}</div>
+                                                <div class="col-sm-1" style="background-color: #005983; padding-bottom: 5px; color: white;">{{ alternative.fatNum }}</div>
+                                                <div class="col-sm-1" style="background-color: #005983; padding-bottom: 5px; color: white;">{{ alternative.sugarNum }}</div>
+                                                <div class="col-sm-2" style="background-color: #005983; padding-bottom: 5px; color: white;">{{ alternative.kcalNum }}</div>
+                                                </p>
+                                            {% endif %}
+                                        {% endfor %}
+                                            {% endif %}
+                                    {% endif %}
+
+                                {% endif %}
+
                         {% endfor %}
                         <br/>
                         <hr/>
