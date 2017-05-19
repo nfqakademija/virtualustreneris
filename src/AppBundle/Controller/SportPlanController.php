@@ -28,6 +28,30 @@ class SportPlanController extends Controller
         return $this->render('AppBundle:SportPlan:index.html.twig');
     }
 
+    /**
+     * @Route("/profile/back-plan", name="profile_back_plan")
+     */
+
+    public function BackPlanListAction()
+    {
+        $em = $this->getDoctrine()->getManager();
+        $repository = $em->getRepository('AppBundle:Programs');
+        $find = $repository->findBackPlan();
+
+        $exerciseRepo = $em->getRepository('AppBundle:Exercises');
+        $exercises = $exerciseRepo->findAll();
+
+
+        return $this->render(
+            'AppBundle:Profile:sport-plan.html.twig',
+            [
+                'plans' => $find,
+                'exercises' => $exercises
+            ]
+        );
+
+    }
+
 
     /**
      * @Route("/profile/sport-plan", name="profile_sport_plan")
