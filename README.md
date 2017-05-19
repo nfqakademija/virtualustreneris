@@ -1,6 +1,7 @@
 
 NFQ Akademijos projektas - [virtualus treneris](http://virtualustreneris.projektai.nfqakademija.lt/)
 ============
+[![Build Status](https://travis-ci.org/nfqakademija/virtualustreneris.svg?branch=master)](https://travis-ci.org/nfqakademija/virtualustreneris)
 
 ### Nariai:
  - Aidas Eglinskas
