@@ -131,7 +131,6 @@ class MealPlanController extends Controller
 
         $em = $this->getDoctrine()->getManager();
         $repository = $em->getRepository('AppBundle:DishLists');
-        $find = $repository->findPlanByCalories($rangeStart, $rangeEnd, $goals);
 
         $dishRepo = $em->getRepository('AppBundle:FoodDishes');
         $dishes = $dishRepo->findAll();
@@ -140,7 +139,13 @@ class MealPlanController extends Controller
         $alternatives = $alternativeRepo->findAll();
 
         if ($session->has('gender')) {
-            if (!$find) {
+            if ($result > 2600 AND $goals == '2') {
+                $find = $repository->findPlanByMax();
+            }else {
+                $find = $repository->findPlanByCalories($rangeStart, $rangeEnd, $goals);
+            }
+
+            if(!$find) {
                 $this->addFlash(
                     'message',
                     'Atsiprašome, kol kas pagal jūsų kriterijus dar nėra įkeltos mitybos programos.'
