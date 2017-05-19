@@ -68,4 +68,3 @@ class AgeCategory
         return $this->getTitle();
     }
 }
-

@@ -19,9 +19,11 @@ class AdminController extends Controller
         $stmt->execute();
         $info = $stmt->fetchAll();
 
-        return $this->render('AppBundle:Admin:index.html.twig',[
+        return $this->render(
+            'AppBundle:Admin:index.html.twig',
+            [
             "info" => $info
-        ]);
+            ]
+        );
     }
-
 }

@@ -106,7 +106,6 @@ class Programs
     public function setExerciseList($exerciseList)
     {
         $this->exerciseList = $exerciseList;
-
     }
 
     /**
@@ -243,12 +242,4 @@ class Programs
     {
         return $this->ageCategory;
     }
-
-
-
-
-
-
-
 }
-

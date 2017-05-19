@@ -23,5 +23,4 @@ class ProfileController extends Controller
     {
         return $this->render('AppBundle:Profile:main.html.twig');
     }
-
 }

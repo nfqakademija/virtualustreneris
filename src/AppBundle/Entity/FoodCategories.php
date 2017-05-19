@@ -5,7 +5,6 @@ namespace AppBundle\Entity;
 use Doctrine\ORM\Mapping as ORM;
 use AppBundle\Entity\FoodDishes;
 
-
 /**
  * FoodCategories
  *
@@ -50,6 +49,4 @@ class FoodCategories
     {
         return $this->getTitle();
     }
-
 }
-

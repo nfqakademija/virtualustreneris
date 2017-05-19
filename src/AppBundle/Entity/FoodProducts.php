@@ -34,7 +34,4 @@ class FoodProducts
      * @ORM\GeneratedValue(strategy="IDENTITY")
      */
     private $id;
-
-
 }
-

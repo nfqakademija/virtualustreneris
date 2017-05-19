@@ -68,4 +68,3 @@ class Gender
         return $this->getGender();
     }
 }
-

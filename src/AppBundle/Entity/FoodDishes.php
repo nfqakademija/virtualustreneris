@@ -148,4 +148,3 @@ class FoodDishes
         $this->kcalNum = $kcalNum;
     }
 }
-

@@ -17,48 +17,54 @@ class DishesController extends Controller
     /**
      * @Route("/admin/dishes/create", name="dishes_create")
      */
-    public function DishCreateAction(Request $request)
+    public function dishCreateAction(Request $request)
     {
 
-    	$form = $this->createForm(DishesType::class);
+        $form = $this->createForm(DishesType::class);
 
-    	$form->handleRequest($request);
+        $form->handleRequest($request);
 
-    	if ($form->isSubmitted() && $form->isValid()) {
-    		$result = $form->getData();
+        if ($form->isSubmitted() && $form->isValid()) {
+            $result = $form->getData();
             $em = $this->getDoctrine()->getManager();
             $em->persist($result);
             $em->flush();
 
             return $this->redirectToRoute('dishes_list');
-    	}
+        }
 
-    	return $this->render('AppBundle:Admin:dish-create.html.twig', [
-    		'form' => $form->createView()
-    		]);
+        return $this->render(
+            'AppBundle:Admin:dish-create.html.twig',
+            [
+            'form' => $form->createView()
+            ]
+        );
     }
 
 
     /**
      * @Route("/admin/dishes/list", name="dishes_list")
      */
-    public function DishListAction()
+    public function dishListAction()
     {
 
         $em = $this->getDoctrine()->getManager();
         $repository = $em->getRepository('AppBundle:FoodDishes');
         $dishes = $repository->findAll();
 
-        return $this->render('AppBundle:Admin:dish-list.html.twig', [
+        return $this->render(
+            'AppBundle:Admin:dish-list.html.twig',
+            [
             'dishes' => $dishes
-            ]);
+            ]
+        );
     }
 
 
     /**
      * @Route("/admin/dishes/edit/{id}", name="dishes_edit")
      */
-    public function DishEditAction($id, Request $request)
+    public function dishEditAction($id, Request $request)
     {
 
         $em = $this->getDoctrine()->getManager();
@@ -79,17 +85,20 @@ class DishesController extends Controller
             return $this->redirectToRoute('dishes_list');
         }
 
-        return $this->render('AppBundle:Admin:dish-edit.html.twig', [
+        return $this->render(
+            'AppBundle:Admin:dish-edit.html.twig',
+            [
                 'dishes' => $dishes,
                 'form' => $form->createView()
-            ]);
-        }
+            ]
+        );
+    }
 
      /**
      * @Route("/admin/dishes/delete/{id}", name="dishes_delete")
      */
-     public function DishDeleteAction($id)
-     {
+    public function dishDeleteAction($id)
+    {
 
         $em = $this->getDoctrine()->getManager();
         $repository = $em->getRepository('AppBundle:FoodDishes');
@@ -99,6 +108,5 @@ class DishesController extends Controller
         $em->flush();
 
         return $this->redirectToRoute('dishes_list');
-     }
-
+    }
 }

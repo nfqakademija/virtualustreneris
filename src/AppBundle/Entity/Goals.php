@@ -49,7 +49,4 @@ class Goals
     {
         return $this->getTitle();
     }
-
-
 }
-

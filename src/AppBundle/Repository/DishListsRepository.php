@@ -36,5 +36,4 @@ class DishListsRepository extends \Doctrine\ORM\EntityRepository
             ->getQuery()
             ->getResult();
     }
-
 }

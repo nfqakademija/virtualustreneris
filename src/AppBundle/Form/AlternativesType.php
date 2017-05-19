@@ -11,7 +11,6 @@ use Doctrine\ORM\EntityRepository;
 use AppBundle\Entity\FoodDishes;
 use AppBundle\Entity\FoodCategories;
 
-
 class AlternativesType extends AbstractType
 {
     /**
@@ -20,41 +19,69 @@ class AlternativesType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('dishId', null, [
+            ->add(
+                'dishId',
+                null,
+                [
                 'attr'   =>  array(
                     'class'   => 'form-control'),
                 'label' => 'Patiekalo ID, kurį keisite'
-            ])
-        ->add('description', null, [
-            'attr'   =>  array(
+                ]
+            )
+            ->add(
+                'description',
+                null,
+                [
+                'attr'   =>  array(
                 'class'   => 'form-control'),
-            'label' => 'Patiekalo aprašymas'
-        ])
-        ->add('proteinNum', null, [
-            'attr'   =>  array(
+                'label' => 'Patiekalo aprašymas'
+                ]
+            )
+            ->add(
+                'proteinNum',
+                null,
+                [
+                'attr'   =>  array(
                 'class'   => 'form-control'),
-            'label' => 'Baltymai'
-        ])
-        ->add('carbohydrateNum', null, [
-            'attr'   =>  array(
+                'label' => 'Baltymai'
+                ]
+            )
+            ->add(
+                'carbohydrateNum',
+                null,
+                [
+                'attr'   =>  array(
                 'class'   => 'form-control'),
-            'label' => 'Angliavandeniai'
-        ])
-        ->add('fatNum', null, [
-            'attr'   =>  array(
+                'label' => 'Angliavandeniai'
+                ]
+            )
+            ->add(
+                'fatNum',
+                null,
+                [
+                'attr'   =>  array(
                 'class'   => 'form-control'),
-            'label' => 'Riebalai'
-        ])
-        ->add('sugarNum', null, [
-            'attr'   =>  array(
+                'label' => 'Riebalai'
+                ]
+            )
+            ->add(
+                'sugarNum',
+                null,
+                [
+                'attr'   =>  array(
                 'class'   => 'form-control'),
-            'label' => 'Cukrus'
-        ])
-            ->add('kcalNum', null, [
+                'label' => 'Cukrus'
+                ]
+            )
+            ->add(
+                'kcalNum',
+                null,
+                [
                 'attr'   =>  array(
                     'class'   => 'form-control'),
                 'label' => 'Kalorijos'
-            ]);
+                ]
+            );
     }
     
     
@@ -63,9 +90,10 @@ class AlternativesType extends AbstractType
      */
     public function configureOptions(OptionsResolver $resolver)
     {
-        $resolver->setDefaults(array(
+        $resolver->setDefaults(
+            array(
             'data_class' => 'AppBundle\Entity\Alternatives'
-        ));
+            )
+        );
     }
-
 }

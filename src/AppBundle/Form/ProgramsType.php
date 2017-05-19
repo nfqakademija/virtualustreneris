@@ -13,7 +13,6 @@ use AppBundle\Entity\Experience;
 use AppBundle\Entity\Goals;
 use AppBundle\Entity\AgeCategory;
 
-
 class ProgramsType extends AbstractType
 {
     /**
@@ -22,27 +21,46 @@ class ProgramsType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('exerciseList', null, [
+            ->add(
+                'exerciseList',
+                null,
+                [
                 'attr'   =>  array(
                     'class'   => 'form-control'),
                 'label' => 'Pirmos dienos pratimų ID'
-            ])
-            ->add('exerciseListTwo', null, [
+                ]
+            )
+            ->add(
+                'exerciseListTwo',
+                null,
+                [
                 'attr'   =>  array(
                     'class'   => 'form-control'),
                 'label' => 'Antros dienos pratimų ID'
-            ])
-            ->add('exerciseListThree', null, [
+                ]
+            )
+            ->add(
+                'exerciseListThree',
+                null,
+                [
                 'attr'   =>  array(
                     'class'   => 'form-control'),
                 'label' => 'Trečios dienos pratimų ID'
-            ])
-            ->add('exerciseListFour', null, [
+                ]
+            )
+            ->add(
+                'exerciseListFour',
+                null,
+                [
                 'attr'   =>  array(
                     'class'   => 'form-control'),
                 'label' => 'Ketvirtos dienos pratimų ID'
-            ])
-            ->add('gender', EntityType::class, [
+                ]
+            )
+            ->add(
+                'gender',
+                EntityType::class,
+                [
                 'placeholder' => 'Parinkite lytį',
                 'class' => Gender::class,
                 'query_builder' => function (EntityRepository $er) {
@@ -52,8 +70,12 @@ class ProgramsType extends AbstractType
                 'attr'   =>  array(
                     'class'   => 'form-control'),
                 'label' => 'Lytis'
-            ])
-            ->add('experience', EntityType::class, [
+                ]
+            )
+            ->add(
+                'experience',
+                EntityType::class,
+                [
                 'placeholder' => 'Parinkite pažangumą',
                 'class' => Experience::class,
                 'query_builder' => function (EntityRepository $er) {
@@ -63,13 +85,21 @@ class ProgramsType extends AbstractType
                 'attr'   =>  array(
                     'class'   => 'form-control'),
                 'label' => 'Pažangumas'
-            ])
-            ->add('description', null, [
+                ]
+            )
+            ->add(
+                'description',
+                null,
+                [
                 'attr'   =>  array(
                     'class'   => 'form-control'),
                 'label' => 'Aprašymas'
-            ])
-            ->add('ageCategory', EntityType::class, [
+                ]
+            )
+            ->add(
+                'ageCategory',
+                EntityType::class,
+                [
                 'placeholder' => 'Parinkite amžiaus kategoriją',
                 'class' => AgeCategory::class,
                 'query_builder' => function (EntityRepository $er) {
@@ -79,8 +109,12 @@ class ProgramsType extends AbstractType
                 'attr'   =>  array(
                     'class'   => 'form-control'),
                 'label' => 'Amžiaus kategorija'
-            ])
-            ->add('goals', EntityType::class, [
+                ]
+            )
+            ->add(
+                'goals',
+                EntityType::class,
+                [
                 'placeholder' => 'Parinkite tikslą',
                 'class' => Goals::class,
                 'query_builder' => function (EntityRepository $er) {
@@ -90,7 +124,8 @@ class ProgramsType extends AbstractType
                 'attr' => array(
                     'class' => 'form-control'),
                 'label' => 'Tikslas'
-            ]);
+                ]
+            );
     }
 
     
@@ -100,9 +135,10 @@ class ProgramsType extends AbstractType
      */
     public function configureOptions(OptionsResolver $resolver)
     {
-        $resolver->setDefaults(array(
+        $resolver->setDefaults(
+            array(
             'data_class' => 'AppBundle\Entity\Programs'
-        ));
+            )
+        );
     }
-
 }

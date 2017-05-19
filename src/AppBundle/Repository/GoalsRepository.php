@@ -12,11 +12,9 @@ use AppBundle\Entity\Goals;
  */
 class GoalsRepository extends \Doctrine\ORM\EntityRepository
 {
-
-	 public function getGoals()
+    public function getGoals()
     {
         return $this->createQueryBuilder('goals')
-        ->orderBy('goals.title', 'ASC');
+            ->orderBy('goals.title', 'ASC');
     }
-
 }

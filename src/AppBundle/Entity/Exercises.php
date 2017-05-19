@@ -125,4 +125,3 @@ class Exercises
         return $this->repeats;
     }
 }
-

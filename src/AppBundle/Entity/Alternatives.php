@@ -150,4 +150,3 @@ class Alternatives
         $this->kcalNum = $kcalNum;
     }
 }
-

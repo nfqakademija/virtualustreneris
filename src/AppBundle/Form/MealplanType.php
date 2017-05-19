@@ -11,7 +11,6 @@ use Doctrine\ORM\EntityRepository;
 use AppBundle\Entity\DishLists;
 use AppBundle\Entity\Goals;
 
-
 class MealplanType extends AbstractType
 {
     /**
@@ -20,27 +19,39 @@ class MealplanType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-        ->add('caloriesNum', null, [
-            'attr'   =>  array(
+            ->add(
+                'caloriesNum',
+                null,
+                [
+                'attr'   =>  array(
                 'class'   => 'form-control'),
-            'label' => 'Kalorijų skaičius'
-        ])
-        ->add('foodDishId',null, [
-        'attr'   =>  array(
-            'class'   => 'form-control'),
-            'label' => 'Pateikalų ID'
-        ])
-        ->add('goals', EntityType::class, [
-            'placeholder' => 'Parinkite tikslą',
-            'class' => Goals::class,
-            'query_builder' => function (EntityRepository $er) {
-                return $er->createQueryBuilder('goal')
-                ->OrderBy('goal.title', 'ASC');
-            },
-            'attr'   =>  array(
+                'label' => 'Kalorijų skaičius'
+                ]
+            )
+            ->add(
+                'foodDishId',
+                null,
+                [
+                'attr'   =>  array(
                 'class'   => 'form-control'),
-            'label' => 'Tikslas'
-        ]);
+                'label' => 'Pateikalų ID'
+                ]
+            )
+            ->add(
+                'goals',
+                EntityType::class,
+                [
+                'placeholder' => 'Parinkite tikslą',
+                'class' => Goals::class,
+                'query_builder' => function (EntityRepository $er) {
+                    return $er->createQueryBuilder('goal')
+                        ->OrderBy('goal.title', 'ASC');
+                },
+                'attr'   =>  array(
+                'class'   => 'form-control'),
+                'label' => 'Tikslas'
+                ]
+            );
     }
     
     
@@ -49,9 +60,10 @@ class MealplanType extends AbstractType
      */
     public function configureOptions(OptionsResolver $resolver)
     {
-        $resolver->setDefaults(array(
+        $resolver->setDefaults(
+            array(
             'data_class' => 'AppBundle\Entity\DishLists'
-        ));
+            )
+        );
     }
-
 }

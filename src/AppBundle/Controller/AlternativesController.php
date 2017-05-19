@@ -16,48 +16,54 @@ class AlternativesController extends Controller
     /**
      * @Route("/admin/alternatives/create", name="alternatives_create")
      */
-    public function AlternativeCreateAction(Request $request)
+    public function alternativeCreateAction(Request $request)
     {
 
-    	$form = $this->createForm(AlternativesType::class);
+        $form = $this->createForm(AlternativesType::class);
 
-    	$form->handleRequest($request);
+        $form->handleRequest($request);
 
-    	if ($form->isSubmitted() && $form->isValid()) {
-    		$result = $form->getData();
+        if ($form->isSubmitted() && $form->isValid()) {
+            $result = $form->getData();
             $em = $this->getDoctrine()->getManager();
             $em->persist($result);
             $em->flush();
 
             return $this->redirectToRoute('alternatives_list');
-    	}
+        }
 
-    	return $this->render('AppBundle:Admin:alternative-create.html.twig', [
-    		'form' => $form->createView()
-    		]);
+        return $this->render(
+            'AppBundle:Admin:alternative-create.html.twig',
+            [
+            'form' => $form->createView()
+            ]
+        );
     }
 
 
     /**
      * @Route("/admin/alternatives/list", name="alternatives_list")
      */
-    public function DishListAction()
+    public function dishListAction()
     {
 
         $em = $this->getDoctrine()->getManager();
         $repository = $em->getRepository('AppBundle:Alternatives');
         $alternatives = $repository->findAll();
 
-        return $this->render('AppBundle:Admin:alternative-list.html.twig', [
+        return $this->render(
+            'AppBundle:Admin:alternative-list.html.twig',
+            [
             'alternatives' => $alternatives
-            ]);
+            ]
+        );
     }
 
 
     /**
      * @Route("/admin/alternatives/edit/{id}", name="alternatives_edit")
      */
-    public function AlternativeEditAction($id, Request $request)
+    public function alternativeEditAction($id, Request $request)
     {
 
         $em = $this->getDoctrine()->getManager();
@@ -78,17 +84,20 @@ class AlternativesController extends Controller
             return $this->redirectToRoute('alternatives_list');
         }
 
-        return $this->render('AppBundle:Admin:alternative-edit.html.twig', [
+        return $this->render(
+            'AppBundle:Admin:alternative-edit.html.twig',
+            [
                 'alternatives' => $alternatives,
                 'form' => $form->createView()
-            ]);
-        }
+            ]
+        );
+    }
 
      /**
      * @Route("/admin/alternatives/delete/{id}", name="alternatives_delete")
      */
-     public function AlternativeDeleteAction($id)
-     {
+    public function alternativeDeleteAction($id)
+    {
 
         $em = $this->getDoctrine()->getManager();
         $repository = $em->getRepository('AppBundle:Alternatives');
@@ -98,6 +107,5 @@ class AlternativesController extends Controller
         $em->flush();
 
         return $this->redirectToRoute('alternatives_list');
-     }
-
+    }
 }

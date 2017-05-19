@@ -13,21 +13,33 @@ class ExercisesType extends AbstractType
      */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        $builder->add('title', null, [
+        $builder->add(
+            'title',
+            null,
+            [
             'attr'   =>  array(
                 'class'   => 'form-control'),
             'label' => 'Pavadinimas'
-        ])
-            ->add('description', null, [
+            ]
+        )
+            ->add(
+                'description',
+                null,
+                [
                 'attr'   =>  array(
                     'class'   => 'form-control'),
                 'label' => 'Aprašymas'
-            ])
-            ->add('repeats', null, [
+                ]
+            )
+            ->add(
+                'repeats',
+                null,
+                [
                 'attr'   =>  array(
                     'class'   => 'form-control'),
                 'label' => 'Pakartojimai'
-            ]);
+                ]
+            );
     }
     
     /**
@@ -35,9 +47,11 @@ class ExercisesType extends AbstractType
      */
     public function configureOptions(OptionsResolver $resolver)
     {
-        $resolver->setDefaults(array(
+        $resolver->setDefaults(
+            array(
             'data_class' => 'AppBundle\Entity\Exercises'
-        ));
+            )
+        );
     }
 
     /**
@@ -47,6 +61,4 @@ class ExercisesType extends AbstractType
     {
         return 'appbundle_exercises';
     }
-
-
 }

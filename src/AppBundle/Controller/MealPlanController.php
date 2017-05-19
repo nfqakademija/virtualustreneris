@@ -77,55 +77,51 @@ class MealPlanController extends Controller
             $result += 200;
         }
 
-        if ($mesa == '1' AND $varske == '1' AND $zuvis == '1' AND $grudai == '1') {
+        if ($mesa == '1' and $varske == '1' and $zuvis == '1' and $grudai == '1') {
             $multiChoice = 'Kadangi nevalgote visu produktu...';
-        } elseif ($mesa == '1' AND $varske == '1' AND $zuvis == '1') {
+        } elseif ($mesa == '1' and $varske == '1' and $zuvis == '1') {
             $multiChoice = 'Kadangi nevalgote visko, isskyrus grudus...';
-        } elseif ($mesa == '1' AND $varske == '1' AND $grudai == '1') {
+        } elseif ($mesa == '1' and $varske == '1' and $grudai == '1') {
             $multiChoice = 'Kadangi nevalgote visko, isskyrus zuvi...';
-        } elseif ($mesa == '1' AND $zuvis == '1' AND $grudai == '1') {
+        } elseif ($mesa == '1' and $zuvis == '1' and $grudai == '1') {
             $multiChoice = 'Nevalgote visko, isskyrus varskes..';
-        } elseif ($zuvis == '1' AND $grudai == '1' AND $varske == '1') {
+        } elseif ($zuvis == '1' and $grudai == '1' and $varske == '1') {
             $multiChoice = 'Kadangi nevalgote visko, isskyrus mesos...';
-        }elseif($mesa == '1' AND $zuvis == '1') {
+        } elseif ($mesa == '1' and $zuvis == '1') {
             $multiChoice = 'Kadangi nemegstate mesos ir zuvies, ...';
-        }elseif ($mesa == '1' AND $varske == '1'){
+        } elseif ($mesa == '1' and $varske == '1') {
             $multiChoice = 'Kadangi nevalgote mesos ir varskes, ...';
-        }elseif($mesa == '1' AND $zuvis == '1') {
+        } elseif ($mesa == '1' and $zuvis == '1') {
             $multiChoice = 'Kadangi nevalgote mesos ir zuvies, ...';
-        }elseif($varske == '1' AND $grudai == '1') {
+        } elseif ($varske == '1' and $grudai == '1') {
             $multiChoice = 'Kadangi nevalgote varskes ir grudu, ...';
-        }
-
-
-
-        elseif($mesa == '1' AND $grudai == '1') {
+        } elseif ($mesa == '1' and $grudai == '1') {
             $multiChoice = 'Kadangi nevalgote mesos ir grudines kulturos produktu..';
-        }else{
+        } else {
             $multiChoice = '';
         }
 
         if ($mesa == '1') {
             $meatmsg = '1';
-        }else{
+        } else {
             $meatmsg = '';
         }
 
-        if($varske == '1') {
+        if ($varske == '1') {
             $curdmsg = '1';
-        }else{
+        } else {
             $curdmsg = '';
         }
 
-        if($grudai == '1') {
+        if ($grudai == '1') {
             $grudaimsg = '1';
-        }else{
+        } else {
             $grudaimsg = '';
         }
 
-        if($zuvis == '1') {
+        if ($zuvis == '1') {
             $fishmsg = '1';
-        }else{
+        } else {
             $fishmsg = '';
         }
 
@@ -144,15 +140,20 @@ class MealPlanController extends Controller
         $alternatives = $alternativeRepo->findAll();
 
         if ($session->has('gender')) {
-            if(!$find) {
-                $this->addFlash('message', 'Atsiprašome, kol kas pagal jūsų kriterijus dar nėra įkeltos mitybos programos.');
+            if (!$find) {
+                $this->addFlash(
+                    'message',
+                    'Atsiprašome, kol kas pagal jūsų kriterijus dar nėra įkeltos mitybos programos.'
+                );
                 $session->remove('gender');
             }
-        }else{
+        } else {
             $this->addFlash('session', 'Jūs dar neesate išsirinkę mitybos programos.');
         }
 
-        return $this->render('AppBundle:Profile:index.html.twig', [
+        return $this->render(
+            'AppBundle:Profile:index.html.twig',
+            [
             'plans' => $find,
             'result' => round($result),
             'dishes' => $dishes,
@@ -162,38 +163,42 @@ class MealPlanController extends Controller
             'grudaimsg' => $grudaimsg,
             'fishmsg' => $fishmsg,
             'multichoice' => $multiChoice
-        ]);
+            ]
+        );
     }
 
 
     /**
      * @Route("/admin/meal-plan/create", name="meal_plan_create")
      */
-    public function MealPlanCreateAction(Request $request)
+    public function mealPlanCreateAction(Request $request)
     {
 
-    	$form = $this->createForm(MealplanType::class);
+        $form = $this->createForm(MealplanType::class);
 
-    	$form->handleRequest($request);
+        $form->handleRequest($request);
 
-    	if ($form->isSubmitted() && $form->isValid()) {
-    		$result = $form->getData();
+        if ($form->isSubmitted() && $form->isValid()) {
+            $result = $form->getData();
             $em = $this->getDoctrine()->getManager();
             $em->persist($result);
             $em->flush();
 
             return $this->redirectToRoute('meal_plan_list');
-    	}
+        }
 
-    	return $this->render('AppBundle:Admin:meal-plan-create.html.twig', [
-    		'form' => $form->createView()
-    		]);
+        return $this->render(
+            'AppBundle:Admin:meal-plan-create.html.twig',
+            [
+            'form' => $form->createView()
+            ]
+        );
     }
 
     /**
      * @Route("/admin/meal-plan/list", name="meal_plan_list")
      */
-    public function MealPlanListAction(Request $request)
+    public function mealPlanListAction(Request $request)
     {
         $em = $this->getDoctrine()->getManager();
         $repository = $em->getRepository('AppBundle:DishLists');
@@ -204,16 +209,19 @@ class MealPlanController extends Controller
         $dishes = $dishRepo->findAll();
 
 
-        return $this->render('AppBundle:Admin:meal-plan-list.html.twig', [
+        return $this->render(
+            'AppBundle:Admin:meal-plan-list.html.twig',
+            [
             'mealPlans' => $mealPlans,
             'dishes' => $dishes
-        ]);
+            ]
+        );
     }
 
     /**
      * @Route("/admin/meal-plan/edit/{id}", name="meal_plan_edit")
      */
-    public function MealPlanEditAction($id, Request $request)
+    public function mealPlanEditAction($id, Request $request)
     {
 
         $em = $this->getDoctrine()->getManager();
@@ -234,17 +242,20 @@ class MealPlanController extends Controller
             return $this->redirectToRoute('meal_plan_list');
         }
 
-        return $this->render('AppBundle:Admin:meal-plan-edit.html.twig', [
+        return $this->render(
+            'AppBundle:Admin:meal-plan-edit.html.twig',
+            [
                 'mealPlan' => $mealPlan,
                 'form' => $form->createView()
-            ]);
-        }
+            ]
+        );
+    }
 
         /**
      * @Route("/admin/meal-plan/delete/{id}", name="meal_plan_delete")
      */
-     public function MealPlanDeleteAction($id)
-     {
+    public function mealPlanDeleteAction($id)
+    {
 
         $em = $this->getDoctrine()->getManager();
         $repository = $em->getRepository('AppBundle:DishLists');
@@ -254,17 +265,20 @@ class MealPlanController extends Controller
         $em->flush();
 
         return $this->redirectToRoute('meal_plan_list');
-     }
+    }
 
 
     /**
      * @Route("/meal-plan/search", name="meal_plan_search")
      */
-    public function MealPlanSearchAction()
+    public function mealPlanSearchAction()
     {
 
         $form = $this->createFormBuilder()
-            ->add('gender', EntityType::class, [
+            ->add(
+                'gender',
+                EntityType::class,
+                [
                 'placeholder' => 'Pasirinkite lytį',
                 'class' => Gender::class,
                 'query_builder' => function (EntityRepository $er) {
@@ -274,32 +288,48 @@ class MealPlanController extends Controller
                 'attr'   =>  array(
                     'class'   => 'form-control'
                     )
-            ])
-            ->add('height', IntegerType::class, [
+                ]
+            )
+            ->add(
+                'height',
+                IntegerType::class,
+                [
                 'attr'   =>  array(
                     'class'   => 'form-control',
                     'placeholder' => 'Įveskite savo ūgį (cm)',
                     'min' => '30',
                     'max' => '220'
                 )
-            ])
-            ->add('weight', IntegerType::class, [
+                ]
+            )
+            ->add(
+                'weight',
+                IntegerType::class,
+                [
                 'attr'   =>  array(
                     'class'   => 'form-control',
                     'placeholder' => 'Įveskite savo svorį (kg)',
                     'min' => '30',
                     'max' => '150'
                 )
-            ])
-            ->add('age', IntegerType::class, [
+                ]
+            )
+            ->add(
+                'age',
+                IntegerType::class,
+                [
                 'attr'   =>  array(
                     'class'   => 'form-control',
                     'placeholder' => 'Jūsų amžius',
                     'min' => '4',
                     'max' => '80'
                 )
-            ])
-            ->add('goals', EntityType::class, [
+                ]
+            )
+            ->add(
+                'goals',
+                EntityType::class,
+                [
                 'placeholder' => 'Pasirinkite tikslą',
                 'class' => Goals::class,
                 'query_builder' => function (EntityRepository $er) {
@@ -308,8 +338,12 @@ class MealPlanController extends Controller
                 },
                 'attr'   =>  array(
                     'class'   => 'form-control')
-            ])
-            ->add('activity', EntityType::class, [
+                ]
+            )
+            ->add(
+                'activity',
+                EntityType::class,
+                [
                 'placeholder' => 'Jusu fizinis atkyvumas',
                 'class' => Activity::class,
                 'query_builder' => function (EntityRepository $er) {
@@ -318,76 +352,100 @@ class MealPlanController extends Controller
                 },
                 'attr'   =>  array(
                     'class'   => 'form-control box-footer')
-            ])
-            ->add('varske', CheckboxType::class, [
+                ]
+            )
+            ->add(
+                'varske',
+                CheckboxType::class,
+                [
                 'label'    => 'Nemėgstu varškės',
                 'attr'   =>  array(
                     'class'   => 'form-control'
                 ),
                 'required' => false
-            ])
-            ->add('mesa', CheckboxType::class, [
+                ]
+            )
+            ->add(
+                'mesa',
+                CheckboxType::class,
+                [
                 'label'    => 'Nemėgstu mėsos',
                 'attr'   =>  array(
                     'class'   => 'form-control'
                 ),
                 'required' => false
-            ])
-            ->add('grudai', CheckboxType::class, [
+                ]
+            )
+            ->add(
+                'grudai',
+                CheckboxType::class,
+                [
                 'label'    => 'Nemėgstu grudų',
                 'attr'   =>  array(
                     'class'   => 'form-control'
                 ),
                 'required' => false
-            ])
-            ->add('zuvis', CheckboxType::class, [
+                ]
+            )
+            ->add(
+                'zuvis',
+                CheckboxType::class,
+                [
                 'label'    => 'Nemėgstu žuvies',
                 'attr'   =>  array(
                     'class'   => 'form-control'
                 ),
                 'required' => false
-            ])
-            ->add('Ieškoti', SubmitType::class, [
+                ]
+            )
+            ->add(
+                'Ieškoti',
+                SubmitType::class,
+                [
                 'attr'   =>  array(
                     'class'   => 'btn btn-special',
                     'style' => 'color: black;',
                 ),
-            ])
+                ]
+            )
             ->getForm();
 
 
-        return $this->render('AppBundle:MealPlan:index.html.twig', [
+        return $this->render(
+            'AppBundle:MealPlan:index.html.twig',
+            [
             'form' => $form->createView()
-        ]);
+            ]
+        );
     }
 
 
     /**
      * @Route("/meal-plan/results", name="meal_plan_result")
      */
-    public function MealPlanGetResultAction(Request $request)
+    public function mealPlanGetResultAction(Request $request)
     {
-        if(isset($request->request->get('form')['varske'])) {
+        if (isset($request->request->get('form')['varske'])) {
             $varske = $request->request->get('form')['varske'];
-        }else{
+        } else {
             $varske = '0';
         }
 
-        if(isset($request->request->get('form')['mesa'])) {
+        if (isset($request->request->get('form')['mesa'])) {
             $mesa = $request->request->get('form')['mesa'];
-        }else{
+        } else {
             $mesa = '0';
         }
 
-        if(isset($request->request->get('form')['grudai'])) {
+        if (isset($request->request->get('form')['grudai'])) {
             $grudai = $request->request->get('form')['grudai'];
-        }else{
+        } else {
             $grudai = '0';
         }
 
-        if(isset($request->request->get('form')['zuvis'])) {
+        if (isset($request->request->get('form')['zuvis'])) {
             $zuvis = $request->request->get('form')['zuvis'];
-        }else{
+        } else {
             $zuvis = '0';
         }
 
@@ -451,7 +509,10 @@ class MealPlanController extends Controller
         }
 
         $form = $this->createFormBuilder()
-            ->add('gender', EntityType::class, [
+            ->add(
+                'gender',
+                EntityType::class,
+                [
                 'placeholder' => 'Pasirinkite lytį',
                 'class' => Gender::class,
                 'query_builder' => function (EntityRepository $er) {
@@ -461,32 +522,48 @@ class MealPlanController extends Controller
                 'attr'   =>  array(
                     'class'   => 'form-control'
                 )
-            ])
-            ->add('height', IntegerType::class, [
+                ]
+            )
+            ->add(
+                'height',
+                IntegerType::class,
+                [
                 'attr'   =>  array(
                     'class'   => 'form-control',
                     'placeholder' => 'Įveskite savo ūgį (cm)',
                     'min' => '30',
                     'max' => '220'
                 )
-            ])
-            ->add('weight', IntegerType::class, [
+                ]
+            )
+            ->add(
+                'weight',
+                IntegerType::class,
+                [
                 'attr'   =>  array(
                     'class'   => 'form-control',
                     'placeholder' => 'Įveskite savo svorį (kg)',
                     'min' => '30',
                     'max' => '150'
                 )
-            ])
-            ->add('age', IntegerType::class, [
+                ]
+            )
+            ->add(
+                'age',
+                IntegerType::class,
+                [
                 'attr'   =>  array(
                     'class'   => 'form-control',
                     'placeholder' => 'Jūsų amžius',
                     'min' => '4',
                     'max' => '80'
                 )
-            ])
-            ->add('goals', EntityType::class, [
+                ]
+            )
+            ->add(
+                'goals',
+                EntityType::class,
+                [
                 'placeholder' => 'Pasirinkite tikslą',
                 'class' => Goals::class,
                 'query_builder' => function (EntityRepository $er) {
@@ -495,8 +572,12 @@ class MealPlanController extends Controller
                 },
                 'attr'   =>  array(
                     'class'   => 'form-control')
-            ])
-            ->add('activity', EntityType::class, [
+                ]
+            )
+            ->add(
+                'activity',
+                EntityType::class,
+                [
                 'placeholder' => 'Jusu fizinis atkyvumas',
                 'class' => Activity::class,
                 'query_builder' => function (EntityRepository $er) {
@@ -505,45 +586,68 @@ class MealPlanController extends Controller
                 },
                 'attr'   =>  array(
                     'class'   => 'form-control box-footer')
-            ])
-            ->add('varske', CheckboxType::class, [
+                ]
+            )
+            ->add(
+                'varske',
+                CheckboxType::class,
+                [
                 'label'    => 'Nemėgstu varškės',
                 'attr'   =>  array(
                     'class'   => 'form-control'
                 ),
                 'required' => false
-            ])
-            ->add('mesa', CheckboxType::class, [
+                ]
+            )
+            ->add(
+                'mesa',
+                CheckboxType::class,
+                [
                 'label'    => 'Nemėgstu mėsos',
                 'attr'   =>  array(
                     'class'   => 'form-control'
                 ),
                 'required' => false
-            ])
-            ->add('grudai', CheckboxType::class, [
+                ]
+            )
+            ->add(
+                'grudai',
+                CheckboxType::class,
+                [
                 'label'    => 'Nemėgstu grudų',
                 'attr'   =>  array(
                     'class'   => 'form-control'
                 ),
                 'required' => false
-            ])
-            ->add('zuvis', CheckboxType::class, [
+                ]
+            )
+            ->add(
+                'zuvis',
+                CheckboxType::class,
+                [
                 'label'    => 'Nemėgstu žuvies',
                 'attr'   =>  array(
                     'class'   => 'form-control'
                 ),
                 'required' => false
-            ])
-            ->add('Ieškoti', SubmitType::class, [
+                ]
+            )
+            ->add(
+                'Ieškoti',
+                SubmitType::class,
+                [
                 'attr'   =>  array(
                     'class'   => 'btn btn-special',
                     'style' => 'color: black;',
                 ),
-            ])
+                ]
+            )
             ->getForm();
 
         if ($error) {
-            return $this->render('AppBundle:MealPlan:index.html.twig',[
+            return $this->render(
+                'AppBundle:MealPlan:index.html.twig',
+                [
                 'form' => $form->createView(),
                 "gender"   =>  $gender_error,
                 "height"   =>  $height_error,
@@ -551,7 +655,8 @@ class MealPlanController extends Controller
                 "age"      =>  $age_error,
                 "goals"    =>  $goals_error,
                 "activity" =>  $activity_error
-            ]);
+                ]
+            );
         }
 
         $session = new Session();
@@ -569,6 +674,4 @@ class MealPlanController extends Controller
 
         return $this->redirectToRoute('profile_meal_plan');
     }
-
-
 }

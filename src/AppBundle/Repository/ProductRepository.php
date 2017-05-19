@@ -13,15 +13,14 @@ use AppBundle\Entity\Category;
 class ProductRepository extends \Doctrine\ORM\EntityRepository
 {
 
-	 public function findProductByCategory($id)
+    public function findProductByCategory($id)
     {
         $qb = $this->createQueryBuilder('cat')
-        ->where('cat.category = :id')
-        ->setParameter('id', $id)
-        ->getQuery()
-        ->getResult();
+            ->where('cat.category = :id')
+            ->setParameter('id', $id)
+            ->getQuery()
+            ->getResult();
 
         return $qb;
     }
-
 }

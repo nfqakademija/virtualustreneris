@@ -1,4 +1,4 @@
-<?php 
+<?php
 
 namespace AppBundle\Controller;
 
@@ -9,49 +9,55 @@ use AppBundle\Form\ExercisesType;
 
 class ExercisesController extends Controller
 {
-	/**
+    /**
      * @Route("/admin/exercises/create", name="exercises_create")
      */
-    public function ExerciseCreateAction(Request $request)
+    public function exerciseCreateAction(Request $request)
     {
 
-    	$form = $this->createForm(ExercisesType::class);
+        $form = $this->createForm(ExercisesType::class);
 
-    	$form->handleRequest($request);
+        $form->handleRequest($request);
 
-    	if ($form->isSubmitted() && $form->isValid()) {
-    		$result = $form->getData();
+        if ($form->isSubmitted() && $form->isValid()) {
+            $result = $form->getData();
             $em = $this->getDoctrine()->getManager();
             $em->persist($result);
             $em->flush();
 
             return $this->redirectToRoute('exercises_list');
-    	}
+        }
 
-    	return $this->render('AppBundle:Admin:exercise-create.html.twig', [
-    		'form' => $form->createView()
-    		]);
+        return $this->render(
+            'AppBundle:Admin:exercise-create.html.twig',
+            [
+                'form' => $form->createView()
+            ]
+        );
     }
 
     /**
      * @Route("/admin/exercises/list", name="exercises_list")
      */
-    public function ExerciseListAction()
+    public function exerciseListAction()
     {
 
         $em = $this->getDoctrine()->getManager();
         $repository = $em->getRepository('AppBundle:Exercises');
         $exercises = $repository->findAll();
 
-        return $this->render('AppBundle:Admin:exercise-list.html.twig', [
-            'exercises' => $exercises
-            ]);
+        return $this->render(
+            'AppBundle:Admin:exercise-list.html.twig',
+            [
+                'exercises' => $exercises
+            ]
+        );
     }
 
     /**
      * @Route("/admin/exercises/edit/{id}", name="exercises_edit")
      */
-    public function ExerciseEditAction($id, Request $request)
+    public function exerciseEditAction($id, Request $request)
     {
 
         $em = $this->getDoctrine()->getManager();
@@ -71,17 +77,20 @@ class ExercisesController extends Controller
             return $this->redirectToRoute('exercises_list');
         }
 
-        return $this->render('AppBundle:Admin:exercise-edit.html.twig', [
+        return $this->render(
+            'AppBundle:Admin:exercise-edit.html.twig',
+            [
                 'exercises' => $exercises,
                 'form' => $form->createView()
-            ]);
-     }
+            ]
+        );
+    }
 
       /**
      * @Route("/admin/exercises/delete/{id}", name="exercises_delete")
      */
-     public function ExerciseDeleteAction($id)
-     {
+    public function exerciseDeleteAction($id)
+    {
 
         $em = $this->getDoctrine()->getManager();
         $repository = $em->getRepository('AppBundle:Exercises');
@@ -91,5 +100,5 @@ class ExercisesController extends Controller
         $em->flush();
 
         return $this->redirectToRoute('exercises_list');
-     }
+    }
 }

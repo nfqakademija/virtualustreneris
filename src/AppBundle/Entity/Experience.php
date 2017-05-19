@@ -68,4 +68,3 @@ class Experience
         return $this->getExperience();
     }
 }
-
