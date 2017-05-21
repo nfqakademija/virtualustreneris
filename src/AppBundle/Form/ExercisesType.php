@@ -5,6 +5,7 @@ namespace AppBundle\Form;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use Symfony\Component\Form\Extension\Core\Type\FileType;
 
 class ExercisesType extends AbstractType
 {
@@ -39,7 +40,10 @@ class ExercisesType extends AbstractType
                     'class'   => 'form-control'),
                 'label' => 'Pakartojimai'
                 ]
-            );
+            )
+            ->add('explanation',
+                null,
+                array('label' => 'Pratimo demonstracija'));
     }
     
     /**
