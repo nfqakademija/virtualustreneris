@@ -36,4 +36,16 @@ class DishListsRepository extends \Doctrine\ORM\EntityRepository
             ->getQuery()
             ->getResult();
     }
+
+    public function findPlanByMax()
+    {
+       return $this->createQueryBuilder('plans')
+            ->andWhere('plans.caloriesNum = :rangeStart')
+            ->setParameter('rangeStart', 2600)
+           ->andWhere('plans.goals = :goals')
+           ->setParameter('goals', 2)
+           ->getQuery()
+           ->getResult();
+
+    }
 }

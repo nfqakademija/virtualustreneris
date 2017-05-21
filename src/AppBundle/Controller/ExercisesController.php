@@ -2,10 +2,12 @@
 
 namespace AppBundle\Controller;
 
+use AppBundle\Entity\Exercises;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use AppBundle\Form\ExercisesType;
+use Symfony\Component\HttpFoundation\File\UploadedFile;
 
 class ExercisesController extends Controller
 {
@@ -20,6 +22,7 @@ class ExercisesController extends Controller
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+
             $result = $form->getData();
             $em = $this->getDoctrine()->getManager();
             $em->persist($result);

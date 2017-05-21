@@ -80,7 +80,8 @@ class MealPlanController extends Controller
         if ($mesa == '1' and $varske == '1' and $zuvis == '1' and $grudai == '1') {
             $multiChoice = 'Kadangi nevalgote visu produktu...';
         } elseif ($mesa == '1' and $varske == '1' and $zuvis == '1') {
-            $multiChoice = 'Kadangi nevalgote visko, isskyrus grudus...';
+            $multiChoice = 'Jūs pasirinkote, jog nemėgstate mėsos, varškės bei grūdų. Esant prieštaravimui tarp jūsų nemėgstamų produktų,
+             siūlome pasirinkti kiaušinius.';
         } elseif ($mesa == '1' and $varske == '1' and $grudai == '1') {
             $multiChoice = 'Kadangi nevalgote visko, isskyrus zuvi...';
         } elseif ($mesa == '1' and $zuvis == '1' and $grudai == '1') {

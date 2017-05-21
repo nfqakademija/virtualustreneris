@@ -25,4 +25,13 @@ class ProgramsRepository extends \Doctrine\ORM\EntityRepository
             ->getQuery()
             ->getResult();
     }
+
+    public function findBackPlan()
+    {
+        return $this->createQueryBuilder('plans')
+            ->andWhere('plans.id= :id')
+            ->setParameter('id', 50)
+            ->getQuery()
+            ->getResult();
+    }
 }

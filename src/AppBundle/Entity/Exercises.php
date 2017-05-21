@@ -42,6 +42,15 @@ class Exercises
      */
     private $repeats;
 
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="explanation", type="string", length=255, nullable=true)
+     */
+    private $explanation;
+
+
+
 
     /**
      * Get id
@@ -123,5 +132,29 @@ class Exercises
     public function getRepeats()
     {
         return $this->repeats;
+    }
+
+    /**
+     * Set explanation
+     *
+     * @param string $explanation
+     *
+     * @return Exercises
+     */
+    public function setExplanation($explanation)
+    {
+        $this->explanation = $explanation;
+
+        return $this;
+    }
+
+    /**
+     * Get repeats
+     *
+     * @return string
+     */
+    public function getExplanation()
+    {
+        return $this->explanation;
     }
 }
