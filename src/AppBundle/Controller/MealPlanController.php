@@ -80,8 +80,8 @@ class MealPlanController extends Controller
         if ($mesa == '1' and $varske == '1' and $zuvis == '1' and $grudai == '1') {
             $multiChoice = 'Kadangi nevalgote visu produktu...';
         } elseif ($mesa == '1' and $varske == '1' and $zuvis == '1') {
-            $multiChoice = 'Jūs pasirinkote, jog nemėgstate mėsos, varškės bei grūdų. Esant prieštaravimui tarp jūsų nemėgstamų produktų,
-             siūlome pasirinkti kiaušinius.';
+            $multiChoice = 'Jūs pasirinkote, jog nemėgstate mėsos, varškės bei grūdų. Esant prieštaravimui
+             tarp jūsų nemėgstamų produktų, siūlome pasirinkti kiaušinius.';
         } elseif ($mesa == '1' and $varske == '1' and $grudai == '1') {
             $multiChoice = 'Kadangi nevalgote visko, isskyrus zuvi...';
         } elseif ($mesa == '1' and $zuvis == '1' and $grudai == '1') {
@@ -140,13 +140,13 @@ class MealPlanController extends Controller
         $alternatives = $alternativeRepo->findAll();
 
         if ($session->has('gender')) {
-            if ($result > 2600 AND $goals == '2') {
+            if ($result > 2600 and $goals == '2') {
                 $find = $repository->findPlanByMax();
-            }else {
+            } else {
                 $find = $repository->findPlanByCalories($rangeStart, $rangeEnd, $goals);
             }
 
-            if(!$find) {
+            if (!$find) {
                 $this->addFlash(
                     'message',
                     'Atsiprašome, kol kas pagal jūsų kriterijus dar nėra įkeltos mitybos programos.'

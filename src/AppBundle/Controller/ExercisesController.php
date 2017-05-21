@@ -22,7 +22,6 @@ class ExercisesController extends Controller
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-
             $result = $form->getData();
             $em = $this->getDoctrine()->getManager();
             $em->persist($result);

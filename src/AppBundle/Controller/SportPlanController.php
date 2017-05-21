@@ -32,7 +32,7 @@ class SportPlanController extends Controller
      * @Route("/profile/back-plan", name="profile_back_plan")
      */
 
-    public function BackPlanListAction()
+    public function backPlanListAction()
     {
         $em = $this->getDoctrine()->getManager();
         $repository = $em->getRepository('AppBundle:Programs');
@@ -49,9 +49,7 @@ class SportPlanController extends Controller
                 'exercises' => $exercises
             ]
         );
-
     }
-
 
     /**
      * @Route("/profile/sport-plan", name="profile_sport_plan")

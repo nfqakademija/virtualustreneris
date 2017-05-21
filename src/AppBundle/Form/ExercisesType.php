@@ -41,9 +41,13 @@ class ExercisesType extends AbstractType
                 'label' => 'Pakartojimai'
                 ]
             )
-            ->add('explanation',
+            ->add(
+                'explanation',
                 null,
-                array('label' => 'Pratimo demonstracija'));
+                [
+                'label' => 'Pratimo demonstracija'
+                ]
+            );
     }
     
     /**
