@@ -23,7 +23,7 @@ class HomeController extends Controller
 
 
         if (!is_null($gender) || !is_null($sportGender)) {
-            $this->addFlash('sessionMessage', 'Jūs jau turite profilyje išsaugoję programų.');
+            $this->addFlash('sessionMessage', 'Jūs jau turite profilyje išsaugoję programų');
         }
 
         $user = $this->get('app.current_user_service')->getUser();

@@ -15,11 +15,10 @@ use AppBundle\Entity\Goals;
 use AppBundle\Entity\Gender;
 use AppBundle\Repository\DishListsRepository;
 use AppBundle\Repository\GoalsRepository;
-use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 use Symfony\Component\HttpFoundation\Session\Session;
 use Symfony\Component\Form\Extension\Core\Type\IntegerType;
-use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
+use AppBundle\Service\CalorieCalculatorService;
 
 class MealPlanController extends Controller
 {
@@ -37,95 +36,17 @@ class MealPlanController extends Controller
      */
     public function profileAction()
     {
-        $session = new Session();
-        $grudai = $session->get('grudai');
-        $zuvis = $session->get('zuvis');
-        $mesa = $session->get('mesa');
-        $varske = $session->get('varske');
-        $gender = $session->get('gender');
-        $height = $session->get('height');
-        $weight = $session->get('weight');
-        $age = $session->get('age');
-        $goals = $session->get('goals');
-        $activity = $session->get('activity');
 
-        if ($gender == '1') {
-            $calories = 664.7 + (5 * $height) + (13.75 * $weight) - (6.74 * $age);
-            if ($goals == '1') {
-                $result = $calories + 300;
-            } else {
-                $result = $calories - 300;
-            }
-        } else {
-            $calories = 655.1 + (1.85 * $height) + (9.6 * $weight) - (6.74 * $age);
-            if ($goals == '1') {
-                $result = $calories + 200;
-            } else {
-                $result = $calories - 200;
-            }
-        }
+        $calorieCalculatorService = $this->get('app.calorie_calculator_service');
+        $result = $calorieCalculatorService->calculate();
 
-        if ($activity == '1') {
-            $result += 0;
-        } elseif ($activity == '2') {
-            $result += 50;
-        } elseif ($activity == '3') {
-            $result += 100;
-        } elseif ($activity == '4') {
-            $result += 150;
-        } elseif ($activity == '5') {
-            $result += 200;
-        }
+        $productDislikeService = $this->get('app.product_dislike_service');
+        $multiChoice = $productDislikeService->showSeveralChoices();
 
-        if ($mesa == '1' and $varske == '1' and $zuvis == '1' and $grudai == '1') {
-            $multiChoice = 'Kadangi nevalgote visu produktu...';
-        } elseif ($mesa == '1' and $varske == '1' and $zuvis == '1') {
-            $multiChoice = 'Jūs pasirinkote, jog nemėgstate mėsos, varškės bei grūdų. Esant prieštaravimui
-             tarp jūsų nemėgstamų produktų, siūlome pasirinkti kiaušinius.';
-        } elseif ($mesa == '1' and $varske == '1' and $grudai == '1') {
-            $multiChoice = 'Kadangi nevalgote visko, isskyrus zuvi...';
-        } elseif ($mesa == '1' and $zuvis == '1' and $grudai == '1') {
-            $multiChoice = 'Nevalgote visko, isskyrus varskes..';
-        } elseif ($zuvis == '1' and $grudai == '1' and $varske == '1') {
-            $multiChoice = 'Kadangi nevalgote visko, isskyrus mesos...';
-        } elseif ($mesa == '1' and $zuvis == '1') {
-            $multiChoice = 'Kadangi nemegstate mesos ir zuvies, ...';
-        } elseif ($mesa == '1' and $varske == '1') {
-            $multiChoice = 'Kadangi nevalgote mesos ir varskes, ...';
-        } elseif ($mesa == '1' and $zuvis == '1') {
-            $multiChoice = 'Kadangi nevalgote mesos ir zuvies, ...';
-        } elseif ($varske == '1' and $grudai == '1') {
-            $multiChoice = 'Kadangi nevalgote varskes ir grudu, ...';
-        } elseif ($mesa == '1' and $grudai == '1') {
-            $multiChoice = 'Kadangi nevalgote mesos ir grudines kulturos produktu..';
-        } else {
-            $multiChoice = '';
-        }
-
-        if ($mesa == '1') {
-            $meatmsg = '1';
-        } else {
-            $meatmsg = '';
-        }
-
-        if ($varske == '1') {
-            $curdmsg = '1';
-        } else {
-            $curdmsg = '';
-        }
-
-        if ($grudai == '1') {
-            $grudaimsg = '1';
-        } else {
-            $grudaimsg = '';
-        }
-
-        if ($zuvis == '1') {
-            $fishmsg = '1';
-        } else {
-            $fishmsg = '';
-        }
-
+        $meatmsg = $productDislikeService->isMeatChecked();
+        $curdmsg = $productDislikeService->isCurdChecked();
+        $fishmsg = $productDislikeService->isFishChecked();
+        $grudaimsg = $productDislikeService->isGrudaiChecked();
 
         $rangeStart = $result - 100;
         $rangeEnd = $result + 100;
@@ -139,23 +60,23 @@ class MealPlanController extends Controller
         $alternativeRepo = $em->getRepository('AppBundle:Alternatives');
         $alternatives = $alternativeRepo->findAll();
 
-        if ($session->has('gender')) {
-            if ($result > 2600 and $goals == '2') {
+
+        $find = false;
+
+        if (!is_null($calorieCalculatorService->getGender())) {
+            if ($result > 2600 and $calorieCalculatorService->getGoals() == '2') {
                 $find = $repository->findPlanByMax();
             } else {
-                $find = $repository->findPlanByCalories($rangeStart, $rangeEnd, $goals);
+                $find = $repository->findPlanByCalories($rangeStart, $rangeEnd, $calorieCalculatorService->getGoals());
             }
 
-            if (!$find) {
-                $this->addFlash(
-                    'message',
-                    'Atsiprašome, kol kas pagal jūsų kriterijus dar nėra įkeltos mitybos programos.'
-                );
-                $session->remove('gender');
+            if(!$find) {
+                $this->addFlash('session', 'Atsprašome, tačiau kol kas pagal jūsų kriterijus dar nėra ikeltos programos.');
             }
         } else {
             $this->addFlash('session', 'Jūs dar neesate išsirinkę mitybos programos.');
         }
+
 
         return $this->render(
             'AppBundle:Profile:index.html.twig',

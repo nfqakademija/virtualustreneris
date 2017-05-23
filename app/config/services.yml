@@ -8,3 +8,15 @@ services:
         class: AppBundle\Service\CurrentUserService
         arguments:
             - '@security.token_storage'
+
+    app.calorie_calculator_service:
+        class: AppBundle\Service\CalorieCalculatorService
+        arguments:
+            - '@session'
+
+    app.product_dislike_service:
+            class: AppBundle\Service\ProductDislikeService
+            arguments:
+            - '@session'
+
+

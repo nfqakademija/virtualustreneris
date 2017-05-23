@@ -56,7 +56,7 @@ class SportPlanController extends Controller
      */
     public function profileAction()
     {
-        $session = new Session();
+        // $session = new Session();
         $gender = $session->get('sport-gender');
         $experience = $session->get('experience');
         $ageCategory = $session->get('ageCategory');
@@ -410,7 +410,7 @@ class SportPlanController extends Controller
             );
         }
 
-        $session = new Session();
+       $session = new Session();
 
         $session->set('sport-gender', $gender);
         $session->set('experience', $experience);
