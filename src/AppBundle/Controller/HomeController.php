@@ -31,16 +31,16 @@ class HomeController extends Controller
         $browserIsGood = true;
         $browser = $this->getUserBrowser();
         if ($browser['name'] == "Apple Safari") {
-            //$browserIsGood = false;
+            $browserIsGood = false;
         }
         if ($browser['name'] == "Internet Explorer") {
-            //$browserIsGood = false;
+            $browserIsGood = false;
         }
         if ($browser['name'] == "Mozilla Firefox") {
-            //$browserIsGood = false;
+            $browserIsGood = false;
         }
         if ($browser['name'] == "Unknown") {
-            //$browserIsGood = false;
+            $browserIsGood = false;
         }
 
         return $this->render(
