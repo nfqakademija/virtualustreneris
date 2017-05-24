@@ -30,7 +30,7 @@ class ProgramsRepository extends \Doctrine\ORM\EntityRepository
     {
         return $this->createQueryBuilder('plans')
             ->andWhere('plans.id= :id')
-            ->setParameter('id', 50)
+            ->setParameter('id', 1)
             ->getQuery()
             ->getResult();
     }

@@ -10,7 +10,6 @@ namespace AppBundle\Service;
 
 use Symfony\Component\HttpFoundation\Session\Session;
 
-
 class ProductDislikeService
 {
     protected $session;
@@ -103,5 +102,4 @@ class ProductDislikeService
 
         return $grudaimsg;
     }
-
 }

@@ -410,7 +410,7 @@ class SportPlanController extends Controller
             );
         }
 
-       $session = new Session();
+        $session = new Session();
 
         $session->set('sport-gender', $gender);
         $session->set('experience', $experience);

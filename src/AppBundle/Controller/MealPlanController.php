@@ -70,8 +70,9 @@ class MealPlanController extends Controller
                 $find = $repository->findPlanByCalories($rangeStart, $rangeEnd, $calorieCalculatorService->getGoals());
             }
 
-            if(!$find) {
-                $this->addFlash('session', 'Atsprašome, tačiau kol kas pagal jūsų kriterijus dar nėra ikeltos programos.');
+            if (!$find) {
+                $this->addFlash('session', 'Atsprašome, tačiau kol kas pagal jūsų kriterijus 
+                dar nėra ikeltos programos.');
             }
         } else {
             $this->addFlash('session', 'Jūs dar neesate išsirinkę mitybos programos.');

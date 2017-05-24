@@ -10,7 +10,6 @@ namespace AppBundle\Service;
 
 use Symfony\Component\HttpFoundation\Session\Session;
 
-
 class CalorieCalculatorService
 {
     protected $session;
@@ -87,6 +86,4 @@ class CalorieCalculatorService
     {
         return $this->gender;
     }
-
-
 }
