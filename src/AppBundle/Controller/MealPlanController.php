@@ -73,15 +73,6 @@ class MealPlanController extends Controller
             if (!$find) {
                 $this->addFlash('session', 'Atsprašome, tačiau kol kas pagal jūsų kriterijus 
                 dar nėra ikeltos programos.');
-
-                $message = \Swift_Message::newInstance()
-                    ->setSubject('Hello Email')
-                    ->setFrom('send@example.com')
-                    ->setTo('norbutasvilius@gmail.com')
-                    ->setBody('test'
-                    );
-
-                $this->get('swiftmailer.mailer')->send($message);
             }
         } else {
             $this->addFlash('session', 'Jūs dar neesate išsirinkę mitybos programos.');
