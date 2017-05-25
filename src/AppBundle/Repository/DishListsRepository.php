@@ -30,7 +30,7 @@ class DishListsRepository extends \Doctrine\ORM\EntityRepository
     {
         return $this->createQueryBuilder('plans')
             ->andWhere('plans.caloriesNum = :rangeStart')
-            ->setParameter('rangeStart', 2600)
+            ->setParameter('rangeStart', 2400)
             ->andWhere('plans.goals = :goals')
             ->setParameter('goals', 2)
             ->getQuery()

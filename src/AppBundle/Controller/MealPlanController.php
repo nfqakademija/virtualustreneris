@@ -64,7 +64,7 @@ class MealPlanController extends Controller
         $find = false;
 
         if (!is_null($calorieCalculatorService->getGender())) {
-            if ($result > 2600 and $calorieCalculatorService->getGoals() == '2') {
+            if ($result > 2400 and $calorieCalculatorService->getGoals() == '2') {
                 $find = $repository->findPlanByMax();
             } else {
                 $find = $repository->findPlanByCalories($rangeStart, $rangeEnd, $calorieCalculatorService->getGoals());
