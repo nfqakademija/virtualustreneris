@@ -32,26 +32,46 @@ class ProductDislikeService
     public function showSeveralChoices()
     {
         if ($this->mesa == '1' and $this->varske == '1' and $this->zuvis == '1' and $this->grudai == '1') {
-            $multiChoice = 'Kadangi nevalgote visu produktu...';
+            $multiChoice = 'Gaila, jog nevalgote visų produktų. Vertėtų pakeisti mastymą.';
         } elseif ($this->mesa == '1' and $this->varske == '1' and $this->zuvis == '1') {
-            $multiChoice = 'Jūs pasirinkote, jog nemėgstate mėsos, varškės bei grūdų. Esant prieštaravimui
-             tarp jūsų nemėgstamų produktų, siūlome pasirinkti kiaušinius.';
+            $multiChoice = 'Jūs pasirinkote, jog nemėgstate mėsos, varškės bei avižinės košės. Esant prieštaravimui
+             tarp jūsų nemėgstamų produktų alternatyvų, siūlome pasirinkti kiaušinius.';
         } elseif ($this->mesa == '1' and $this->varske == '1' and $this->grudai == '1') {
-            $multiChoice = 'Kadangi nevalgote visko, isskyrus zuvi...';
+            $multiChoice = 'Jūs pasirinkote, jog nemėgstate mėsos, varškės bei avižinės košės. Esant prieštaravimui
+            tarp jūsų nemėgstamų produktų alternatyvų, siūlome pasirinkite varškę su mėsa pakeisti į tuną arba 
+            lašišą, o avižas - į makaronus.';
         } elseif ($this->mesa == '1' and $this->zuvis == '1' and $this->grudai == '1') {
-            $multiChoice = 'Nevalgote visko, isskyrus varskes..';
+            $multiChoice = 'Jūs pasirinkote, jog nemėgstate mėsos, žuvies bei avižinės košės. Esant prieštaravimui
+             tarp jūsų nemėgtamų produktų alternatyvų, vietoje mėsos ir žuvies siūlome pasirinkti varškę/jogurtą, 
+             o viešoje avižų - makaronus.';
         } elseif ($this->zuvis == '1' and $this->grudai == '1' and $this->varske == '1') {
-            $multiChoice = 'Kadangi nevalgote visko, isskyrus mesos...';
+            $multiChoice = 'Jūs pasirinkote, jog nemėgstate žuvies, avižinės košės bei varškės. Esant prieštara
+            vimui tarp jūsų nemėgstamų produktų, vietoje žuvies ir varškes rinkitės vištieną/jautieną, o vietoje
+             avižinės košes - makaronus.';
         } elseif ($this->mesa == '1' and $this->zuvis == '1') {
-            $multiChoice = 'Kadangi nemegstate mesos ir zuvies, ...';
+            $multiChoice = 'Jūs pasirinkote, jog nemėgstate mėsos ir žuvies. Esant prieštaravimui tarp
+             jūsų nemėgstamų produktų, rinkitės pieno produktus - varškę, jogurtą.';
         } elseif ($this->mesa == '1' and $this->varske == '1') {
-            $multiChoice = 'Kadangi nevalgote mesos ir varskes, ...';
+            $multiChoice = 'Jūs pasirinkote, jog nemėgstate mėsos ir varškės. Esant prieštaravimui tarp
+             jūsų nemėgstamų produktų, rinkitės žuvį - tuną arba lašišą.';
         } elseif ($this->mesa == '1' and $this->zuvis == '1') {
-            $multiChoice = 'Kadangi nevalgote mesos ir zuvies, ...';
+            $multiChoice = 'Jūs pasirinkote, jog nemėgstate mėsos ir žuvies. Esant prieštaravimui tarp 
+            jūsų nemėgstamų produktų, rinkitės pieno produktus - varške arba jogurtą.';
         } elseif ($this->varske == '1' and $this->grudai == '1') {
-            $multiChoice = 'Kadangi nevalgote varskes ir grudu, ...';
+            $multiChoice = 'Jūs pasirinkote, jog nemėgstate varškes ir avižinės košės. Esant prieštarav
+            imui tarp jūsų nemėgstamų produktų alternatyvų, vietoje varškės rinkitės mėsą - jautieną 
+            ar vištieną, o vietoje avižinės košės - makaronus/ryžius/grikius.';
         } elseif ($this->mesa == '1' and $this->grudai == '1') {
-            $multiChoice = 'Kadangi nevalgote mesos ir grudines kulturos produktu..';
+            $multiChoice = 'Jūs pasirinkote, jog nemėgstate mėsos bei avižinės košės. Esant prieštarav
+            imui tarp jūsų nemėgstamų produktų alternatyvų, vietoje mėsos rinkitės varške arba tuną/lašišą, 
+            o vietoje avižinės košės - makaronus/ryžius/grikius.';
+        } elseif ($this->varske and $this->zuvis) {
+            $multiChoice = 'Jūs pasirinkote, jog nemėgstate varškės bei žuvies. Esant prieštaravimui
+             tarp jūsų nemgėstamų produktų, rinkitės mėsos produktus - jautieną arba vištieną.';
+        } elseif ($this->grudai and $this->zuvis) {
+            $multiChoice = 'Jūs pasirinkote, jog nemėgstate avižinės košės bei žuvies. Esant prieštaravimui 
+            tarp jūsų nemėgstamų produktų, vietoje žuvies rinkitės jautieną arba vištieną, o vietoje 
+            avižinės košės - makaronus/ryžius/grikius.';
         } else {
             $multiChoice = '';
         }
