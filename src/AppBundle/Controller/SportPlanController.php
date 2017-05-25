@@ -43,7 +43,7 @@ class SportPlanController extends Controller
 
 
         return $this->render(
-            'AppBundle:Profile:sport-plan.html.twig',
+            'AppBundle:Profile:back-plan.html.twig',
             [
                 'plans' => $find,
                 'exercises' => $exercises
