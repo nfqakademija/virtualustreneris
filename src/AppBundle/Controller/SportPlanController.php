@@ -205,79 +205,85 @@ class SportPlanController extends Controller
         return $this->redirectToRoute('sport_plan_list');
     }
 
-    /**
-     * @Route("/sport-plan/search", name="sport_plan_search")
-     */
-    public function sportPlanSearchAction()
-    {
-
+    private function createFormBuilderForSportPlan(){
         $form = $this->createFormBuilder()
             ->add(
                 'gender',
                 EntityType::class,
                 [
-                'placeholder' => 'Pasirinkite lytį',
-                'class' => Gender::class,
-                'query_builder' => function (EntityRepository $er) {
-                    return $er->createQueryBuilder('gender')
-                        ->OrderBy('gender.gender', 'ASC');
-                },
-                'attr'   =>  array(
-                    'class'   => 'form-control')
+                    'placeholder' => 'Pasirinkite lytį',
+                    'class' => Gender::class,
+                    'query_builder' => function (EntityRepository $er) {
+                        return $er->createQueryBuilder('gender')
+                            ->OrderBy('gender.gender', 'ASC');
+                    },
+                    'attr'   =>  array(
+                        'class'   => 'form-control')
                 ]
             )
             ->add(
                 'experience',
                 EntityType::class,
                 [
-                'placeholder' => 'Jusu patirtis',
-                'class' => Experience::class,
-                'query_builder' => function (EntityRepository $er) {
-                    return $er->createQueryBuilder('experience')
-                        ->OrderBy('experience.experience', 'DESC');
-                },
-                'attr'   =>  array(
-                    'class'   => 'form-control')
+                    'placeholder' => 'Jusu patirtis',
+                    'class' => Experience::class,
+                    'query_builder' => function (EntityRepository $er) {
+                        return $er->createQueryBuilder('experience')
+                            ->OrderBy('experience.experience', 'DESC');
+                    },
+                    'attr'   =>  array(
+                        'class'   => 'form-control')
                 ]
             )
             ->add(
                 'ageCategory',
                 EntityType::class,
                 [
-                'placeholder' => 'Amžiaus kategorija',
-                'class' => AgeCategory::class,
-                'query_builder' => function (EntityRepository $er) {
-                    return $er->createQueryBuilder('age')
-                        ->OrderBy('age.id', 'ASC');
-                },
-                'attr'   =>  array(
-                    'class'   => 'form-control')
+                    'placeholder' => 'Amžiaus kategorija',
+                    'class' => AgeCategory::class,
+                    'query_builder' => function (EntityRepository $er) {
+                        return $er->createQueryBuilder('age')
+                            ->OrderBy('age.id', 'ASC');
+                    },
+                    'attr'   =>  array(
+                        'class'   => 'form-control')
                 ]
             )
             ->add(
                 'goals',
                 EntityType::class,
                 [
-                'placeholder' => 'Pasirinkite tikslą',
-                'class' => Goals::class,
-                'query_builder' => function (EntityRepository $er) {
-                    return $er->createQueryBuilder('goals')
-                        ->orderBy('goals.title', 'ASC');
-                },
-                'attr'   =>  array(
-                    'class'   => 'form-control')
+                    'placeholder' => 'Pasirinkite tikslą',
+                    'class' => Goals::class,
+                    'query_builder' => function (EntityRepository $er) {
+                        return $er->createQueryBuilder('goals')
+                            ->orderBy('goals.title', 'ASC');
+                    },
+                    'attr'   =>  array(
+                        'class'   => 'form-control')
                 ]
             )
             ->add(
-                'Ieškoti',
+                'Susidaryk',
                 SubmitType::class,
                 [
-                'attr'   =>  array(
-                    'class'   => 'btn btn-special',
-                    'style' => 'color: black;')
+                    'attr'   =>  array(
+                        'class'   => 'btn btn-special',
+                        'style' => 'color: black;')
                 ]
             )
             ->getForm();
+
+        return $form;
+    }
+
+    /**
+     * @Route("/sport-plan/search", name="sport_plan_search")
+     */
+    public function sportPlanSearchAction()
+    {
+
+        $form = $this->createFormBuilderForSportPlan();
 
 
         return $this->render(
@@ -328,73 +334,7 @@ class SportPlanController extends Controller
             $goals_error = true;
         }
 
-        $form123 = $this->createFormBuilder()
-            ->add(
-                'gender',
-                EntityType::class,
-                [
-                'placeholder' => 'Pasirinkite lytį',
-                'class' => Gender::class,
-                'query_builder' => function (EntityRepository $er) {
-                    return $er->createQueryBuilder('gender')
-                        ->OrderBy('gender.gender', 'ASC');
-                },
-                'attr'   =>  array(
-                    'class'   => 'form-control')
-                ]
-            )
-            ->add(
-                'experience',
-                EntityType::class,
-                [
-                'placeholder' => 'Jusu patirtis',
-                'class' => Experience::class,
-                'query_builder' => function (EntityRepository $er) {
-                    return $er->createQueryBuilder('experience')
-                        ->OrderBy('experience.experience', 'DESC');
-                },
-                'attr'   =>  array(
-                    'class'   => 'form-control')
-                ]
-            )
-            ->add(
-                'ageCategory',
-                EntityType::class,
-                [
-                'placeholder' => 'Amžiaus kategorija',
-                'class' => AgeCategory::class,
-                'query_builder' => function (EntityRepository $er) {
-                    return $er->createQueryBuilder('age')
-                        ->OrderBy('age.id', 'ASC');
-                },
-                'attr'   =>  array(
-                    'class'   => 'form-control')
-                ]
-            )
-            ->add(
-                'goals',
-                EntityType::class,
-                [
-                'placeholder' => 'Pasirinkite tikslą',
-                'class' => Goals::class,
-                'query_builder' => function (EntityRepository $er) {
-                    return $er->createQueryBuilder('goals')
-                        ->orderBy('goals.title', 'ASC');
-                },
-                'attr'   =>  array(
-                    'class'   => 'form-control')
-                ]
-            )
-            ->add(
-                'Ieškoti',
-                SubmitType::class,
-                [
-                'attr'   =>  array(
-                    'class'   => 'btn btn-special',
-                    'style' => 'color: black;')
-                ]
-            )
-            ->getForm();
+        $form123 = $this->createFormBuilderForSportPlan();
 
         if ($error) {
             $form = $this->SportPlanSearchAction();
