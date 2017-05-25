@@ -205,7 +205,8 @@ class SportPlanController extends Controller
         return $this->redirectToRoute('sport_plan_list');
     }
 
-    private function createFormBuilderForSportPlan(){
+    private function createFormBuilderForSportPlan()
+    {
         $form = $this->createFormBuilder()
             ->add(
                 'gender',

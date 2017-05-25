@@ -214,7 +214,8 @@ class MealPlanController extends Controller
     }
 
     ///Forma
-    private function createFormBuilderForMealPlan(){
+    private function createFormBuilderForMealPlan()
+    {
         $form = $this->createFormBuilder()
             ->add(
                 'gender',
