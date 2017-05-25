@@ -38,7 +38,7 @@ class ProductDislikeService
              tarp jūsų nemėgstamų produktų alternatyvų, siūlome pasirinkti kiaušinius.';
         } elseif ($this->mesa == '1' and $this->varske == '1' and $this->grudai == '1') {
             $multiChoice = 'Jūs pasirinkote, jog nemėgstate mėsos, varškės bei avižinės košės. Esant prieštaravimui
-            tarp jūsų nemėgstamų produktų alternatyvų, siūlome pasirinkite varškę su mėsa pakeisti į tuną arba 
+            tarp jūsų nemėgstamų produktų alternatyvų, siūlome varškę su mėsa pakeisti į tuną arba 
             lašišą, o avižas - į makaronus.';
         } elseif ($this->mesa == '1' and $this->zuvis == '1' and $this->grudai == '1') {
             $multiChoice = 'Jūs pasirinkote, jog nemėgstate mėsos, žuvies bei avižinės košės. Esant prieštaravimui

@@ -308,7 +308,7 @@ class MealPlanController extends Controller
                 'grudai',
                 CheckboxType::class,
                 [
-                'label'    => 'Nemėgstu grudų',
+                'label'    => 'Nemėgstu avižinės košės',
                 'attr'   =>  array(
                     'class'   => 'form-control'
                 ),
