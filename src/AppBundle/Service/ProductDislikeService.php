@@ -34,20 +34,21 @@ class ProductDislikeService
         if ($this->mesa == '1' and $this->varske == '1' and $this->zuvis == '1' and $this->grudai == '1') {
             $multiChoice = 'Gaila, jog nevalgote visų produktų. Vertėtų pakeisti mastymą.';
         } elseif ($this->mesa == '1' and $this->varske == '1' and $this->zuvis == '1') {
-            $multiChoice = 'Jūs pasirinkote, jog nemėgstate mėsos, varškės bei avižinės košės. Esant prieštaravimui
-             tarp jūsų nemėgstamų produktų alternatyvų, siūlome pasirinkti kiaušinius.';
+            $multiChoice = 'Jūs pasirinkote, jog nemėgstate mėsos, varškės bei 
+            avižinės košės. Esant prieštaravimui tarp jūsų nemėgstamų produktų 
+            alternatyvų, siūlome pasirinkti kiaušinius.';
         } elseif ($this->mesa == '1' and $this->varske == '1' and $this->grudai == '1') {
-            $multiChoice = 'Jūs pasirinkote, jog nemėgstate mėsos, varškės bei avižinės košės. Esant prieštaravimui
-            tarp jūsų nemėgstamų produktų alternatyvų, siūlome varškę su mėsa pakeisti į tuną arba 
-            lašišą, o avižas - į makaronus.';
+            $multiChoice = 'Jūs pasirinkote, jog nemėgstate mėsos, varškės bei avižinės košės.
+             Esant prieštaravimui tarp jūsų nemėgstamų produktų alternatyvų, siūlome varškę
+              su mėsa pakeisti į tuną arba lašišą, o avižas - į makaronus.';
         } elseif ($this->mesa == '1' and $this->zuvis == '1' and $this->grudai == '1') {
-            $multiChoice = 'Jūs pasirinkote, jog nemėgstate mėsos, žuvies bei avižinės košės. Esant prieštaravimui
-             tarp jūsų nemėgtamų produktų alternatyvų, vietoje mėsos ir žuvies siūlome pasirinkti varškę/jogurtą, 
-             o viešoje avižų - makaronus.';
+            $multiChoice = 'Jūs pasirinkote, jog nemėgstate mėsos, žuvies bei avižinės košės.
+             Esant prieštaravimui tarp jūsų nemėgtamų produktų alternatyvų, vietoje mėsos
+              ir žuvies siūlome pasirinkti varškę/jogurtą, o viešoje avižų - makaronus.';
         } elseif ($this->zuvis == '1' and $this->grudai == '1' and $this->varske == '1') {
-            $multiChoice = 'Jūs pasirinkote, jog nemėgstate žuvies, avižinės košės bei varškės. Esant prieštaravimui 
-            tarp jūsų nemėgstamų produktų, vietoje žuvies ir varškes rinkitės vištieną/jautieną, o vietoje
-             avižinės košes - makaronus.';
+            $multiChoice = 'Jūs pasirinkote, jog nemėgstate žuvies, avižinės košės bei varškės. 
+            Esant prieštaravimui tarp jūsų nemėgstamų produktų, vietoje žuvies ir varškes 
+            rinkitės vištieną/jautieną, o vietoje avižinės košes - makaronus.';
         } elseif ($this->mesa == '1' and $this->zuvis == '1') {
             $multiChoice = 'Jūs pasirinkote, jog nemėgstate mėsos ir žuvies. Esant prieštaravimui tarp
              jūsų nemėgstamų produktų, rinkitės pieno produktus - varškę, jogurtą.';
