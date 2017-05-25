@@ -5,9 +5,15 @@ $(document).ready(
         var id = setInterval(frame, 1);
         function frame()
         {
+            window.scrollTo(0, 0);
             if (loading === 100) {
                 clearInterval(id);
                 document.getElementById("preload").style.display = "none";
+                var overflow_status = document.getElementById("overflow");
+                if (overflow_status == null)
+                {
+                    document.body.style.overflow = 'auto';
+                }
             } else {
                 loading = loading + 1;
                 if (loading === 90) {

@@ -6,7 +6,7 @@
     {{ parent() }}
     <style>
         body {
-            overflow: auto;
+            overflow: hidden;
         }
     </style>
 {% endblock %}
@@ -110,6 +110,9 @@
                         {% endif %}
                     {% endfor %}
                     <br/>
+                    <br/>
+                    <br/>
+                    <br/>
                     <hr/>
                 {% endfor %}
             </div>
@@ -140,6 +143,9 @@
                             </p><br>
                         {% endif %}
                     {% endfor %}
+                    <br/>
+                    <br/>
+                    <br/>
                     <br/>
                     <hr/>
                 {% endfor %}
@@ -172,12 +178,16 @@
                         {% endif %}
                     {% endfor %}
                     <br/>
+                    <br/>
+                    <br/>
+                    <br/>
                     <hr/>
                 {% endfor %}
             </div>
         </div>
-            {% endif %}
+        {% endif %}
 
+        <br/>
         {% if plan.exerciseListFour != NULL %}
             <div class="container-fluid">
                 <div class="row" style="color: black; background-color: white; padding-top: 10px;">
@@ -202,14 +212,14 @@
                             {% endif %}
                         {% endfor %}
                         <br/>
+                        <br/>
+                        <br/>
+                        <br/>
                         <hr/>
                     {% endfor %}
-
                 </div>
             </div>
         {% endif %}
-
-
     </div>
 </div>
 
