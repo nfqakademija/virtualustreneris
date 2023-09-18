@@ -4,7 +4,7 @@ NFQ Akademijos projektas - [virtualus treneris](http://virtualustreneris.projekt
 [![Build Status](https://travis-ci.org/nfqakademija/virtualustreneris.svg?branch=master)](https://travis-ci.org/nfqakademija/virtualustreneris)
 
 ### Nariai:
- - Aidas Eglinskas
+ - Aidas
  - Vilius Norbutas
  - Armandas Dambrauskas
 
